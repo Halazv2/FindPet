@@ -1,7 +1,6 @@
 <template>
   <div class="home">
     <HomeComp />
-    <center>home page</center>
   </div>
 </template>
 
