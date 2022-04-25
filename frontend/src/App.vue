@@ -7,6 +7,7 @@
 <script>
 import NavigationUser from "./components/Navigation-User.vue";
 import NavigationVist from "./components/Navigation-Vist.vue";
+
 import NavigationVisteur from "./components/Navigation-Vist.vue";
 
 export default {

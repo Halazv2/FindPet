@@ -39,6 +39,7 @@
         />
       </div>
     </header>
+    
     <HomeHeroComp />
   </div>
 </template>
