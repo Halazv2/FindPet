@@ -1,8 +1,8 @@
 <template>
   <div class="container mx-auto">
     <header class="flex items-center justify-evenly">
-      <div class="w-[30%] flex flex-col gap-4">
-        <h1 class="text-2xl">
+      <div class="w-[40%] flex flex-col gap-4">
+        <h1 class="text-3xl">
           Let's make a better community <span class="font-bold">TOGETHER</span>
         </h1>
         <p>
