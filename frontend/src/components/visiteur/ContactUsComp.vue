@@ -1,10 +1,13 @@
 <template>
   <div class="container mx-auto">
-    <div class="flex flex-col items-center">
-      <h1 class="border-2 border-slate-700 w-fit">
+    <div class="ml-14">
+      <h1 class="border-2 border-slate-700 ">
         Sign up and stay <br />
         <span class="text-primary-btn">CONNECTED</span>
       </h1>
+      
+    </div>
+    <div class="flex flex-col items-center">
       <center>
         <p>
           Once we have received your enquiry, we will contact you promptly.
@@ -128,17 +131,18 @@
               <button
                 class="
                   rounded-full
-                  w-96
+                  w-[100%]
                   h-[46px]
                   flex
                   items-center
                   justify-center
+                  mx-auto
                   bg-primary-btn
                   text-white
                   hover:bg-secondary-brn
                 "
               >
-                submit
+                Send
               </button>
             </div>
           </form>
