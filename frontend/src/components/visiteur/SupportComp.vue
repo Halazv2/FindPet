@@ -36,22 +36,32 @@
             >HERE (click me)</a
           >
         </p>
-        <img src="../../assets/images/screen.png" width="30%" alt="" />
+        <!-- <img src="../../assets/images/screen.png" width="30%" alt="" /> -->
         <iframe
-          src="https://www.patreon.com/posts/help-animals-by-65621966?utm_medium=clipboard_copy&utm_source=copy_to_clipboard&utm_campaign=postshare"
+          src="https://www.patreon.com/FindPet/"
           allowfullscreen
           width="400"
           height="200"
           title="sqd"
           frameborder="0"
         ></iframe>
+        <div></div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data(){
+    return {
+      patreonPost:{},
+    }
+  },
+  mehtodes:{
+  
+  },
+};
 </script>
 
 <style lang="scss" scoped>
