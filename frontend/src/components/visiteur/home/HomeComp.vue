@@ -67,10 +67,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.cards-section {
-  background-image: url(../../../assets/images/paws.png);
-  background-size: 100vh;
-}
 @media (max-width: 768px) {
   header {
     flex-direction: column;

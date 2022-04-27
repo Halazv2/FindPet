@@ -11,3 +11,9 @@ export default {
   name: "HomeView",
 };
 </script>
+
+<style lang="scss" scoped>
+.home {
+  background-image: url("../assets/images/PAWSS.png");
+}
+</style>

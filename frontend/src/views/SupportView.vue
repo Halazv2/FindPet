@@ -12,3 +12,8 @@ export default {
   components: { SupportComp },
 };
 </script>
+<style lang="scss" scoped>
+.support {
+  background-image: url("../assets/images/PAWSS.png");
+}
+</style>

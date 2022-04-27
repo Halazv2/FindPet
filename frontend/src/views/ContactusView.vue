@@ -1,5 +1,7 @@
 <template>
-  <ContactUsComp />
+  <div class="contact">
+    <ContactUsComp />
+  </div>
 </template>
 
 <script>
@@ -9,3 +11,9 @@ export default {
   components: { ContactUsComp },
 };
 </script>
+<style lang="scss" scoped>
+.contact {
+  background-image: url("../assets/images/PAWSS.png");
+}
+</style>
+

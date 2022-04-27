@@ -1,5 +1,5 @@
 <template>
-  <center class="support">
+  <center class="login">
     <h1>This is a login us page</h1>
   </center>
 </template>
@@ -10,3 +10,9 @@ export default {
   components: {},
 };
 </script>
+<style lang="scss" scoped>
+.login {
+  background-image: url("../assets/images/PAWSS.png");
+}
+</style>
+
