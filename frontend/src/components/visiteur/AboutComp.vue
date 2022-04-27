@@ -1,9 +1,18 @@
 <template>
   <div class="container mx-auto">
     <figure class="flex justify-center">
-      <img src="../../assets/images/AboutHero.png" alt="" srcset="" />
+      <img
+        src="../../assets/images/AboutHero.png"
+        alt=""
+        data-aos="zoom-in-up"
+        srcset=""
+      />
     </figure>
-    <div class=" flex justify-center flex-col items-center py-16">
+    <div
+      class="flex justify-center flex-col items-center py-16"
+      data-aos="fade-up"
+      data-aos-delay="50"
+    >
       <div class="Content">
         <div class="discription lg:w-[40%]">
           <h1>WHO WE ARE</h1>
@@ -17,11 +26,20 @@
           <img src="../../assets/images/AboutLeftImg.png" alt="" />
         </figure>
       </div>
-      <div class="py-12 Content Content-2 ">
+      <div
+        class="py-12 Content Content-2"
+        data-aos="fade-up"
+        data-aos-delay="50"
+      >
         <figure>
-          <img src="../../assets/images/AboutRightImg.png" alt="" />
+          <img
+            src="../../assets/images/AboutRightImg.png"
+            data-aos="fade-up"
+            data-aos-delay="50"
+            alt=""
+          />
         </figure>
-        <div class="discription  lg:w-[40%]">
+        <div class="discription lg:w-[40%]">
           <h1>HOW YOU CAN GET INVOLVED</h1>
           <p>
             We know FindPet will be successful because of our amazing community.
@@ -39,16 +57,15 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
-
 @media (max-width: 768px) {
   .Content {
     width: 90%;
     .discription {
-    width: 100%;
+      width: 100%;
     }
   }
-  .Content-2{
-      flex-direction: column-reverse;
+  .Content-2 {
+    flex-direction: column-reverse;
   }
 }
 .Content {
@@ -56,7 +73,7 @@ export default {};
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-//   width: 75%;
+  //   width: 75%;
   gap: 30px;
   .discription {
     h1 {
@@ -76,5 +93,4 @@ export default {};
     }
   }
 }
-
 </style>

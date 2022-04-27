@@ -1,11 +1,18 @@
 <template>
   <div>
     <div class="container mx-auto">
-      <header class="flex items-center justify-evenly">
+      <header
+        class="flex items-center justify-evenly"
+        data-aos="zoom-in-up"
+        data-aos-delay="50"
+      >
         <div class="header-container w-[40%] flex flex-col gap-4">
           <h1 class="text-3xl">
             Let's make a better community
-            <span class="font-bold text-primary-btn"><br> TOGETHER</span>
+            <span class="font-bold text-primary-btn"
+              ><br />
+              TOGETHER</span
+            >
           </h1>
           <p>
             Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -43,9 +50,9 @@
         </div>
       </header>
     </div>
-    <div class="cards-section ">
-    <HomeHeroComp />
-    <MatchHomeComp />
+    <div class="cards-section">
+      <HomeHeroComp />
+      <MatchHomeComp />
     </div>
   </div>
 </template>

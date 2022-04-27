@@ -1,5 +1,9 @@
 <template>
-  <div class="flex flex-col justify-center items-center ">
+  <div
+    class="flex flex-col justify-center items-center"
+    data-aos="fade-up"
+    data-aos-delay="50"
+  >
     <h1 class="font-bold text-3xl text-center">Meet Your Match Today!</h1>
     <div class="py-12 w-[80%]">
       <div class="card lg:card-side flex-col-reverse bg-base-100 shadow-xl">
@@ -12,7 +16,12 @@
         </figure>
         <div class="card-body">
           <div class="flex gap-2">
-            <img src="../../../assets/images/catIcon.png" width="50px" height="50px" alt="cat icon" />
+            <img
+              src="../../../assets/images/catIcon.png"
+              width="50px"
+              height="50px"
+              alt="cat icon"
+            />
             <h2 class="card-title text-2xl font-bold">Frosty</h2>
           </div>
           <div class="">
@@ -55,8 +64,8 @@
               survived the one brother past.
             </p>
             <p>
-               She is a sweet dog playful fun and
-              full of love. Very smart and loves to learn.
+              She is a sweet dog playful fun and full of love. Very smart and
+              loves to learn.
             </p>
           </div>
         </div>
@@ -70,5 +79,4 @@ export default {};
 </script>
 
 <style>
-
 </style>
