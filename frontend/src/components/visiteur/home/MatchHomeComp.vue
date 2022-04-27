@@ -1,7 +1,8 @@
 <template>
-  <div class="flex justify-center">
+  <div class="flex flex-col justify-center items-center ">
+    <h1 class="font-bold text-3xl text-center">Meet Your Match Today!</h1>
     <div class="py-12 w-[80%]">
-      <div class="card lg:card-side bg-base-100 shadow-xl">
+      <div class="card lg:card-side flex-col-reverse bg-base-100 shadow-xl">
         <figure>
           <img
             src="../../../assets/images/catMatch.png"
@@ -11,7 +12,7 @@
         </figure>
         <div class="card-body">
           <div class="flex gap-2">
-            <img src="../../../assets/images/dogIcon.png" alt="cat icon" />
+            <img src="../../../assets/images/catIcon.png" width="50px" height="50px" alt="cat icon" />
             <h2 class="card-title text-2xl font-bold">Frosty</h2>
           </div>
           <div class="">
@@ -31,6 +32,36 @@
         </div>
       </div>
     </div>
+    <div class="py-12 w-[80%]">
+      <div class="card lg:card-side flex-col-reverse bg-base-100 shadow-xl">
+        <figure>
+          <img
+            src="../../../assets/images/zola.png"
+            alt="happy dog"
+            class="p-4 w-[485px]"
+          />
+        </figure>
+        <div class="card-body">
+          <div class="flex gap-2">
+            <img src="../../../assets/images/dogIcon.png" alt="dog icon" />
+            <h2 class="card-title text-2xl font-bold">Zola</h2>
+          </div>
+          <div class="">
+            <p>Young | Female | Puppy | white with black</p>
+            <p>Meet Zola</p>
+            <p>
+              Sweet Murphy was so sick she and her two siblings had parvo they
+              spent 3 weeks in the hospital, sadly only she and her sister
+              survived the one brother past.
+            </p>
+            <p>
+               She is a sweet dog playful fun and
+              full of love. Very smart and loves to learn.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -39,4 +70,5 @@ export default {};
 </script>
 
 <style>
+
 </style>

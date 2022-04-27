@@ -1,7 +1,7 @@
 <template>
   <div class="py-16">
-    <div class="py-16 font-bold text-3xl text-center">Lend a helping hand and <span>CHANGE LIVES</span></div>
-    <div class="flex justify-evenly flex-wrap gap-5">
+    <div class="py-16 font-bold text-3xl text-center">Lend a helping hand and <span class="text-primary-btn">CHANGE LIVES</span></div>
+    <div class="flex justify-evenly flex-wrap gap-4">
       <div
         class="card w-80 bg-base-100 shadow-xl"
         v-for="(cards, index) in cards"
@@ -61,6 +61,3 @@ export default {
   },
 };
 </script>
-
-<style>
-</style>
