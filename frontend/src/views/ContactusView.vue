@@ -1,12 +1,11 @@
 <template>
-  <center class="ContactUs">
-    <h1>This is a contact us page</h1>
-  </center>
+  <ContactUsComp />
 </template>
 
 <script>
+import ContactUsComp from "../components/visiteur/ContactUsComp.vue";
 export default {
   name: "ContactUsView",
-  components: {},
+  components: { ContactUsComp },
 };
 </script>
