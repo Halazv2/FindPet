@@ -164,11 +164,4 @@ h1 {
   font-size: 42px;
   line-height: 51px;
 }
-p {
-  font-family: "Montserrat";
-  font-style: normal;
-  // font-weight: 400;
-  // font-size: 20px;
-  line-height: 24px;
-}
 </style>
