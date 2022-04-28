@@ -1,13 +1,14 @@
 <template>
   <center class="login">
-    <h1>This is a login us page</h1>
+    <loginComp />
   </center>
 </template>
 
 <script>
+import loginComp from "../components/Auth/LoginComp.vue";
 export default {
   name: "SupportView",
-  components: {},
+  components: { loginComp },
 };
 </script>
 <style lang="scss" scoped>
