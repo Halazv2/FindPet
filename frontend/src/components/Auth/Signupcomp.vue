@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="relative py-16">
-      <div class="m-auto md:w-[90%] lg:w-5/12 ">
+      <div class="m-auto md:w-[90%] lg:w-5/12">
         <div class="rounded-xl bg-white shadow-xl">
           <div class="p-6 sm:p-16">
             <h1 class="mb-6">Join our community</h1>
@@ -208,7 +208,10 @@
                   </button>
                 </div>
               </form>
-              <p>Already have an account? <span class="text-primary-btn">Sign In</span></p>
+              <p>
+                Already have an account?
+                <span class="text-primary-btn">Sign In</span>
+              </p>
             </div>
           </div>
         </div>
