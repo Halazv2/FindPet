@@ -118,7 +118,7 @@
               "
               ><i class="fa-solid fa-phone"></i> +212 7 00 94 07 62</a
             >
-            <router-link to="/login">
+            <router-link to="/AuthView">
             <button
               class="
                 rounded-full

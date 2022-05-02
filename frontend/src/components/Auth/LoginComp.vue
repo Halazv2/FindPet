@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="relative py-16">
-      <div class="m-auto md:w-[90%] lg:w-5/12 ">
+    <div class="relative pb-16 ">
+      <div class=" flex justify-center">
         <div class="rounded-xl bg-white shadow-xl">
           <div class="p-6 sm:p-16">
             <h1 class="mb-6">Login</h1>
@@ -140,7 +140,10 @@
                   </button>
                 </div>
               </form>
-              <p>You don't have an account? <span class="text-primary-btn">Sign Up</span></p>
+              <p @click="$emit('shows')" class="cursor-pointer">
+                You don't have an account?
+                <span class="text-primary-btn">Sign Up</span>
+              </p>
             </div>
           </div>
         </div>
@@ -150,7 +153,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: "LoginComp",
+
+  methods: {
+
+  },
+};
 </script>
 
 <style lang="scss" scoped>

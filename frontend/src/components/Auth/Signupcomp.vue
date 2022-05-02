@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="relative py-16">
-      <div class="m-auto md:w-[90%] lg:w-5/12">
+    <div class="relative pb-16">
+      <div class=" flex justify-center">
         <div class="rounded-xl bg-white shadow-xl">
           <div class="p-6 sm:p-16">
             <h1 class="mb-6">Join our community</h1>
@@ -37,7 +37,6 @@
                         leading-tight
                         focus:outline-none focus:bg-white focus:border-gray-500
                       "
-                      id="grid-last-name"
                       type="text"
                       placeholder="Joe Belle"
                     />
@@ -71,7 +70,6 @@
                         leading-tight
                         focus:outline-none focus:bg-white focus:border-gray-500
                       "
-                      id="grid-last-name"
                       type="text"
                       placeholder="Joe Belle"
                     />
@@ -103,7 +101,6 @@
                         leading-tight
                         focus:outline-none focus:bg-white focus:border-gray-500
                       "
-                      id="grid-last-name"
                       type="text"
                       placeholder="pat@shuffle.dev"
                     />
@@ -139,7 +136,7 @@
                         leading-tight
                         focus:outline-none focus:bg-white focus:border-gray-500
                       "
-                      id="grid-password"
+                      
                     />
                   </div>
                 </div>
@@ -208,7 +205,7 @@
                   </button>
                 </div>
               </form>
-              <p>
+              <p @click="$emit('shows')" class="cursor-pointer">
                 Already have an account?
                 <span class="text-primary-btn">Sign In</span>
               </p>
@@ -221,7 +218,9 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: 'SignUp',
+};
 </script>
 
 <style lang="scss" scoped>
