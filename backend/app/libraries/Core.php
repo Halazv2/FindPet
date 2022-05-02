@@ -1,7 +1,7 @@
 <?php
 class Core
 {
-  protected $currentController = 'User';
+  protected $currentController = '';
   protected $currentMethod = 'index';
   protected $params = [];
   public function __construct()
