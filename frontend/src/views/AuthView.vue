@@ -1,7 +1,8 @@
 <template>
   <div class="login">
+    <!-- <transition-group name="fade" :duration="{ enter: 500, leave: 800 }" > -->
     <transition-group name="fade">
-      <loginComp @shows="shows" v-if="login" />
+      <loginComp @shows="shows" v-if="!Signup" />
       <SignupComp v-if="Signup" @shows="shows" />
     </transition-group>
   </div>
@@ -17,13 +18,10 @@ export default {
   data() {
     return {
       Signup: false,
-      login: true,
     };
   },
   methods: {
     shows() {
-      // if signup is true set login to false
-      this.login = !this.login;
       this.Signup = !this.Signup;
     },
   },
@@ -39,16 +37,28 @@ export default {
   width: 100vw;
 }
 .fade-enter-active {
-  transition: opacity 0.5s;
+  transition: opacity 0.5s ease;
+  animation: fade-in 0.5s;
 }
 .fade-leave-active {
-  transition: opacity 0.5s;
-  
+  transition: opacity 0.5s ease;
+  animation: fade-in 0.5s reverse;
+  transform: translateX(20%);
 }
-.fade-enter, .fade-leave-to {
+.fade-enter-to,
+.fade-leave-to {
   opacity: 0;
-  position: absolute;
 }
-
+@keyframes fade-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 </style>
 

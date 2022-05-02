@@ -4,7 +4,7 @@
       <div class=" flex justify-center">
         <div class="rounded-xl bg-white shadow-xl">
           <div class="p-6 sm:p-16">
-            <h1 class="mb-6">Login</h1>
+            <h1 class="mb-6">Join our community</h1>
             <div class="space-y-4">
               <form class="w-full max-w-lg text-left">
                 <div class="flex flex-col -mx-3 mb-6">
