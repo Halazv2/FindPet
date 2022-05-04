@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="relative pb-16">
+    <div class="relative">
       <div class=" flex justify-center">
         <div class="rounded-xl bg-white shadow-xl">
           <div class="p-6 sm:p-16">

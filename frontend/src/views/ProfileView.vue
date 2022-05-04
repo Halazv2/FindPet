@@ -1,5 +1,7 @@
 <template>
+<div>
   <profile-comp />
+</div>
 </template>
 
 <script>
