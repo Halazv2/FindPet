@@ -34,7 +34,6 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   height: 100vh;
-  width: 100vw;
 }
 .fade-enter-active {
   transition: opacity 0.5s ease;

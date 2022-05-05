@@ -1,12 +1,17 @@
 <template>
   <div>
     <div class="relative">
-      <div class=" flex justify-center">
+      <div class="flex justify-center">
         <div class="rounded-xl bg-white shadow-xl">
           <div class="p-6 sm:p-16">
             <h1 class="mb-6">Join our community</h1>
             <div class="space-y-4">
-              <form class="w-full max-w-lg text-left">
+              <form
+                @submit.prevent
+                action
+                method
+                class="w-full max-w-lg text-left"
+              >
                 <div class="flex flex-col -mx-3 mb-6">
                   <div class="w-full px-3 mb-6">
                     <label
@@ -39,6 +44,7 @@
                       "
                       type="text"
                       placeholder="Joe Belle"
+                      v-model="register.FirstName"
                     />
                   </div>
                   <div class="w-full px-3 mb-6">
@@ -72,6 +78,7 @@
                       "
                       type="text"
                       placeholder="Joe Belle"
+                      v-model="register.LastName"
                     />
                   </div>
                   <div class="w-full px-3">
@@ -101,8 +108,9 @@
                         leading-tight
                         focus:outline-none focus:bg-white focus:border-gray-500
                       "
-                      type="text"
+                      type="email"
                       placeholder="pat@shuffle.dev"
+                      v-model="register.Email"
                     />
                   </div>
                 </div>
@@ -136,7 +144,8 @@
                         leading-tight
                         focus:outline-none focus:bg-white focus:border-gray-500
                       "
-                      
+                      placeholder="******************"
+                      v-model="register.Password"
                     />
                   </div>
                 </div>
@@ -154,6 +163,7 @@
                       text-white
                       hover:bg-secondary-brn
                     "
+                    @click="registerUser"
                   >
                     Send
                   </button>
@@ -219,7 +229,39 @@
 
 <script>
 export default {
-  name: 'SignUp',
+  name: "SignUp",
+  data() {
+    return {
+      register: {
+        FirstName: "",
+        LastName: "",
+        Email: "",
+        Password: "",
+      },
+    };
+  },
+  methods: {
+    registerUser() {
+      fetch("http://localhost/fil-rouge-find-pet/UserController/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Content-Type": "text/plain",
+        },
+        body: JSON.stringify({
+          FirstName: this.register.FirstName,
+          LastName: this.register.LastName,
+          Email: this.register.Email,
+          Password: this.register.Password,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((error) => console.error(error));
+    },
+  },
 };
 </script>
 

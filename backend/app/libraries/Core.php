@@ -1,7 +1,7 @@
 <?php
 class Core
 {
-  protected $currentController = '';
+  protected $currentController = 'UserController';
   protected $currentMethod = 'index';
   protected $params = [];
   public function __construct()
@@ -11,6 +11,8 @@ class Core
     if ($url && file_exists('../app/controllers/' . ucwords($url[0]) . '.php')) {
       $this->currentController = ucwords($url[0]);
       unset($url[0]);
+    }else{
+      json_encode(['message' => 'Page not found']);
     }
 
     require_once '../app/controllers/' . $this->currentController . '.php';

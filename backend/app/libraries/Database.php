@@ -5,7 +5,7 @@ class Database
 	private $user = "root";
 	private $pass = "";
 	private $dbname = "findpet";
-	public $dbh;
+	public $DB;
 	public function __construct()
 	{
 		$dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->dbname;
@@ -14,7 +14,7 @@ class Database
 			PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
 		);
 		try {
-			$this->dbh = new PDO($dsn, $this->user, $this->pass, $options);
+			$this->DB = new PDO($dsn, $this->user, $this->pass, $options);
 			echo "seccses";
 		} catch (PDOException $e) {
 			$this->error = $e->getMessage();
