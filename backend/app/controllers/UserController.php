@@ -22,23 +22,24 @@ class UserController extends Controller
             $LastName = $data->LastName;
             $Email = $data->Email;
             $Password = $data->Password;
-            var_dump($data);
             $user = $this->model('UserModel');
             if($user->register($FirstName, $LastName, $Email, $Password)) {
                 echo json_encode(['message' => 'User mli7']);
-            } else {
-                echo json_encode(['message' => 'User Mamli7ch']);
             }
         }
     }
 
     public function login()
     {
-        $user = $this->model('User');
-        $user->username = $_POST['username'];
-        $user->password = $_POST['password'];
-        $user->login();
-        echo json_encode(['message' => 'User logged in']);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = json_decode(file_get_contents("php://input"));
+            $Email = $data->Email;
+            $Password = $data->Password;
+            $user = $this->model('UserModel');
+            if($user->login($Email, $Password)) {
+                echo json_encode(['message' => 'You are logged in']);
+            }
+        }
     }
 
     public function logout()
