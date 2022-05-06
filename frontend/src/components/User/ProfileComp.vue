@@ -1,74 +1,78 @@
 <template>
-  <div class="flex justify-center">
-    <!-- <div class="bg-primary-btn h-96">
-      <img
-        src="../../assets/images/DonateHome.png"
-        alt="Profile Pic"
-        class="image absolute rounded-full bg-white w-64 h-64 p-2"
-      />
+  <div class="">
+            <div class="bg-white pb-10 ">
+            <div class="flex flex-col gap-1 text-center items-center">
+              <div class="bg-primary-btn h-80 relative w-[100%] justify-center flex items-end ">
+                <img class="image absolute  h-40 w-40  bg-white p-2 rounded-full " src="../../assets/images/riven.jpeg" alt="">
+                </div>
+                <div class="mt-24">
+                <p class="font-semibold">Riven</p>
+                <div class="text-sm leading-normal text-gray-400 flex justify-center items-center">
+                <svg viewBox="0 0 24 24" class="mr-1" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                Oujda, Oriental
+                </div>
+                </div>
+            </div>
+            <div class="flex justify-center items-center gap-2 my-3">
+                <div class="font-semibold text-center mx-4">
+                    <p class="text-black">102</p>
+                    <span class="text-gray-400">Posts</span>
+                </div>
+                <div class="font-semibold text-center mx-4">
+                    <p class="text-black">102</p>
+                    <span class="text-gray-400">Followers</span>
+                </div>
+                <div class="font-semibold text-center mx-4">
+                    <p class="text-black">102</p>
+                    <span class="text-gray-400">Folowing</span>
+                </div>
+            </div>
+        </div>
+
+<div class=" min-h-screen bg-base-100 py-8">
+  <div class="flex justify-around items-center  flex-col lg:flex-row">
+    <div class="flex flex-col gap-7">
+    <div class="text-center lg:text-left text-blue-600 font-semibold">
+      <a href="">Update Account</a>
     </div>
-    <div class="flex lg:flex-row md:flex-col py-32 justify-center gap-24">
-      <div class="left flex items-center">
-        <div class="flex flex-col gap-6">
-          <a class="text-blue-500">Update Profile</a>
-          <a class="text-red-600">Delete Profile</a>
+    <div class="text-center lg:text-left text-red-600 font-semibold">
+      <a href="">Delete acoount</a>
+    </div>
+    </div>
+    <div class="card flex-shrink-0 w-full max-w-sm ">
+      <div class="card-body">
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">First name</span>
+          </label>
+          <input type="text" placeholder="First name" class="input input-bordered" />
+        </div>
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Last name</span>
+          </label>
+          <input type="text" placeholder="Last name" class="input input-bordered" />
+        </div>
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Email</span>
+          </label>
+          <input type="email" placeholder="Email" class="input input-bordered" />
+        </div>
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Password</span>
+          </label>
+          <input type="password" placeholder="**************" class="input input-bordered" />
+        </div>
+        <div class="form-control mt-6">
+          <button class="btn bg-primary-btn border-none rounded-full hover:bg-secondary-brn">Login</button>
         </div>
       </div>
-      <div class="line"></div>
-      <div class="right">
-        <form>
-          <div class="flex flex-col">
-            <label for="">First Name</label>
-            <input type="text" class="border border-gray-400 p-2 lg:w-96" />
-            <label for="">Last Name</label>
-            <input type="text" class="border border-gray-400 p-2" />
-            <label for="">Email</label>
-            <input type="text" class="border border-gray-400 p-2" />
-            <label for="">Password</label>
-            <input type="text" class="border border-gray-400 p-2" />
-          </div>
-        </form>
-      </div>
-    </div> -->
-    <div
-      class="
-        relative
-        w-screen
-        h-
-        bg-white
-        rounded-lg
-        shadow-lg
-        overflow-hidde
-        mb-32
-      "
-    >
-      <div class="absolute inset-0 overflow-hidden bg-primary-btn h-96">
-        <div
-          class="
-            absolute
-            inset-0
-            backdrop backdrop-blur-10
-            bg-gradient-to-b
-            from-transparent
-            to-black
-          "
-        ></div>
-      </div>
-      <div class="  flex items-end">
-        <div class="profile absolute flex space-x-6">
-          <div class="w-36 h-36 rounded-lg shadow-lg overflow-hidden">
-            <img
-              src="https://images.unsplash.com/photo-1543794327-59a91fb815d1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80"
-              alt=""
-            />
-          </div>
-          <div class="text-white pt-12">
-            <h3 class="font-bold">Joe Boe</h3>
-            <div class="text-sm opacity-60">Riven</div>
-          </div>
-        </div>
-      </div>
     </div>
+  </div>
+</div>
+
   </div>
 </template>
 
@@ -79,18 +83,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-//create vertical line
-.line {
-  border-left: 1px solid #777;
-}
-//design input field
-input {
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.627);
-  font-size: 1.2rem;
-}
-label {
-  margin-top: 6px;
-  margin-bottom: 3px;
+//center the image in the div bottom 
+.image {
+  left: 50%;
+  top: 83%;
+  transform: translate(-50%, -15%);
 }
 </style>
