@@ -26,7 +26,6 @@ class UserModel
             $stmt->bindParam(':Email', $Email);
             //hash password
             $stmt->bindParam(':Password', password_hash($Password, PASSWORD_DEFAULT));
-            // $stmt->bindParam(':Password', $Password);
             $stmt->execute();
             return true;
         }
@@ -42,18 +41,14 @@ class UserModel
         if ($user) {
             //check if password is correct
             if (password_verify($Password, $user['Password'])) {
-                $_SESSION['user_id'] = $user['id'];
-                $_SESSION['user_name'] = $user['FirstName'];
-                $_SESSION['user_email'] = $user['Email'];
-                return true;
+                //return user data json object
+                echo json_encode(['user' => $user]);
             } else {
-                //if password is incorrect
                 echo json_encode(['message' => 'Invalid password']);
             }
-            //if user is not registered
         } else {
-            echo json_encode(['message' => 'Invalid email']);
+            echo json_encode(['message' => 'User not found']);
         }
-    }
-
+        
+}
 }

@@ -1,12 +1,17 @@
 <template>
   <div>
-    <div class="relative pb-16 ">
-      <div class=" flex justify-center">
+    <div class="relative pb-16">
+      <div class="flex justify-center">
         <div class="rounded-xl bg-white shadow-xl">
           <div class="p-6 sm:p-16">
             <h1 class="mb-6">Join our community</h1>
             <div class="space-y-4">
-              <form class="w-full max-w-lg text-left">
+              <form
+                @submit.prevent
+                action
+                method
+                class="w-full max-w-lg text-left"
+              >
                 <div class="flex flex-col -mx-3 mb-6">
                   <div class="w-full px-3">
                     <label
@@ -38,6 +43,7 @@
                       id="grid-last-name"
                       type="text"
                       placeholder="pat@shuffle.dev"
+                      v-model="login.Email"
                     />
                   </div>
                 </div>
@@ -71,6 +77,7 @@
                         leading-tight
                         focus:outline-none focus:bg-white focus:border-gray-500
                       "
+                      v-model="login.Password"
                       id="grid-password"
                     />
                   </div>
@@ -89,6 +96,7 @@
                       text-white
                       hover:bg-secondary-brn
                     "
+                    @click="loginUser"
                   >
                     Send
                   </button>
@@ -155,9 +163,35 @@
 <script>
 export default {
   name: "LoginComp",
-
+  data() {
+    return {
+      login: {
+        Email: "",
+        Password: "",
+      },
+    };
+  },
   methods: {
+    loginUser() {
+      fetch("http://localhost/fil-rouge-find-pet/UserController/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Content-Type": "text/plain",
+        },
+        body: JSON.stringify(this.login),
+      })
+        .then((response) => response.text())
+        .then((data) => {
+          if (data) {
+            console.log(data);
+            //set id user in localstorage
+            localStorage.setItem("user_id", data.user);
 
+            // this.$router.push("/Profile");
+          }
+        });
+    },
   },
 };
 </script>

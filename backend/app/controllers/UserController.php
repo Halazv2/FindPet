@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
+header('Access-Control-Allow-Methods: *');
 class UserController extends Controller
 {
     public function __construct()
@@ -24,7 +24,7 @@ class UserController extends Controller
             $Password = $data->Password;
             $user = $this->model('UserModel');
             if($user->register($FirstName, $LastName, $Email, $Password)) {
-                echo json_encode(['message' => 'User mli7']);
+                echo json_encode(['message' => 'welcome to findpet']);
             }
         }
     }
@@ -32,18 +32,21 @@ class UserController extends Controller
     public function login()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            //decode json data and get email and password
             $data = json_decode(file_get_contents("php://input"));
+            //put data into variables
             $Email = $data->Email;
             $Password = $data->Password;
+            //call the model
             $user = $this->model('UserModel');
-            if($user->login($Email, $Password)) {
-                echo json_encode(['message' => 'You are logged in']);
-            }
+            //call the login method
+            $user->login($Email, $Password);
         }
     }
 
     public function logout()
     {
+        //unset session variables
         $user = $this->model('User');
         $user->logout();
         echo json_encode(['message' => 'User logged out']);
