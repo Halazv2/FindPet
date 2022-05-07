@@ -40,7 +40,6 @@
                         leading-tight
                         focus:outline-none focus:bg-white focus:border-gray-500
                       "
-                      id="grid-last-name"
                       type="text"
                       placeholder="pat@shuffle.dev"
                       v-model="login.Email"
@@ -78,7 +77,6 @@
                         focus:outline-none focus:bg-white focus:border-gray-500
                       "
                       v-model="login.Password"
-                      id="grid-password"
                     />
                   </div>
                 </div>
@@ -177,18 +175,15 @@ export default {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Content-Type": "text/plain",
         },
         body: JSON.stringify(this.login),
       })
-        .then((response) => response.text())
+        .then((Response) => Response.json())
         .then((data) => {
           if (data) {
             console.log(data);
-            //set id user in localstorage
-            localStorage.setItem("user_id", data.user);
-
-            // this.$router.push("/Profile");
+          } else {
+            console.log(data.message);
           }
         });
     },
