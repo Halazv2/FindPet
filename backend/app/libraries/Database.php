@@ -15,7 +15,6 @@ class Database
 		);
 		try {
 			$this->DB = new PDO($dsn, $this->user, $this->pass, $options);
-			echo "seccses";
 		} catch (PDOException $e) {
 			$this->error = $e->getMessage();
 		}
