@@ -1,5 +1,5 @@
 <template>
-  <nav id="header" class="fixed w-screen z-10 top-0">
+  <nav id="header" class=" w-full z-10 top-0">
     <div class="text-gray-700 bg-gray-50">
       <div
         :x-data="{ open: false }"

@@ -15,5 +15,6 @@ export default {
 <style lang="scss" scoped>
 .home {
   background-image: url("../assets/images/PAWSS.png");
+  background-size: 100%;
 }
 </style>

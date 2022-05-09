@@ -14,6 +14,8 @@ export default {
 <style lang="scss" scoped>
 .contact {
   background-image: url("../assets/images/PAWSS.png");
+  background-size: 100%;
+  min-height: 100vh;
 }
 </style>
 

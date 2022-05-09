@@ -1,7 +1,7 @@
 <template>
-  <div class="container mx-auto">
-    <div class="ml-14">
-      <h1 class="">
+  <div class="container mx-auto ">
+    <div class="ml-14 ">
+      <h1 class="mt-9">
         Sign up and stay <br />
         <span class="text-primary-btn">CONNECTED</span>
       </h1>

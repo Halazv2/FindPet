@@ -37,6 +37,7 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/ProfileView.vue"),
   },
+
 ];
 
 const router = createRouter({

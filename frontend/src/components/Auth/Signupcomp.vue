@@ -2,9 +2,10 @@
   <div>
     <div class="relative">
       <div class="flex justify-center">
-        <div class="rounded-xl bg-white shadow-xl">
+        <div class="rounded mt-[59px] bg-white shadow-xl">
           <div class="p-6 sm:p-16">
             <h1 class="mb-6">Join our community</h1>
+            <p class="text-red-600 text-center mb-3">{{ errors }}</p>
             <div class="space-y-4">
               <form
                 @submit.prevent
@@ -238,6 +239,7 @@ export default {
         Email: "",
         Password: "",
       },
+      errors: "",
     };
   },
   methods: {
@@ -257,9 +259,18 @@ export default {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data.message);
+          if(data.message){
+            this.errors = data.message;
+            console.log(data.message);
+          }
+          else if (data.user) {
+            console.log("sdfsdfsd");
+            this.$emit("shows");
+          } 
         })
-        .catch((error) => console.error(error));
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
 };

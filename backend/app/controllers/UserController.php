@@ -1,7 +1,7 @@
-<?php
-Header('Access-Control-Allow-Origin: *'); //for allow any domain, insecure
-Header('Access-Control-Allow-Headers: *'); //for allow any headers, insecure
-Header('Access-Control-Allow-Methods: *'); //method allowed
+    <?php
+    Header('Access-Control-Allow-Origin: *'); //for allow any domain, insecure
+    Header('Access-Control-Allow-Headers: *'); //for allow any headers, insecure
+    Header('Access-Control-Allow-Methods: *'); //method allowed
 class UserController extends Controller
 {
     public function __construct()
@@ -21,11 +21,10 @@ class UserController extends Controller
             $FirstName = $data->FirstName;
             $LastName = $data->LastName;
             $Email = $data->Email;
-            $Password = $data->Password;
+            //hash password
+            $Password = password_hash($data->Password, PASSWORD_DEFAULT);
             $user = $this->model('UserModel');
-            if ($user->register($FirstName, $LastName, $Email, $Password)) {
-                echo json_encode(['message' => 'welcome to findpet']);
-            }
+            $user->register($FirstName, $LastName, $Email, $Password);
         }
     }
 

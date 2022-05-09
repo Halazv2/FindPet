@@ -30,10 +30,9 @@ export default {
 <style lang="scss" scoped>
 .login {
   background-image: url("../assets/images/PAWSS.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 100vh;
+  background-size: 100%;
+  min-height: 100vh;
+
 }
 .fade-enter-active {
   transition: opacity 0.5s ease;

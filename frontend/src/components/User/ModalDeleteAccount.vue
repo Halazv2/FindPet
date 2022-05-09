@@ -17,7 +17,7 @@
           Then you have to create a new account.
         </p>
         <div class="modal-action">
-          <label @click="DeleteAccount" class="btn btn-error">Yay!</label>
+          <label @click="DeleteAccount" class="btn btn-error">Yes</label>
         </div>
       </div>
     </div>

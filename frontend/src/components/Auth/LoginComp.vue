@@ -2,9 +2,10 @@
   <div>
     <div class="relative pb-16">
       <div class="flex justify-center">
-        <div class="rounded-xl bg-white shadow-xl">
+        <div class="rounded mt-[59px] bg-white shadow-xl">
           <div class="p-6 sm:p-16">
             <h1 class="mb-6">Join our community</h1>
+            <p class="text-red-600 text-center mb-3">{{ errors }}</p>
             <div class="space-y-4">
               <form
                 @submit.prevent
@@ -40,7 +41,7 @@
                         leading-tight
                         focus:outline-none focus:bg-white focus:border-gray-500
                       "
-                      type="text"
+                      type="email"
                       placeholder="pat@shuffle.dev"
                       v-model="login.Email"
                     />
@@ -167,6 +168,7 @@ export default {
         Email: "",
         Password: "",
       },
+      errors: "",
     };
   },
   methods: {
@@ -181,9 +183,11 @@ export default {
         .then((Response) => Response.json())
         .then((data) => {
           if (data) {
-            console.log(data);
-          } else {
-            console.log(data.message);
+            localStorage.setItem("user_id", data.id);
+            
+          }
+          if (data.message) {
+            this.errors = data.message;
           }
         });
     },

@@ -14,5 +14,6 @@ export default {
 <style lang="scss" scoped>
 .support {
   background-image: url("../assets/images/PAWSS.png");
+  background-size: 100%;
 }
 </style>

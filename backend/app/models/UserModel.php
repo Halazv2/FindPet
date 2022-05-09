@@ -24,12 +24,23 @@ class UserModel
             $stmt->bindParam(':FirstName', $FirstName);
             $stmt->bindParam(':LastName', $LastName);
             $stmt->bindParam(':Email', $Email);
-            //hash password
-            $stmt->bindParam(':Password', password_hash($Password, PASSWORD_DEFAULT));
+            $stmt->bindParam(':Password', $Password);
             $stmt->execute();
-            return true;
+            //return user data
+            $user = $this->getUser($Email);
+            echo json_encode(["user" => $user]);
         }
     }
+    public function getUser($Email)
+    {
+        $request = "SELECT * FROM users WHERE Email = :Email";
+        $stmt = $this->db->prepare($request);
+        $stmt->bindParam(':Email', $Email);
+        $stmt->execute();
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $user;
+    }
+    
     public function login($Email, $Password)
     {
         $request = "SELECT * FROM users WHERE Email = :Email";
