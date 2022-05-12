@@ -1,6 +1,7 @@
 <template>
   <div>
     <navigation-vist />
+    <navigation-user />
     <router-view />
   </div>
 </template>
@@ -8,11 +9,10 @@
 import NavigationUser from "./components/Navigation-User.vue";
 import NavigationVist from "./components/Navigation-Vist.vue";
 
-import NavigationVisteur from "./components/Navigation-Vist.vue";
 
 export default {
-  components: { NavigationVist },
-  component: { NavigationUser, NavigationVisteur },
+  components: { NavigationVist, NavigationUser },
+  
 };
 </script>
 

@@ -1,40 +1,113 @@
 <template>
   <!-- this header -->
-  <header class="bg-white dark:bg-gray-800 p-2 border-b-2 dark:border-gray-700">
+  <header
+    class="bg-white dark:bg-gray-800 p-2 border-b-2 dark:border-gray-700 px-7"
+  >
     <div class="wrap-header flex items-center justify-between flex-wrap">
       <div class="flex flex-no-shrink items-center">
-        <button
-          class="text-gray-500 lg:hidden ml-3 block"
-          @click="sidebarToggle"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-            role="img"
-            width="2em"
-            height="2em"
-            preserveAspectRatio="xMidYMid meet"
-            viewBox="0 0 16 16"
-          >
+        <button class="text-gray-500 ml-3 block" @click="sidebarToggle">
+          <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
             <path
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1.5"
-              d="M2.75 12.25h10.5m-10.5-4h10.5m-10.5-4h10.5"
-            />
+              v-show="!sidebar"
+              fill-rule="evenodd"
+              d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z"
+              clip-rule="evenodd"
+            ></path>
+            <path
+              v-show="sidebar"
+              fill-rule="evenodd"
+              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+              clip-rule="evenodd"
+            ></path>
           </svg>
         </button>
+
         <h2
-          class="text-md text-indigo-800 ml-3 lg:block hidden px-5 p-2 rounded-md bg-indigo-200"
+          class="
+            text-md text-indigo-800
+            ml-3
+            lg:block
+            hidden
+            px-5
+            p-2
+            rounded-md
+            bg-indigo-200
+          "
         >
-          Welcome back, Mohammad Sahrullah
+          Welcome back, Riven
         </h2>
+        <div
+          :class="{ hidden: !sidebar, flex: sidebar }"
+          class="
+            absolute
+            left-0
+            top-4
+            p-4
+            mt-12
+            z-10
+            w-44
+            dark:border-gray-700
+            bg-white
+            dark:bg-gray-800
+            divide-y
+            dark:divide-gray-700
+            divide-gray-100
+            shadow
+          "
+        >
+          <ul
+            class="py-1 text-sm text-gray-700 dark:text-gray-200"
+            aria-labelledby="dropdownSmallButton"
+          >
+            <li>
+              <router-link
+                to="/"
+                class="block py-2 px-4 hover:bg-primary hover:text-white"
+              >
+                Home
+              </router-link>
+            </li>
+            <li>
+              <router-link
+                to="/support"
+                class="block py-2 px-4 hover:bg-primary hover:text-white"
+              >
+                Support us
+              </router-link>
+              <router-link
+                to="/about"
+                class="block py-2 px-4 hover:bg-primary hover:text-white"
+              >
+                About
+              </router-link>
+              <router-link
+                to="/contactus"
+                class="block py-2 px-4 hover:bg-primary hover:text-white"
+              >
+                Contact us
+              </router-link>
+            </li>
+          </ul>
+        </div>
       </div>
+
       <div class="mr-5 flex">
         <div
-          class="input-box border dark:bg-gray-900 dark:border-gray-700 rounded-md mr-5 hidden lg:w-search w-full box-border lg:flex md:flex focus-within:bg-gray-100 dark:focus-within:bg-gray-700"
+          class="
+            input-box
+            border
+            dark:bg-gray-900 dark:border-gray-700
+            rounded-md
+            mr-5
+            hidden
+            lg:w-search
+            w-full
+            box-border
+            lg:flex
+            md:flex
+            focus-within:bg-gray-100
+            dark:focus-within:bg-gray-700
+          "
         >
           <span class="text-3xl p-2 text-gray-400"
             ><Icon icon="ei:search"
@@ -42,13 +115,32 @@
           <input
             type="text"
             placeholder="Search..."
-            class="p-3 w-full bg-white dark:bg-gray-900 rounded-md outline-none focus:bg-gray-100 dark:focus:bg-gray-700"
+            class="
+              p-3
+              w-full
+              bg-white
+              dark:bg-gray-900
+              rounded-md
+              outline-none
+              border-none
+              focus:bg-gray-100
+              dark:focus:bg-gray-700
+            "
           />
         </div>
         <button
           id="theme-toggle"
           type="button"
-          class="text-gray-500 mr-5 dark:text-gray-400 h outline-none rounded-lg text-sm p-2.5"
+          class="
+            text-gray-500
+            mr-5
+            dark:text-gray-400
+            h
+            outline-none
+            rounded-lg
+            text-sm
+            p-2.5
+          "
         >
           <svg
             id="theme-toggle-light-icon"
@@ -81,11 +173,27 @@
         </button>
         <button @click="menuToggle" @blur="menuToggleBlur">
           <div
-            class="user-avatar flex hover:bg-gray-100 dark:hover:bg-gray-700 p-1 cursor-pointer rounded-md"
+            class="
+              user-avatar
+              flex
+              hover:bg-gray-100
+              dark:hover:bg-gray-700
+              p-1
+              cursor-pointer
+              rounded-md
+            "
           >
             <img
-              src="../assets/img/user.jpg"
-              class="rounded-full mr-4 w-10 h-10 p-1 ring-1 ring-gray-300 dark:ring-gray-500"
+              src="../assets/images/catMatch.png"
+              class="
+                rounded-full
+                mr-4
+                w-10
+                h-10
+                p-1
+                ring-1 ring-gray-300
+                dark:ring-gray-500
+              "
               alt=""
             />
             <span class="text-md mt-4 text-gray-300"
@@ -98,22 +206,39 @@
           <div
             id="dropdownSmall"
             v-show="menu"
-            class="block absolute right-10 mt-12 z-10 w-44 border dark:border-gray-700 bg-white dark:bg-gray-800 rounded divide-y dark:divide-gray-700 divide-gray-100 shadow"
+            class="
+              block
+              absolute
+              right-10
+              mt-12
+              z-10
+              w-44
+              border
+              dark:border-gray-700
+              bg-white
+              dark:bg-gray-800
+              rounded
+              divide-y
+              dark:divide-gray-700
+              divide-gray-100
+              shadow
+            "
           >
             <div class="py-3 px-4 text-sm text-gray-900 dark:text-gray-200">
               <div>Logged As</div>
-              <div class="font-medium truncate">Moh Sahrullah</div>
+              <div class="font-medium truncate">Riven BechBech</div>
             </div>
             <ul
               class="py-1 text-sm text-gray-700 dark:text-gray-200"
               aria-labelledby="dropdownSmallButton"
             >
               <li>
-                <a
-                  href="#"
-                  class="block py-2 px-4 0 hover:bg-primary hover:text-white"
-                  >User Profile</a
+                <router-link
+                  to="/support"
+                  class="block py-2 px-4 hover:bg-primary hover:text-white"
                 >
+                  Profile
+                </router-link>
               </li>
               <li>
                 <a
@@ -122,18 +247,18 @@
                   >Settings</a
                 >
               </li>
-              <li>
-                <a
-                  href="#"
-                  class="block py-2 px-4 hover:bg-primary hover:text-white"
-                  >Github</a
-                >
-              </li>
             </ul>
             <div class="py-1">
               <a
                 href="#"
-                class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-200 hover:bg-primary hover:text-white"
+                class="
+                  block
+                  py-2
+                  px-4
+                  text-sm text-gray-700
+                  dark:text-gray-200
+                  hover:bg-primary hover:text-white
+                "
                 >Sign out</a
               >
             </div>
@@ -145,96 +270,74 @@
 </template>
 
 <script>
-  import { Icon } from "@iconify/vue";
-  export default {
-    data() {
-      return {
-        menu: false,
-      };
+import { Icon } from "@iconify/vue";
+export default {
+  data() {
+    return {
+      menu: false,
+      sidebar: false,
+    };
+  },
+  components: {
+    Icon,
+  },
+  methods: {
+    menuToggle: function () {
+      this.menu = !this.menu;
     },
-    components: {
-      Icon,
+    menuToggleBlur: function () {
+      this.menu = false;
     },
-    methods: {
-      menuToggle: function () {
-        this.menu = !this.menu;
-      },
-      menuToggleBlur: function () {
-        this.menu = false;
-      },
-      sidebarToggle: function () {
-        document.querySelector(".flex-sidebar").classList.remove("hidden");
-      },
+    sidebarToggle: function () {
+      this.sidebar = !this.sidebar;
     },
-    mounted() {
-      var themeToggleDarkIcon = document.getElementById(
-        "theme-toggle-dark-icon"
-      );
-      var themeToggleLightIcon = document.getElementById(
-        "theme-toggle-light-icon"
-      );
+  },
+  mounted() {
+    var themeToggleDarkIcon = document.getElementById("theme-toggle-dark-icon");
+    var themeToggleLightIcon = document.getElementById(
+      "theme-toggle-light-icon"
+    );
 
-      // Change the icons inside the button based on previous settings
-      if (
-        localStorage.getItem("color-theme") === "dark" ||
-        !("color-theme" in localStorage)
-      ) {
-        document.documentElement.classList.add("dark");
-        themeToggleLightIcon.classList.remove("hidden");
-      } else {
-        document.documentElement.classList.remove("dark");
-        themeToggleDarkIcon.classList.remove("hidden");
-      }
+    // Change the icons inside the button based on previous settings
+    if (
+      localStorage.getItem("color-theme") === "dark" ||
+      !("color-theme" in localStorage)
+    ) {
+      document.documentElement.classList.add("dark");
+      themeToggleLightIcon.classList.remove("hidden");
+    } else {
+      document.documentElement.classList.remove("dark");
+      themeToggleDarkIcon.classList.remove("hidden");
+    }
 
-      // // if set via local storage previously
-      // if (!localStorage.getItem("color-theme")) {
-      //   if (localStorage.getItem("color-theme") === "light") {
-      //     document.documentElement.classList.add("dark");
-      //     localStorage.setItem("color-theme", "dark");
-      //   } else {
-      //     document.documentElement.classList.remove("dark");
-      //     localStorage.setItem("color-theme", "light");
-      //   }
+    var themeToggleBtn = document.getElementById("theme-toggle");
 
-      // if NOT set via local storage previously
-      // } else {
-      //   if (document.documentElement.classList.contains("dark")) {
-      //     document.documentElement.classList.remove("dark");
-      //     localStorage.setItem("color-theme", "light");
-      //   } else {
-      //     document.documentElement.classList.add("dark");
-      //     localStorage.setItem("color-theme", "dark");
-      //   }
-      // }
+    themeToggleBtn.addEventListener("click", function () {
+      // toggle icons inside button
+      themeToggleDarkIcon.classList.toggle("hidden");
+      themeToggleLightIcon.classList.toggle("hidden");
 
-      var themeToggleBtn = document.getElementById("theme-toggle");
-
-      themeToggleBtn.addEventListener("click", function () {
-        // toggle icons inside button
-        themeToggleDarkIcon.classList.toggle("hidden");
-        themeToggleLightIcon.classList.toggle("hidden");
-
-        // if set via local storage previously
-        if (localStorage.getItem("color-theme")) {
-          if (localStorage.getItem("color-theme") === "light") {
-            document.documentElement.classList.add("dark");
-            localStorage.setItem("color-theme", "dark");
-          } else {
-            document.documentElement.classList.remove("dark");
-            localStorage.setItem("color-theme", "light");
-          }
-
-          // if NOT set via local storage previously
+      // if set via local storage previously
+      if (localStorage.getItem("color-theme")) {
+        if (localStorage.getItem("color-theme") === "light") {
+          document.documentElement.classList.add("dark");
+          localStorage.setItem("color-theme", "dark");
         } else {
-          if (document.documentElement.classList.contains("dark")) {
-            document.documentElement.classList.remove("dark");
-            localStorage.setItem("color-theme", "light");
-          } else {
-            document.documentElement.classList.add("dark");
-            localStorage.setItem("color-theme", "dark");
-          }
+          document.documentElement.classList.remove("dark");
+          localStorage.setItem("color-theme", "light");
         }
-      });
-    },
-  };
+
+        // if NOT set via local storage previously (first time)
+      } else {
+        if (document.documentElement.classList.contains("dark")) {
+          document.documentElement.classList.remove("dark");
+          localStorage.setItem("color-theme", "light");
+        } else {
+          document.documentElement.classList.add("dark");
+          localStorage.setItem("color-theme", "dark");
+        }
+      }
+    });
+  },
+};
 </script>
