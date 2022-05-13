@@ -4,7 +4,9 @@
       <div class="flex justify-center">
         <div class="rounded mt-[59px] bg-white shadow-xl">
           <div class="p-6 sm:p-16">
-            <h1 class="mb-6">Join our community</h1>
+            <h1 class="mb-6">
+              Join our community 
+            </h1>
             <p class="text-red-600 text-center mb-3">{{ errors }}</p>
             <div class="space-y-4">
               <form
@@ -160,6 +162,7 @@
 </template>
 
 <script>
+import { computed } from '@vue/runtime-core';
 export default {
   name: "LoginComp",
   data() {
@@ -182,11 +185,12 @@ export default {
       })
         .then((Response) => Response.json())
         .then((data) => {
-          if (data) {
+          if (data.id) {
             localStorage.setItem("user_id", data.id);
-            
-          }
-          if (data.message) {
+            localStorage.setItem("Role", "User");
+            this.$router.push("profile");
+            // this.$store.commit('changeIs')
+          } else if (data.message) {
             this.errors = data.message;
           }
         });

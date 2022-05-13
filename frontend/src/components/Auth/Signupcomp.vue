@@ -264,7 +264,6 @@ export default {
             console.log(data.message);
           }
           else if (data.user) {
-            console.log("sdfsdfsd");
             this.$emit("shows");
           } 
         })

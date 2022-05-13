@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <!-- <transition-group name="fade" :duration="{ enter: 500, leave: 800 }" > -->
-    <transition-group name="fade">
+    <transition-group name="fade" >
       <loginComp @shows="shows" v-if="!Signup" />
       <SignupComp v-if="Signup" @shows="shows" />
     </transition-group>

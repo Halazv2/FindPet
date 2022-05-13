@@ -1,5 +1,6 @@
 <template>
 <div>
+  <div>{{this.$store.state.isLoggedIn}}</div>
   <profile-comp />
 </div>
 </template>

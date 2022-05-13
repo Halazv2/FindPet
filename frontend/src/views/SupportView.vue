@@ -1,5 +1,5 @@
 <template>
-  <center class="support">
+  <center class="support text-gray-700 dark:text-gray-200 ">
     <SupportComp />
   </center>
 </template>

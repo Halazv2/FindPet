@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container mx-auto">
+    <div class="container mx-auto text-gray-700 dark:text-gray-200">
       <header
         class="flex items-center justify-evenly"
         data-aos="zoom-in-up"

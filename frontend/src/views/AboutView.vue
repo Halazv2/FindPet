@@ -1,5 +1,5 @@
 <template>
-<div class="about">
+<div class="about text-gray-700 dark:text-gray-200">
   <about-comp />
   
 </div>

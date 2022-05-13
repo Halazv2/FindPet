@@ -5,7 +5,7 @@
     </figure>
     <div>
       <div class="flex items-center flex-col lg:flex-row justify-center p-11">
-        <div class="lg:w-[45%] pb-7">
+        <div class="lg:w-[35%] pb-7">
           <div class="font-bold text-4xl flex flex-col lg:flex-row py-7">
             <h1>
               MAKE A DIFFERENCE <span class="text-primary-btn">DONATE</span>
@@ -20,20 +20,20 @@
 
         <img
           src="../../assets/images/halfdog.png"
-          class="lg:w-[50%] bg-primary-btn rounded-lg"
+          class="bg-primary-btn rounded-lg"
           alt=""
         />
       </div>
       <div class="flex justify-center flex-col-reverse lg:flex-row gap-20 p-11">
-        <figure class=" bg-primary-btn rounded-lg">
-          <img src="../../assets/images/aa.png" class=" " alt="" />
+        <figure class="bg-primary-btn rounded-lg">
+          <img src="../../assets/images/aa.png" class="" alt="" />
         </figure>
         <div>
-          <h2 class=" py-7 text-left text-4xl font-bold">
+          <h2 class="py-7 text-left text-4xl font-bold">
             <span class="text-primary-btn">Wish-List</span>
-             Top Needs List
+            Top Needs List
           </h2>
-          <p class=" text-left">
+          <p class="text-left">
             Canned dog and puppy food – any variety <br />
             Canned cat and kitten food – any variety <br />
             Kitten Milk Replacement <br />
