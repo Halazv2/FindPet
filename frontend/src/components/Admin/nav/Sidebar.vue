@@ -1,16 +1,20 @@
 <template>
   <!-- sidebar -->
-  <nav class="sidebar bg-white dark:bg-gray-800">
+  <nav
+    class="
+      sidebar
+      bg-white
+      dark:bg-gray-800
+      fixed
+      h-auto
+      text-gray-700
+      dark:text-gray-200
+    "
+  >
     <!-- sidebar head -->
     <div class="sidebar-head p-4">
       <router-link to="/" exact>
-        <h2
-          class="text-2xl font-normal text-gray-800 dark:text-gray-500"
-          translate="no"
-        >
-          Windzo<span class="text-primary">.</span>
-
-        </h2>
+        <img src="../../../assets/images/logo1.png" alt="logo" class="w-16" />
       </router-link>
       <button class="lg:hidden block float-right -mt-7" @click="sidebarToggle">
         <svg
@@ -31,40 +35,53 @@
     </div>
     <!-- sidebar list -->
     <div class="sidebar-list p-4 mt-4">
-      <p class="font-medium text-gray-400 dark:text-gray-600">Menu</p>
-      <div class="wrap-item mt-4 dark:text-gray-500">
-        <div class="item">
+      <p class="font-medium">Menu</p>
+      <div class="wrap-item mt-4">
+        <div class="item"
+          v-for="(item, index) in NavElements"
+          :key="index"
+        >
           <router-link
-            to="/"
+            :to="item.link"
             exact
-            class="w-full flex text-left rounded-md box-border p-3 hover:bg-gray-100 dark:hover:bg-gray-700"
+            class="
+              w-full
+              flex
+              text-left
+              rounded-md
+              box-border
+              p-3
+              hover:bg-gray-100
+              dark:hover:bg-gray-700
+            "
           >
-            <span class="mr-3 text-xl"><Icon icon="bxs:dashboard" /></span>
-            <span class="w-full"> Dashboard </span>
+            <span class="mr-3 text-xl"><Icon :icon="item.icon" /></span>
+            <span class="w-full"> {{item.name}} </span>
           </router-link>
         </div>
+        
       </div>
-      <p class="font-medium text-gray-400 mt-4 dark:text-gray-600">
-        UI Form & Tables
-      </p>
-      <div class="item mt-3">
-        <router-link to="/">
+      <p class="font-medium mt-4">User Menu</p>
+      <div class="item mt-3" 
+        v-for="(item, index) in UserNavElements"
+        :key="index"
+      >
+        <router-link :to="item.link">
           <button
-            class="text-gray-800 dark:text-gray-500 bg-transparent hover:bg-gray-100 dark:hover:bg-gray-700 w-full flex text-left rounded-md box-border p-3"
+            class="
+              bg-transparent
+              hover:bg-gray-100
+              dark:hover:bg-gray-700
+              w-full
+              flex
+              text-left
+              rounded-md
+              box-border
+              p-3
+            "
           >
-            <span class="mr-3 text-xl"><Icon icon="bi:table" /></span>
-            <span class="w-full"> Table </span>
-            <span class="box-border mt-1 text-gray-500"> </span>
-          </button>
-        </router-link>
-      </div>
-      <div class="item mt-3">
-        <router-link to="/">
-          <button
-            class="text-gray-800 dark:text-gray-500 bg-transparent hover:bg-gray-100 dark:hover:bg-gray-700 w-full flex text-left rounded-md box-border p-3"
-          >
-            <span class="mr-3 text-xl"><Icon icon="carbon:data-table" /></span>
-            <span class="w-full"> DataTables </span>
+            <span class="mr-3 text-xl"><Icon :icon="item.icon" /></span>
+            <span class="w-full"> {{item.name}} </span>
             <span class="box-border mt-1 text-gray-500"> </span>
           </button>
         </router-link>
@@ -75,18 +92,56 @@
 <style>
 </style>
 <script>
-  import { Icon } from "@iconify/vue";
-  import MenuAccordion from "./MenuAccordion.vue";
-  export default {
-    components: {
-      Icon,
-      MenuAccordion,
+import { Icon } from "@iconify/vue";
+import MenuAccordion from "./MenuAccordion.vue";
+export default {
+  components: {
+    Icon,
+    MenuAccordion,
+  },
+  data() {
+    return {
+      NavElements: [
+        {
+          name: "Home",
+          icon: "bxs:home",
+          link: "/",
+        },
+        {
+          name: "About",
+          icon: "mdi:account-group",
+          link: "/about",
+        },
+        {
+          name: "Support us",
+          icon: "bxs:donate-heart",
+          link: "/support",
+        },
+        {
+          name: "Contact us",
+          icon: "mdi:tooltip-text",
+          link: "/contactus",
+        },
+      ],
+      UserNavElements:[
+        {
+          name: "Feed",
+          icon: "bi:table",
+          link: "/feed",
+        },
+        {
+          name: "Events",
+          icon: "carbon:data-table",
+          link: "/events",
+        },
+      ]
+    };
+  },
+  methods: {
+    sidebarToggle() {
+      document.querySelector(".flex-sidebar").classList.add("hidden");
     },
-    methods: {
-      sidebarToggle: function () {
-        document.querySelector(".flex-sidebar").classList.add("hidden");
-      },
-    },
-    mounted() {},
-  };
+  },
+  mounted() {},
+};
 </script>

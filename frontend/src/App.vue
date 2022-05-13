@@ -9,22 +9,22 @@
           w-sidebar
           lg:block
           hidden
-          w-2/12
+          w-[20%]
           bg-white
           dark:bg-gray-800
           border-r-2
           dark:border-gray-700
-          h-screen
           lg:z-0
           z-40
           overflow-auto
           lg:relative
-          fixed
+          sticky
+          h-auto
         "
       >
         <Sidebar v-if="Role == 'User'" />
       </div>
-      <div class="flex-auto w-full" id="body-scroll">
+      <div class="flex-auto w-full sticky" id="body-scroll">
         <Header v-if="Role == 'User'" />
         <navigation-vist v-if="!Role" />
         <router-view />
@@ -48,6 +48,9 @@ export default {
   },
   mounted() {
     this.Role = localStorage.getItem("Role");
+    this.$router.afterEach((to, from) => {
+      document.querySelector(".flex-sidebar").classList.add("hidden");
+    });  
   },
 };
 </script>

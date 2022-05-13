@@ -168,7 +168,7 @@
         <button class="mr-5 text-2xl text-gray-500">
           <Icon icon="clarity:notification-line" />
         </button>
-        <button @click="menuToggle" @blur="menuToggleBlur">
+        <button @click="menuToggle" >
           <div
             class="
               user-avatar

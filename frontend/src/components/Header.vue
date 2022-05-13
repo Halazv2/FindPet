@@ -1,6 +1,8 @@
 <template>
   <!-- this header -->
-  <header class="bg-white dark:bg-gray-800 p-2 border-b-2 dark:border-gray-700 px-7">
+  <header
+    class="bg-white dark:bg-gray-800 p-2 border-b-2 dark:border-gray-700 px-7"
+  >
     <div class="wrap-header flex items-center justify-between flex-wrap">
       <div class="flex flex-no-shrink items-center">
         <button
@@ -121,7 +123,7 @@
         <button class="mr-5 text-2xl text-gray-500">
           <Icon icon="clarity:notification-line" />
         </button>
-        <button @click="menuToggle" @blur="menuToggleBlur">
+        <button @click="menuToggle">
           <div
             class="
               user-avatar
@@ -152,7 +154,7 @@
           </div>
         </button>
 
-       <transition name="fade">
+        <transition name="fade">
           <div
             v-show="menu"
             class="
@@ -177,27 +179,23 @@
               <div>Logged As</div>
               <div class="font-medium truncate">Riven BechBech</div>
             </div>
-            <ul
-              class="py-1 text-sm text-gray-700 dark:text-gray-200"
-              aria-labelledby="dropdownSmallButton"
-            >
-              <router-link
-                to="/profile"
-                class="block py-2 px-4 hover:bg-primary hover:text-white"
-              >
-                Profile
-              </router-link>
+            <ul class="py-1 text-sm text-gray-700 dark:text-gray-200">
               <li>
-                <a
-                  href="#"
+                <router-link
+                  to="/profile"
                   class="block py-2 px-4 hover:bg-primary hover:text-white"
+                >
+                  Profile
+                </router-link>
+              </li>
+              <li>
+                <a class="block py-2 px-4 hover:bg-primary hover:text-white"
                   >Settings</a
                 >
               </li>
             </ul>
             <div class="py-1">
               <a
-                href="#"
                 class="
                   block
                   py-2
@@ -231,14 +229,21 @@ export default {
     menuToggle: function () {
       this.menu = !this.menu;
     },
-    menuToggleBlur: function () {
-      this.menu = false;
-    },
+
     sidebarToggle: function () {
       document.querySelector(".flex-sidebar").classList.remove("hidden");
     },
   },
   mounted() {
+    //colse menu on click outside
+    document.addEventListener("click", (e) => {
+      if (
+        !document.querySelector(".user-avatar").contains(e.target) &&
+        !document.querySelector(".user-avatar").contains(e.target)
+      ) {
+        this.menu = false;
+      }
+    });
     var themeToggleDarkIcon = document.getElementById("theme-toggle-dark-icon");
     var themeToggleLightIcon = document.getElementById(
       "theme-toggle-light-icon"
