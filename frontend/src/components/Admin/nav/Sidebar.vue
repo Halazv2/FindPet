@@ -41,9 +41,12 @@
           v-for="(item, index) in NavElements"
           :key="index"
         >
+
+
+
+
           <router-link
             :to="item.link"
-            exact
             class="
               w-full
               flex
@@ -58,34 +61,43 @@
             <span class="mr-3 text-xl"><Icon :icon="item.icon" /></span>
             <span class="w-full"> {{item.name}} </span>
           </router-link>
+
+
+
+
         </div>
         
       </div>
       <p class="font-medium mt-4">User Menu</p>
-      <div class="item mt-3" 
-        v-for="(item, index) in UserNavElements"
-        :key="index"
-      >
-        <router-link :to="item.link">
-          <button
+        <div class="item "
+          v-for="(item, index) in UserNavElements"
+          :key="index"
+        >
+
+
+
+
+          <a
+           @click="regorecte(item.link)"
             class="
-              bg-transparent
-              hover:bg-gray-100
-              dark:hover:bg-gray-700
               w-full
               flex
               text-left
               rounded-md
               box-border
               p-3
+              hover:bg-gray-100
+              dark:hover:bg-gray-700
             "
           >
             <span class="mr-3 text-xl"><Icon :icon="item.icon" /></span>
             <span class="w-full"> {{item.name}} </span>
-            <span class="box-border mt-1 text-gray-500"> </span>
-          </button>
-        </router-link>
-      </div>
+          </a>
+
+
+
+          
+        </div>
     </div>
   </nav>
 </template>
@@ -141,6 +153,9 @@ export default {
     sidebarToggle() {
       document.querySelector(".flex-sidebar").classList.add("hidden");
     },
+    regorecte(link){
+      this.$router.push(link);
+    }
   },
   mounted() {},
 };

@@ -38,13 +38,13 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/ProfileView.vue"),
   },
   {
-    path: "/Events",
+    path: "/events",
     name: "EventsView",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/EventsView.vue"),
   },
   {
-    path: "/Feed",
+    path: "/feed",
     name: "FeedView",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/FeedView.vue"),
@@ -57,15 +57,20 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from) => {
-  //if user is not logged in and tries to access profile page
-  if (to.name === "ProfileView" || to.name === "EventsView" || to.name === "FeedView" && !localStorage.getItem("user_id")
-  ) {
-    router.push("/Login");
+  if (to.name === "ProfileView" || to.name === "FeedView" || to.name === "EventsView") {
+    if (!localStorage.getItem("user_id")) {
+      router.push("/Login");
+    }
   }
-  //if user is logged in and tries to access login page
-  if (to.name === "Login" && localStorage.getItem("user_id")) {
-    //push to whatever page they were trying to access before
-    // router.push(from.fullPath);
+  if (to.name === "Login" || to.name === "Register") {
+    if (localStorage.getItem("user_id")) {
+      router.push("/");
+    }
   }
+  //if user tying to access to page that does not exist push to home
+
+
+  
+
 });
 export default router;
