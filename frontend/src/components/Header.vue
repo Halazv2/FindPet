@@ -1,27 +1,31 @@
 <template>
   <!-- this header -->
-  <header
-    class="bg-white dark:bg-gray-800 p-2 border-b-2 dark:border-gray-700 px-7"
-  >
+  <header class="bg-white dark:bg-gray-800 p-2 border-b-2 dark:border-gray-700 px-7">
     <div class="wrap-header flex items-center justify-between flex-wrap">
       <div class="flex flex-no-shrink items-center">
-        <button class="text-gray-500 ml-3 block" @click="sidebarToggle">
-          <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
+        <button
+          class="text-gray-500 lg:hidden ml-3 block"
+          @click="sidebarToggle"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            role="img"
+            width="2em"
+            height="2em"
+            preserveAspectRatio="xMidYMid meet"
+            viewBox="0 0 16 16"
+          >
             <path
-              v-show="!sidebar"
-              fill-rule="evenodd"
-              d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z"
-              clip-rule="evenodd"
-            ></path>
-            <path
-              v-show="sidebar"
-              fill-rule="evenodd"
-              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-              clip-rule="evenodd"
-            ></path>
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              d="M2.75 12.25h10.5m-10.5-4h10.5m-10.5-4h10.5"
+            />
           </svg>
         </button>
-
         <h2
           class="
             text-md text-indigo-800
@@ -36,58 +40,7 @@
         >
           Welcome back, Riven
         </h2>
-        <div
-          :class="{ hidden: !sidebar, flex: sidebar }"
-          class="
-            absolute
-            left-0
-            top-4
-            p-4
-            mt-12
-            z-10
-            w-44
-            dark:border-gray-700
-            bg-white
-            dark:bg-gray-800
-            divide-y
-            dark:divide-gray-700
-            divide-gray-100
-            shadow
-          "
-        >
-          <ul class="py-1 text-sm text-gray-700 dark:text-gray-200">
-            <li>
-              <router-link
-                to="/"
-                class="block py-2 px-4 hover:bg-primary hover:text-white"
-              >
-                Home
-              </router-link>
-            </li>
-            <li>
-              <router-link
-                to="/support"
-                class="block py-2 px-4 hover:bg-primary hover:text-white"
-              >
-                Support us
-              </router-link>
-              <router-link
-                to="/about"
-                class="block py-2 px-4 hover:bg-primary hover:text-white"
-              >
-                About
-              </router-link>
-              <router-link
-                to="/contactus"
-                class="block py-2 px-4 hover:bg-primary hover:text-white"
-              >
-                Contact us
-              </router-link>
-            </li>
-          </ul>
-        </div>
       </div>
-
       <div class="mr-5 flex">
         <div
           class="
@@ -199,7 +152,7 @@
           </div>
         </button>
 
-        <transition name="fade">
+       <transition name="fade">
           <div
             v-show="menu"
             class="
@@ -269,7 +222,6 @@ export default {
   data() {
     return {
       menu: false,
-      sidebar: false,
     };
   },
   components: {
@@ -283,7 +235,7 @@ export default {
       this.menu = false;
     },
     sidebarToggle: function () {
-      this.sidebar = !this.sidebar;
+      document.querySelector(".flex-sidebar").classList.remove("hidden");
     },
   },
   mounted() {
@@ -321,7 +273,7 @@ export default {
           localStorage.setItem("color-theme", "light");
         }
 
-        // if NOT set via local storage previously (first time)
+        // if NOT set via local storage previously
       } else {
         if (document.documentElement.classList.contains("dark")) {
           document.documentElement.classList.remove("dark");
