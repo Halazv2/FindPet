@@ -1,9 +1,9 @@
 <template>
   <!-- this header -->
   <header
-    class="bg-white dark:bg-gray-800 p-2 border-b-2 dark:border-gray-700 px-7"
+    class=" bg-white dark:bg-gray-800 p-2 border-b-2 dark:border-gray-700 px-7"
   >
-    <div class="wrap-header flex items-center justify-between flex-wrap">
+    <div class="side wrap-header flex items-center justify-between flex-wrap">
       <div class="flex flex-no-shrink items-center">
         <button
           class="text-gray-500 lg:hidden ml-3 block"
@@ -232,6 +232,7 @@ export default {
 
     sidebarToggle: function () {
       document.querySelector(".flex-sidebar").classList.remove("hidden");
+      // document.querySelector(".side").classList.add("translate-x-6");
     },
   },
   mounted() {
@@ -289,6 +290,11 @@ export default {
         }
       }
     });
+ 
+
+
+
+    
   },
 };
 </script>

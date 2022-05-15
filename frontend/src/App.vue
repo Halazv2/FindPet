@@ -9,7 +9,8 @@
           w-sidebar
           lg:block
           hidden
-          w-[20%]
+          w-full
+          lg:w-[20%]
           bg-white
           dark:bg-gray-800
           border-r-2
@@ -18,8 +19,8 @@
           z-40
           overflow-auto
           lg:relative
-          sticky
           h-auto
+          fixed
         "
       >
         <Sidebar v-if="Role == 'User'" />
@@ -50,6 +51,7 @@ export default {
     this.Role = localStorage.getItem("Role");
     this.$router.afterEach((to, from) => {
       document.querySelector(".flex-sidebar").classList.add("hidden");
+
     });  
   },
 };

@@ -1,12 +1,12 @@
 <template>
   <div>
-      <h1>Feed page</h1>
+      <h1>event page</h1>
   </div>
 </template>
 
 <script>
 export default {
-name: "FeedPage",
+name: "EventsView",
 }
 </script>
 

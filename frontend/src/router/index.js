@@ -73,7 +73,6 @@ router.beforeEach((to, from) => {
       router.push("/");
     }
   }
-  //if user tying to access to page that does not exist push to home
 
 
   

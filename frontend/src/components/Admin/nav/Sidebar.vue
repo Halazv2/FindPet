@@ -85,8 +85,8 @@
         </div>
 
         <div class="col-span-3 px-3 font-semibold flex flex-col">
-          <div class="">John Doe</div>
-          <div class="text-sm text-gray-400 font-light">@John_Doe23</div>
+          <div class="">Riven Ziani</div>
+          <div class="text-sm text-gray-400 font-light">@RivenZiani</div>
         </div>
       </content>
     </div>
@@ -126,6 +126,7 @@ export default {
           link: "/contactus",
         },
       ],
+      
       UserNavElements: [
         {
           name: "Feed",
