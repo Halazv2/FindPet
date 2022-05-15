@@ -37,14 +37,7 @@
     <div class="sidebar-list p-4 mt-4">
       <p class="font-medium">Menu</p>
       <div class="wrap-item mt-4">
-        <div class="item"
-          v-for="(item, index) in NavElements"
-          :key="index"
-        >
-
-
-
-
+        <div class="item" v-for="(item, index) in NavElements" :key="index">
           <router-link
             :to="item.link"
             class="
@@ -59,45 +52,43 @@
             "
           >
             <span class="mr-3 text-xl"><Icon :icon="item.icon" /></span>
-            <span class="w-full"> {{item.name}} </span>
+            <span class="w-full"> {{ item.name }} </span>
           </router-link>
-
-
-
-
         </div>
-        
       </div>
       <p class="font-medium mt-4">User Menu</p>
-        <div class="item "
-          v-for="(item, index) in UserNavElements"
-          :key="index"
+      <div class="item" v-for="(item, index) in UserNavElements" :key="index">
+        <a
+          @click="regorecte(item.link)"
+          class="
+            w-full
+            flex
+            text-left
+            rounded-md
+            box-border
+            p-3
+            hover:bg-gray-100
+            dark:hover:bg-gray-700
+          "
         >
+          <span class="mr-3 text-xl"><Icon :icon="item.icon" /></span>
+          <span class="w-full"> {{ item.name }} </span>
+        </a>
+      </div>
 
-
-
-
-          <a
-           @click="regorecte(item.link)"
-            class="
-              w-full
-              flex
-              text-left
-              rounded-md
-              box-border
-              p-3
-              hover:bg-gray-100
-              dark:hover:bg-gray-700
-            "
-          >
-            <span class="mr-3 text-xl"><Icon :icon="item.icon" /></span>
-            <span class="w-full"> {{item.name}} </span>
-          </a>
-
-
-
-          
+      <content class="flex grid-cols-6 mt-52">
+        <div class="">
+          <img
+            src="../../../assets/images/catMatch.png"
+            class="h-14 w-14 rounded-full"
+          />
         </div>
+
+        <div class="col-span-3 px-3 font-semibold flex flex-col">
+          <div class="">John Doe</div>
+          <div class="text-sm text-gray-400 font-light">@John_Doe23</div>
+        </div>
+      </content>
     </div>
   </nav>
 </template>
@@ -135,7 +126,7 @@ export default {
           link: "/contactus",
         },
       ],
-      UserNavElements:[
+      UserNavElements: [
         {
           name: "Feed",
           icon: "bi:table",
@@ -146,16 +137,16 @@ export default {
           icon: "carbon:data-table",
           link: "/events",
         },
-      ]
+      ],
     };
   },
   methods: {
     sidebarToggle() {
       document.querySelector(".flex-sidebar").classList.add("hidden");
     },
-    regorecte(link){
+    regorecte(link) {
       this.$router.push(link);
-    }
+    },
   },
   mounted() {},
 };
