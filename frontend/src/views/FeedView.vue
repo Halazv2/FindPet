@@ -1,15 +1,14 @@
 <template>
-  <div>
-      fqfsfsfs
-  </div>
+  <feed-comp/>
 </template>
 
 <script>
+import FeedComp from '../components/User/Feed/FeedComp.vue';
 export default {
-name: "yry-trr"
-}
+  components: { FeedComp },
+  name: "FeedView",
+};
 </script>
 
 <style>
-
 </style>
