@@ -15,7 +15,7 @@
       "
     >
       <!-- The button to open modal add post -->
-      <div>
+      <div >
         <div class="flex justify-between">
           <div>
             <label
@@ -49,19 +49,33 @@
           </div>
         </div>
         <!-- posts -->
-        <article class="bg-white shadow rounded-lg light:bg-gray-800 px-4">
+        <article
+          class="
+            bg-white
+            dark:bg-gray-800 dark:text-white
+            shadow
+            rounded-lg
+            light:bg-gray-800
+            px-4
+          "
+        >
+        <div class="flex justify-between">
+
+
           <div class="flex flex-shrink-0 p-4 pb-0">
-            <a href="#" class="flex-shrink-0 group block">
+            <a class="flex-shrink-0 group block">
               <div class="flex items-center">
                 <div>
                   <img
-                    class="inline-block h-10 w-10 rounded-full"
+                    class="inline-block h-12 w-12 rounded-full"
                     src="https://pbs.twimg.com/profile_images/1121328878142853120/e-rpjoJi_bigger.png"
                     alt=""
                   />
                 </div>
                 <div class="flex flex-col mb-2 ml-4 mt-1">
-                  <div class="text-gray-600 text-sm font-semibold">
+                  <div
+                    class="text-gray-600 dark:text-white text-sm font-semibold"
+                  >
                     Hala Ziani
                   </div>
                   <div class="flex w-full mt-1">
@@ -74,9 +88,11 @@
                         cursor-pointer
                       "
                     >
-                      Hafid
+                      Cat - For Adoption
                     </div>
-                    <div class="text-gray-400 font-thin text-xs">
+                    <div
+                      class="text-gray-400 dark:text-gray-200 font-thin text-xs"
+                    >
                       • 30 seconds ago
                     </div>
                   </div>
@@ -84,6 +100,13 @@
               </div>
             </a>
           </div>
+            <div class="flex-none">
+    <select class="btn btn-square btn-ghost">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
+      
+    </select>
+  </div>
+ </div>
           <div class="pl-16">
             <p class="text-base width-auto font-medium flex-shrink">
               Lorem ipsum dolor sit amet consectetur, adipisicing elit.
