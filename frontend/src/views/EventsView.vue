@@ -1,15 +1,16 @@
 <template>
-  <div>
-      <h1>event page</h1>
+  <div class="">
+    <EventsComp />
   </div>
 </template>
 
 <script>
+import EventsComp from "@/components/User/Events/EventsComp.vue";
 export default {
-name: "EventsView",
-}
+  name: "EventsView",
+  components: { EventsComp },
+};
 </script>
 
 <style>
-
 </style>

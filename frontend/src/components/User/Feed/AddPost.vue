@@ -15,7 +15,7 @@
         "
         >✕</label
       >
-      <form class="bg-white mb-6 p-4">
+      <form class="bg-white mb-6 p-4" @submit.prevent action method>
         <div class="my-6">
           <label
             class="
@@ -33,6 +33,7 @@
           <input
             type="text"
             placeholder="Joe"
+            v-model="Post.title"
             class="
               w-full
               rounded-lg
@@ -63,6 +64,7 @@
           <input
             type="text"
             placeholder="Joe"
+            v-model="Post.PetType"
             class="
               w-full
               rounded-lg
@@ -93,6 +95,7 @@
           <textarea
             name="message"
             placeholder="Type something..."
+            v-model="Post.description"
             class="
               w-full
               rounded-lg
@@ -105,6 +108,39 @@
               placeholder-gray-400
             "
           ></textarea>
+        </div>
+        <div class="my-6">
+          <label
+            class="
+              block
+              uppercase
+              tracking-wide
+              text-gray-700 text-xs
+              font-bold
+              mb-2
+            "
+            for="grid-last-name"
+          >
+            Post Type
+          </label>
+          <select
+            name=""
+            class="
+              w-full
+              rounded-lg
+              p-2
+              text-sm
+              bg-gray-100
+              border border-transparent
+              appearance-none
+              rounded-tg
+              placeholder-gray-400
+            "
+            v-model="Post.PostType"
+          >
+            <option value="Offer">Offer</option>
+            <option value="Adoption">Adoption</option>
+          </select>
         </div>
         <footer class="flex justify-between mt-2">
           <div class="flex gap-2">
@@ -151,10 +187,23 @@
                   <polyline points="21 15 16 10 5 21"></polyline>
                 </svg>
               </span>
-              <input id="dropzone-file" type="file" class="hidden" />
+              <input
+                name="Image"
+                id="dropzone-file"
+                @change="onFileChange"
+                type="file"
+                class="hidden"
+              />
             </label>
           </div>
+          <div>
+            <p>
+              Progress: {{ uploadValue.toFixed() + "%" }}
+              <progress id="progress" :value="uploadValue" max="100"></progress>
+            </p>
+          </div>
           <button
+            @click="AddPost()"
             class="
               flex
               items-center
@@ -191,7 +240,81 @@
 </template>
 
 <script>
-export default {};
+import * as fireStorage from "firebase/storage";
+import axios from "axios";
+export default {
+  name: "AddPost",
+  data() {
+    return {
+      Post: [
+        {
+          title: "",
+          description: "",
+          PetType: "",
+          PostType: "Offre",
+          image: "",
+        },
+      ],
+      imageData: null,
+      picture: null,
+      uploadValue: 0,
+    };
+  },
+  methods: {
+    onFileChange(e) {
+      const file = e.target.files[0];
+      this.Post.image = file.name;
+      console.log(file);
+      // this.sendImage();
+    },
+
+    // async sendImage() {
+    //   try {
+    //     this.send = true;
+    //     let file = this.imageName;
+    //     let newname =
+    //       Math.random().toString(36).slice(2) +
+    //       new Date().getTime().toString(36);
+    //     let storageRef = fireStorage.ref(
+    //       fireStorage.getStorage(),
+    //       "images/" + newname + ".png"
+    //     );
+    //     const post = this.Post;
+    //     await fireStorage.uploadBytes(storageRef, file).then(function () {
+    //       console.log("uploaded");
+    //     });
+    //     await axios.post("http://localhost/fil-rouge-find-pet/FeedController/addPost", {
+    //       ...post,
+    //       image: newname,
+    //     });
+    //   } catch (e) {
+    //     console.log(e);
+    //   }
+    // },
+    AddPost() {
+      const formData = new FormData();
+      formData.append("Title", this.Post.title);
+      formData.append("Description", this.Post.description);
+      formData.append("PetType", this.Post.PetType);
+      formData.append("PostType", this.Post.PostType);
+      formData.append("Image", this.Post.image);
+      formData.append("UserID", localStorage.getItem("user_id"));
+      console.log(this.Post.image);
+
+      axios
+        .post(
+          "http://localhost/fil-rouge-find-pet/FeedController/addPost",
+          formData
+        )
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
+};
 </script>
 
 <style>

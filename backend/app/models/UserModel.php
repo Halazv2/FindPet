@@ -40,7 +40,7 @@ class UserModel
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         return $user;
     }
-    
+
     public function login($Email, $Password)
     {
         $request = "SELECT * FROM users WHERE Email = :Email";
@@ -61,7 +61,7 @@ class UserModel
             echo json_encode(['message' => 'User not found']);
         }
     }
-    
+
     public function updateUser($FirstName, $LastName, $Email, $Password, $PhoneNumber, $City, $ProfilePic)
     {
         $request = "UPDATE users SET FirstName = :FirstName,
@@ -72,15 +72,14 @@ class UserModel
        City = :City,
        ProfilePic = :ProfilePic
        WHERE Email = :Email";
-       $stmt= $this->db->prepare($request);
-       $stmt->bindParam(':FirstName',$FirstName);
-       $stmt->bindParam(':Lastname',$LastName);
-       $stmt->bindParam(':Email',$Email);
-       $stmt->bindParam(':Password',$Password);
-       $stmt->bindParam(':PhoneNumber',$PhoneNumber);
-       $stmt->bindParam(':City',$City);
-       $stmt->bindParam(':ProfilePic',$ProfilePic);
-       $stmt->execute();
-
+        $stmt = $this->db->prepare($request);
+        $stmt->bindParam(':FirstName', $FirstName);
+        $stmt->bindParam(':Lastname', $LastName);
+        $stmt->bindParam(':Email', $Email);
+        $stmt->bindParam(':Password', $Password);
+        $stmt->bindParam(':PhoneNumber', $PhoneNumber);
+        $stmt->bindParam(':City', $City);
+        $stmt->bindParam(':ProfilePic', $ProfilePic);
+        $stmt->execute();
     }
 }
