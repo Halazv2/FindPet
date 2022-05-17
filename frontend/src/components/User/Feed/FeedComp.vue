@@ -240,7 +240,11 @@ import FeedSideComp from "./FeedSideComp.vue";
 import AddPost from "./AddPost.vue";
 export default {
   name: "FeedComp",
+  
   components: { FeedSideComp, AddPost },
+  data(){
+
+  }
 };
 </script>
 

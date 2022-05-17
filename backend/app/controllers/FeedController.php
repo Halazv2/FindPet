@@ -15,7 +15,8 @@ class FeedController extends Controller
     {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $post = $this->model('FeedModel');
-            $post->getFeed();
+            $post = $post->getFeed();
+            echo json_encode($post);
         }
     }
     public function addPost()
@@ -39,9 +40,13 @@ class FeedController extends Controller
                 // save file to uploads folder
                 $file_name = uniqid('', true) . '.' . $imageFileType;
                 $target_path = $file_name;
-                if (move_uploaded_file($_FILES['Image']['tmp_name'], dirname(__DIR__) . "/helpers/uploads/$target_path")) {
+                if (move_uploaded_file($_FILES['Image']['tmp_name'], 'C:\xampp\htdocs\fil-rouge-find-pet\backend\public\uploads\\' . $target_path)) {
                     $post = $this->model('FeedModel');
                     $post->addPost($Title, $PetType, $Description, $PostType, $target_path, $UserID);
+                    //return last inserted id
+                    $lastInsertId = $post->lastInsertId();
+                    echo json_encode($lastInsertId);
+
                 } else {
                     echo json_encode(['message' => 'Error uploading file']);
                 }

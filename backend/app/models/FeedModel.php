@@ -17,6 +17,13 @@ class FeedModel
         $feed = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $feed;
     }
+    public function lastInsertId(){
+        $request = "SELECT * FROM posts ORDER BY id DESC LIMIT 1";
+        $stmt = $this->db->prepare($request);
+        $stmt->execute();
+        $feed = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $feed;
+    }
     public function getPost($id)
     {
         $request = "SELECT * FROM posts WHERE id = :id";
