@@ -15,7 +15,13 @@
         "
         >✕</label
       >
-      <form class="bg-white mb-6 p-4" @submit.prevent action method enctype="multipart/form-data">
+      <form
+        class="bg-white mb-6 p-4"
+        @submit.prevent
+        action
+        method
+        enctype="multipart/form-data"
+      >
         <div class="my-6">
           <label
             class="
@@ -264,8 +270,7 @@ export default {
     onFileChange(e) {
       const file = e.target.files[0];
       this.Post.image = file;
-      console.log(file);
-      // this.sendImage();
+      // console.log(file);
     },
 
     // async sendImage() {
@@ -293,7 +298,6 @@ export default {
     // },
 
     AddPost() {
-
       const formData = new FormData();
       formData.append("Title", this.Post.title);
       formData.append("Description", this.Post.description);
@@ -310,6 +314,9 @@ export default {
         )
         .then((response) => {
           console.log(response);
+          this.uploadValue = 100;
+          this.$store.commit("Post", response.data);
+          console.log(this.$store.state.posts);
         })
         .catch((error) => {
           console.log(error);

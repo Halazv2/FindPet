@@ -51,7 +51,6 @@ export default {
     this.Role = localStorage.getItem("Role");
     this.$router.afterEach((to, from) => {
       document.querySelector(".flex-sidebar").classList.add("hidden");
-
     });  
   },
 };
