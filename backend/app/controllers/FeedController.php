@@ -57,9 +57,15 @@ class FeedController extends Controller
     public function deletePost()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
-            $id = $_GET['id'];
+            $data = json_decode(file_get_contents("php://input"));
+            $id = $data->id;
             $post = $this->model('FeedModel');
             $post->deletePost($id);
+            if ($post) {
+                echo json_encode(['message' => 'Post deleted successfully']);
+            } else {
+                echo json_encode(['message' => 'Error deleting post']);
+            }
         }
     }
 }

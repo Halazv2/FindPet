@@ -51,6 +51,6 @@ class FeedModel
         $stmt = $this->db->prepare($request);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
-        return $stmt;
+        // return $stmt;
     }
 }
