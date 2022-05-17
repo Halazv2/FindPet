@@ -46,13 +46,20 @@ class FeedController extends Controller
                     //return last inserted id
                     $lastInsertId = $post->lastInsertId();
                     echo json_encode($lastInsertId);
-
                 } else {
                     echo json_encode(['message' => 'Error uploading file']);
                 }
             } else {
                 echo json_encode(['message' => 'Invalid file type.']);
             }
+        }
+    }
+    public function deletePost()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+            $id = $_GET['id'];
+            $post = $this->model('FeedModel');
+            $post->deletePost($id);
         }
     }
 }

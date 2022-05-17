@@ -46,5 +46,11 @@ class FeedModel
         $stmt->bindParam(':UserID', $UserID);
         $stmt->execute();
     }
-
+    public function deletePost($id){
+        $request = "DELETE FROM posts WHERE id = :id";
+        $stmt = $this->db->prepare($request);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        return $stmt;
+    }
 }
