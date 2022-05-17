@@ -29,17 +29,23 @@ class FeedController extends Controller
             $Image = $_FILES['Image']['name'];
             $UserID = $_POST['UserID'];
             // Select file type
+            // var_dump($_FILES['Image']);
+            // die();
             $imageFileType = strtolower(pathinfo($Image, PATHINFO_EXTENSION));
             // valid file extensions
             $extensions_arr = array("jpg", "jpeg", "png", "gif");
             // Check extension
             if (in_array($imageFileType, $extensions_arr)) {
-                // Upload file
-                move_uploaded_file($_FILES['Image']['name'], "../helpers/uploads" . $Image);
-                // Insert record
-                $post = $this->model('FeedModel');
-                $post->addPost($Title, $PetType, $Description, $PostType, $Image, $UserID);
-            } else{
+                // save file to uploads folder
+                $file_name = uniqid('', true) . '.' . $imageFileType;
+                $target_path = $file_name;
+                if (move_uploaded_file($_FILES['Image']['tmp_name'], dirname(__DIR__) . "/helpers/uploads/$target_path")) {
+                    $post = $this->model('FeedModel');
+                    $post->addPost($Title, $PetType, $Description, $PostType, $target_path, $UserID);
+                } else {
+                    echo json_encode(['message' => 'Error uploading file']);
+                }
+            } else {
                 echo json_encode(['message' => 'Invalid file type.']);
             }
         }

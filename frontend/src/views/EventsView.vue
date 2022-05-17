@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="m-11">
     <EventsComp />
   </div>
 </template>

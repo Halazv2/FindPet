@@ -15,7 +15,7 @@
         "
         >✕</label
       >
-      <form class="bg-white mb-6 p-4" @submit.prevent action method>
+      <form class="bg-white mb-6 p-4" @submit.prevent action method enctype="multipart/form-data">
         <div class="my-6">
           <label
             class="
@@ -263,7 +263,7 @@ export default {
   methods: {
     onFileChange(e) {
       const file = e.target.files[0];
-      this.Post.image = file.name;
+      this.Post.image = file;
       console.log(file);
       // this.sendImage();
     },
@@ -291,7 +291,9 @@ export default {
     //     console.log(e);
     //   }
     // },
+
     AddPost() {
+
       const formData = new FormData();
       formData.append("Title", this.Post.title);
       formData.append("Description", this.Post.description);
