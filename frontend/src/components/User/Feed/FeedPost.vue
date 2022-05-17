@@ -75,7 +75,7 @@
             aria-labelledby="dropdownSmallButton"
           >
             <a
-              @click="deletePost"
+              @click="deletePost(post.id)"
               class="block py-2 px-4 hover:bg-primary hover:text-white"
             >
               Delete
@@ -218,8 +218,14 @@ export default {
     menuToggleBlur: function () {
       this.menu = false;
     },
-    deletePost() {
-
+    deletePost(id) {
+      console.log(id);
+      fetch(`http://localhost/fil-rouge-find-pet/FeedController/deletePost`, {
+        method: "DELETE",
+        body: JSON.stringify({ id: id }),
+      }).then(() => {
+        this.$emit("getPosts");
+      });
     },
   },
 };

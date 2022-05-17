@@ -201,13 +201,19 @@
                 class="hidden"
               />
             </label>
+            <div id="progress" class="hidden">
+              <p>
+                Progress: {{ uploadValue.toFixed() + "%" }}
+                <progress
+                  id="progresss"
+                  :value="uploadValue"
+                  max="100"
+                ></progress>
+              </p>
+            </div>
+            <div class="hidden" id="done">Done!</div>
           </div>
-          <div>
-            <p>
-              Progress: {{ uploadValue.toFixed() + "%" }}
-              <progress id="progress" :value="uploadValue" max="100"></progress>
-            </p>
-          </div>
+
           <button
             @click="AddPost()"
             class="
@@ -270,7 +276,23 @@ export default {
     onFileChange(e) {
       const file = e.target.files[0];
       this.Post.image = file;
-      // console.log(file);
+      const progresss = document.getElementById("progress");
+      const done = document.getElementById("done");
+      progresss.classList.remove("hidden");
+      if (this.uploadValue < 100) {
+        this.uploadValue += 10;
+        setTimeout(() => {
+          this.onFileChange(e);
+        }, 100);
+        if (this.uploadValue === 100) {
+          done.classList.remove("hidden");
+          // this.uploadValue = 0;
+          // progresss.classList.add("hidden");
+          // exit;
+        }
+      } else {
+        progresss.classList.add("hidden");
+      }
     },
 
     // async sendImage() {
@@ -313,10 +335,8 @@ export default {
           formData
         )
         .then((response) => {
-          console.log(response);
-          this.uploadValue = 100;
-          this.$store.commit("Post", response.data);
-          console.log(this.$store.state.posts);
+          // console.log(response);
+          this.$emit("getPosts");
         })
         .catch((error) => {
           console.log(error);

@@ -24,7 +24,7 @@
               >Add Post</label
             >
             <input type="checkbox" id="my-modal-3" class="modal-toggle" />
-            <AddPost class="modal modal-bottom sm:modal-middle" />
+            <AddPost class="modal modal-bottom sm:modal-middle" @getPosts="getPosts" />
           </div>
 
           <div>
@@ -49,7 +49,7 @@
           </div>
         </div>
         <!-- posts -->
-        <FeedPost v-for="post in posts" :key="post.id" :post="post" />
+        <FeedPost v-for="post in posts" :key="post.id" :post="post" @getPosts="getPosts" />
       </div>
       <aside class="hidden md:block w-1/2 lg:sticky">
         <feed-side-comp />
@@ -73,11 +73,25 @@ export default {
   },
   data() {
     return {
-      posts:[],
+      posts: [],
       menu: false,
     };
   },
-  methods: {},
+  methods: {
+    getPosts() {
+      fetch("http://localhost/fil-rouge-find-pet/FeedController/getFeed", {
+        method: "GET",
+      })
+        .then((result) => {
+          return result.json();
+        })
+        .then((reponse) => {
+          console.log(reponse);
+          this.posts = reponse.reverse();
+          // this.commit("Post", reponse.reverse());
+        });
+    },
+  },
   // computed: {
   //   posts() {
   //     return this.$store.state.posts;
@@ -85,17 +99,7 @@ export default {
   // },
   mounted() {
     // this.$store.dispatch("getPosts");
-    fetch("http://localhost/fil-rouge-find-pet/FeedController/getFeed", {
-      method: "GET",
-    })
-      .then((result) => {
-        return result.json();
-      })
-      .then((reponse) => {
-        console.log(reponse);
-        this.posts = reponse.reverse();
-        // this.commit("Post", reponse.reverse());
-      });
+    this.getPosts();
   },
 };
 </script>
