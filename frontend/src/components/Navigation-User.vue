@@ -168,7 +168,7 @@
         <button class="mr-5 text-2xl text-gray-500">
           <Icon icon="clarity:notification-line" />
         </button>
-        <button @click="menuToggle" >
+        <button @click="menuToggle">
           <div
             class="
               user-avatar
@@ -242,14 +242,14 @@
                 >
               </li>
             </ul>
-            <div class="py-1">
+            <div @click="logout()" class="py-1">
               <a
-                href="#"
                 class="
                   block
                   py-2
                   px-4
                   text-sm text-gray-700
+                  cursor-pointer
                   dark:text-gray-200
                   hover:bg-primary hover:text-white
                 "
@@ -291,7 +291,6 @@ export default {
     var themeToggleLightIcon = document.getElementById(
       "theme-toggle-light-icon"
     );
-
     // Change the icons inside the button based on previous settings
     if (
       localStorage.getItem("color-theme") === "dark" ||
