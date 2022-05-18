@@ -1,5 +1,6 @@
 <template>
   <article
+    ref="feed"
     class="
       bg-white
       dark:bg-gray-800 dark:text-white
@@ -42,7 +43,7 @@
       </div>
       <div>
         <button @click="menuToggle">
-          <div class="user-avatar flex p-1 cursor-pointer rounded-md">
+          <div class="dropdown flex p-1 cursor-pointer rounded-md">
             <span class="text-md mt-4 text-gray-300"
               ><Icon icon="bi:caret-down-fill"
             /></span>
@@ -52,6 +53,7 @@
       <transition name="fade">
         <div
           v-show="menu"
+          ref="menu"
           class="
             block
             absolute
@@ -148,6 +150,7 @@
           14 k
         </div>
         <div
+        @click="LikePost(post.id)"
           class="
             flex-1 flex
             items-center
@@ -165,7 +168,7 @@
               ></path>
             </g>
           </svg>
-          14 k
+          {{post.likesCount}}
         </div>
         <div
           class="
@@ -196,7 +199,7 @@
 
 <script>
 import { Icon } from "@iconify/vue";
-
+import axios from "axios";
 export default {
   name: "Post",
   components: { Icon },
@@ -211,13 +214,16 @@ export default {
       menu: false,
     };
   },
+
   methods: {
+    // open menu 
     menuToggle: function () {
       this.menu = !this.menu;
     },
     menuToggleBlur: function () {
       this.menu = false;
     },
+    //deletePost 
     deletePost(id) {
       console.log(id);
       fetch(`http://localhost/fil-rouge-find-pet/FeedController/deletePost`, {
@@ -227,6 +233,29 @@ export default {
         this.$emit("getPosts");
       });
     },
+    //like POST
+    LikePost(id) {
+      axios
+        .post("http://localhost/fil-rouge-find-pet/FeedController/likePost", {
+          post_id: id,
+          user_id: localStorage.getItem("user_id"),
+        })
+        .then((response) => {
+          // this.CountLikes = response.data.likesCount;
+          this.$emit("getPosts");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
+  //close menu when click outside
+  mounted() {
+    document.addEventListener("click", (e) => {
+      if (this.menu && !this.$el.contains(e.target)) {
+        this.menuToggleBlur();
+      }
+    });
   },
 };
 </script>

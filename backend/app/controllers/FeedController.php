@@ -14,9 +14,9 @@ class FeedController extends Controller
     public function getFeed()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            $post = $this->model('FeedModel');
-            $post = $post->getFeed();
-            echo json_encode($post);
+            $postsModel = $this->model('FeedModel');
+            $posts = $postsModel->fetchFeedWithLikes();
+            return $this->json($posts);
         }
     }
     public function addPost()
@@ -66,6 +66,54 @@ class FeedController extends Controller
             } else {
                 echo json_encode(['message' => 'Error deleting post']);
             }
+        }
+    }
+    public function updatePost()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
+            $data = json_decode(file_get_contents("php://input"));
+            $id = $data->id;
+            $Title = $data->Title;
+            $PetType = $data->PetType;
+            $Description = $data->Description;
+            $PostType = $data->PostType;
+            $Image = $data->Image;
+            $UserID = $data->UserID;
+            $post = $this->model('FeedModel');
+            $post->updatePost($id, $Title, $PetType, $Description, $PostType, $Image, $UserID);
+            if ($post) {
+                echo json_encode(['message' => 'Post updated successfully']);
+            } else {
+                echo json_encode(['message' => 'Error updating post']);
+            }
+        }
+    }
+
+
+    //LIKE
+    //LIKE
+    //LIKE
+    //LIKE
+
+    public function likePost()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = json_decode(file_get_contents("php://input"));
+            $post_id = $data->post_id;
+            $user_id = $data->user_id;
+            $post = $this->model('FeedModel');
+            $post->LikePost($post_id, $user_id);
+        }
+    }
+
+    public function countLike()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $data = json_decode(file_get_contents("php://input"));
+            $post_id = $data->post_id;
+            $post = $this->model('FeedModel');
+            $post = $post->countLike($post_id);
+            echo json_encode($post);
         }
     }
 }

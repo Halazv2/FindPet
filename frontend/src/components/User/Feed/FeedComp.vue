@@ -24,7 +24,10 @@
               >Add Post</label
             >
             <input type="checkbox" id="my-modal-3" class="modal-toggle" />
-            <AddPost class="modal modal-bottom sm:modal-middle" @getPosts="getPosts" />
+            <AddPost
+              class="modal modal-bottom sm:modal-middle"
+              @getPosts="getPosts"
+            />
           </div>
 
           <div>
@@ -42,14 +45,19 @@
                 text-sm
               "
             >
-              <option value="All">All Post</option>
-              <option value="for-rent">For Adoption</option>
-              <option value="for-sale">To Adopt</option>
+              <option value="All" @click="currentType = 'All'" >All Post</option>
+              <option value="for-rent" @click="currentType = 'Adoption'" >For Adoption</option>
+              <option value="for-sale" @click="currentType = 'Offer'" >To Adopt</option>
             </select>
           </div>
         </div>
         <!-- posts -->
-        <FeedPost v-for="post in posts" :key="post.id" :post="post" @getPosts="getPosts" />
+        <FeedPost
+          v-for="post in posts.filter(post => post.PostType === currentType || currentType === 'All')"
+          :key="post.id"
+          :post="post"
+          @getPosts="getPosts"
+        />
       </div>
       <aside class="hidden md:block w-1/2 lg:sticky">
         <feed-side-comp />
@@ -75,6 +83,7 @@ export default {
     return {
       posts: [],
       menu: false,
+      currentType: "All",
     };
   },
   methods: {
@@ -86,17 +95,12 @@ export default {
           return result.json();
         })
         .then((reponse) => {
-          console.log(reponse);
           this.posts = reponse.reverse();
           // this.commit("Post", reponse.reverse());
         });
     },
   },
-  // computed: {
-  //   posts() {
-  //     return this.$store.state.posts;
-  //   },
-  // },
+
   mounted() {
     // this.$store.dispatch("getPosts");
     this.getPosts();

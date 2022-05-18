@@ -3,6 +3,7 @@
     <div class="modal-box w-11/12 max-w-5xl relative">
       <label
         for="my-modal-3"
+        id="close-modal"
         class="
           btn btn-sm
           border-none
@@ -213,7 +214,6 @@
             </div>
             <div class="hidden" id="done">Done!</div>
           </div>
-
           <button
             @click="AddPost()"
             class="
@@ -286,9 +286,6 @@ export default {
         }, 100);
         if (this.uploadValue === 100) {
           done.classList.remove("hidden");
-          // this.uploadValue = 0;
-          // progresss.classList.add("hidden");
-          // exit;
         }
       } else {
         progresss.classList.add("hidden");
@@ -320,6 +317,7 @@ export default {
     // },
 
     AddPost() {
+      const done = document.getElementById("done");
       const formData = new FormData();
       formData.append("Title", this.Post.title);
       formData.append("Description", this.Post.description);
@@ -327,7 +325,7 @@ export default {
       formData.append("PostType", this.Post.PostType);
       formData.append("Image", this.Post.image);
       formData.append("UserID", localStorage.getItem("user_id"));
-      console.log(this.Post.image);
+      // console.log(this.Post.image);
 
       axios
         .post(
@@ -337,11 +335,26 @@ export default {
         .then((response) => {
           // console.log(response);
           this.$emit("getPosts");
+          const close_model = document.getElementById("close-modal");
+          close_model.click();
+          this.uploadValue = 0;
+          done.classList.add("hidden");
+          this.resetPostinput();
         })
         .catch((error) => {
           console.log(error);
         });
     },
+    resetPostinput() {
+      this.Post.title = "";
+      this.Post.description = "";
+      this.Post.PetType = "";
+      this.Post.PostType = "";
+      this.Post.image = "";
+    },
+
+  },
+  mounted() {
   },
 };
 </script>
