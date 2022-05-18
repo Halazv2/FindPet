@@ -105,15 +105,16 @@ class FeedController extends Controller
             $post->LikePost($post_id, $user_id);
         }
     }
-
-    public function countLike()
+    public function checkLike()
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = json_decode(file_get_contents("php://input"));
             $post_id = $data->post_id;
+            $user_id = $data->user_id;
             $post = $this->model('FeedModel');
-            $post = $post->countLike($post_id);
-            echo json_encode($post);
+            $post->checkLike($post_id, $user_id);
+            return $this->json($post);
+
         }
     }
 }
