@@ -11,7 +11,9 @@ export default createStore({
     },
   },
   actions: {
-    getPosts() {},
+    logout(){
+      localStorage.removeItem('user_id');
+    }
   },
   modules: {},
 });

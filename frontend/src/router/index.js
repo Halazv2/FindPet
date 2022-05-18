@@ -29,7 +29,19 @@ const routes = [
     path: "/Login",
     name: "Login",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AuthView.vue"),
+      import(/* webpackChunkName: "about" */ "../views/Auth/AuthView.vue"),
+  },
+  {
+    path: "/LoginAdmin",
+    name: "LoginAdmin",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Auth/AuthView.vue"),
+  },
+  {
+    path: "/Role",
+    name: "Role",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Auth/UserOrAdmin.vue"),
   },
   {
     path: "/profile",
