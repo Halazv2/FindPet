@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex bg-packed font-lexend dark:bg-gray-900">
+    <div class="flex bg-packed font-lexend dark:bg-gray-900" v-if="Role == 'User'" >
       <div
         id="sidebar-scroll"
         class="
@@ -23,13 +23,16 @@
           fixed
         "
       >
-        <Sidebar v-if="Role == 'User'" />
+        <Sidebar />
       </div>
       <div class="flex-auto w-full sticky" id="body-scroll">
-        <Header v-if="Role == 'User'" />
-        <navigation-vist v-if="!Role" />
+        <Header />
         <router-view />
       </div>
+    </div>
+    <div v-if="!Role">
+      <navigation-vist  />
+      <router-view />
     </div>
   </div>
 </template>
@@ -51,7 +54,7 @@ export default {
     this.Role = localStorage.getItem("Role");
     this.$router.afterEach((to, from) => {
       document.querySelector(".flex-sidebar").classList.add("hidden");
-    });  
+    });
   },
 };
 </script>
