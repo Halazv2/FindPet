@@ -76,19 +76,24 @@
             class="py-1 text-sm text-gray-700 dark:text-gray-200"
             aria-labelledby="dropdownSmallButton"
           >
-            <a
-              @click="deletePost(post.id)"
-              class="block py-2 px-4 hover:bg-primary hover:text-white"
-            >
-              Delete
-            </a>
-            <li>
-              <a
-                @click="editPost"
-                class="block py-2 px-4 hover:bg-primary hover:text-white"
-                >Edit</a
-              >
-            </li>
+            <div v-if="post.user_id = user_id">
+              <li>
+                <a
+                  @click="deletePost(post.id)"
+                  class="block py-2 px-4 hover:bg-primary hover:text-white"
+                >
+                  Delete
+                </a>
+              </li>
+
+              <li>
+                <a
+                  @click="editPost"
+                  class="block py-2 px-4 hover:bg-primary hover:text-white"
+                  >Edit</a
+                >
+              </li>
+            </div>
           </ul>
         </div>
       </transition>
@@ -150,12 +155,12 @@
           14 k
         </div>
         <div
-        @click="LikePost(post.id)"
+          @click="LikePost(post.id)"
+          :class="{ 'text-red-600': active }"
           class="
             flex-1 flex
             items-center
             text-xs text-gray-400
-            hover:text-red-600
             transition
             duration-350
             ease-in-out
@@ -168,7 +173,7 @@
               ></path>
             </g>
           </svg>
-          {{post.likesCount}}
+          {{ post.likesCount }}
         </div>
         <div
           class="
@@ -212,18 +217,20 @@ export default {
   data() {
     return {
       menu: false,
+      active: false,
+      user_id : localStorage.getItem('user_id'),
     };
   },
 
   methods: {
-    // open menu 
+    // open menu
     menuToggle: function () {
       this.menu = !this.menu;
     },
     menuToggleBlur: function () {
       this.menu = false;
     },
-    //deletePost 
+    //deletePost
     deletePost(id) {
       console.log(id);
       fetch(`http://localhost/fil-rouge-find-pet/FeedController/deletePost`, {
@@ -241,8 +248,12 @@ export default {
           user_id: localStorage.getItem("user_id"),
         })
         .then((response) => {
-          // this.CountLikes = response.data.likesCount;
           this.$emit("getPosts");
+          if (response.data.likesCount > this.post.likesCount) {
+            this.active = true;
+          } else {
+            this.active = false;
+          }
         })
         .catch((error) => {
           console.log(error);
