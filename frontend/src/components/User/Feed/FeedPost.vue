@@ -76,7 +76,7 @@
             class="py-1 text-sm text-gray-700 dark:text-gray-200"
             aria-labelledby="dropdownSmallButton"
           >
-            <div v-if="post.user_id = user_id">
+            <div v-if="post.user_id == userID">
               <li>
                 <a
                   @click="deletePost(post.id)"
@@ -94,6 +94,14 @@
                 >
               </li>
             </div>
+            <li v-if="post.user_id !== userID">
+              <a
+                @click="deletePost(post.id)"
+                class="block py-2 px-4 hover:bg-primary hover:text-white"
+              >
+                Report
+              </a>
+            </li>
           </ul>
         </div>
       </transition>
@@ -218,7 +226,7 @@ export default {
     return {
       menu: false,
       active: false,
-      user_id : localStorage.getItem('user_id'),
+      userID: localStorage.getItem("user_id"),
     };
   },
 

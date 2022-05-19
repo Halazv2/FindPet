@@ -30,7 +30,7 @@
         <div
           v-for="(item, index) in card"
           :key="index"
-          class="grid grid-cols-1 gap-8 mt-8"
+          class="grid grid-cols-1 gap-8 mt-8 "
         >
           <router-link
           :to="item.link"
@@ -42,6 +42,8 @@
               duration-200
               transform
               cursor-pointer
+              justify-center
+              text-center
               group
               hover:bg-secondary-brn
               rounded-xl

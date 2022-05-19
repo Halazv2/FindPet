@@ -199,7 +199,7 @@
           </div>
         </button>
 
-        <transition name="fade">
+        <transition name="fade" data-aos="fade-down">
           <div
             v-show="menu"
             class="
