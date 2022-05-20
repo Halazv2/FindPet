@@ -50,5 +50,33 @@
             $user->logout();
             echo json_encode(['message' => 'User logged out']);
         }
-        
- }
+        public function updateUser()
+        {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $FirstName = $_POST['FirstName'];
+                $LastName = $_POST['LastName'];
+                $Email = $_POST['Email'];
+                $Password = $_POST['Password'];
+                $PhoneNumber = $_POST['PhoneNumber'];
+                $City = $_POST['City'];
+                $ProfilePic = $_FILES['ProfilePic'];
+
+                $imageFileType = strtolower(pathinfo($ProfilePic, PATHINFO_EXTENSION));
+                $extensions_arr = array("jpg", "jpeg", "png", "gif");
+                if (in_array($imageFileType, $extensions_arr)) {
+                    // save file to uploads folder
+                    $file_name = uniqid('', true) . '.' . $imageFileType;
+                    $target_path = $file_name;
+                    if (move_uploaded_file($_FILES['Image']['tmp_name'], 'C:\xampp\htdocs\fil-rouge-find-pet\backend\public\uploads\profileImages\\' . $target_path)) {
+                        $user = $this->model('UserModel');
+                        $user->updateUser($FirstName, $LastName, $Email, $Password, $PhoneNumber, $City, $ProfilePic);
+                    } else {
+                        echo json_encode(['message' => 'Error uploading file']);
+                    }
+                } else {
+                    echo json_encode(['message' => 'Invalid file type.']);
+                }
+            }
+
+        }
+    }

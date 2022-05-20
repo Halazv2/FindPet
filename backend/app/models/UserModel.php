@@ -65,13 +65,8 @@ class UserModel
     public function updateUser($FirstName, $LastName, $Email, $Password, $PhoneNumber, $City, $ProfilePic)
     {
         $request = "UPDATE users SET FirstName = :FirstName,
-        LastName = :LastName,
-       Email = :Email,
-       Password = :Password,
-       PhoneNumber = :PhoneNumber,
-       City = :City,
-       ProfilePic = :ProfilePic
-       WHERE Email = :Email";
+    LastName = :LastName, Email = :Email, Password = :Password, PhoneNumber = :PhoneNumber,
+    City = :City, ProfilePic = :ProfilePic WHERE Email = :Email";
         $stmt = $this->db->prepare($request);
         $stmt->bindParam(':FirstName', $FirstName);
         $stmt->bindParam(':Lastname', $LastName);
