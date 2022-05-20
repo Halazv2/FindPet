@@ -9,10 +9,11 @@
       h-auto
       text-gray-700
       dark:text-gray-200
+      overflow-y-scroll
     "
   >
     <!-- sidebar head -->
-    <div class="sidebar-head p-4">
+    <div class="sidebar-head p-4 ">
       <router-link to="/" exact>
         <img src="../../../assets/images/logo1.png" alt="logo" class="w-16" />
       </router-link>
@@ -126,7 +127,7 @@ export default {
           link: "/contactus",
         },
       ],
-      
+
       UserNavElements: [
         {
           name: "Feed",
