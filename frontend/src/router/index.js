@@ -35,7 +35,7 @@ const routes = [
     path: "/LoginAdmin",
     name: "LoginAdmin",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Auth/AuthView.vue"),
+      import(/* webpackChunkName: "about" */ "../views/Auth/AdminAuthView.vue"),
   },
   {
     path: "/Role",
@@ -66,6 +66,12 @@ const routes = [
     name: "NotFoundView",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/NotFound.vue"),
+  },
+  {
+    path: "/admin/dashboard",
+    name: "NotFoundView",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Admin/DashboardView.vue"),
   },
 ];
 

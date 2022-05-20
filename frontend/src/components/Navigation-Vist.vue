@@ -36,7 +36,7 @@
             </button>
           </div>
         </div>
-        <transition-group>
+        <transition>
           <div
             :class="{ hidden: !open, flex: open }"
             class="
@@ -133,7 +133,7 @@
               </router-link>
             </div>
           </div>
-        </transition-group>
+        </transition>
       </div>
     </div>
   </nav>

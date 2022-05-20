@@ -3,6 +3,7 @@
     <div class="flex bg-packed font-lexend dark:bg-gray-900" v-if="Role == 'User'" >
       <div
         id="sidebar-scroll"
+        ref="flex_sidebar"
         class="
           flex-sidebar
           lg:flex-auto
@@ -52,9 +53,9 @@ export default {
   },
   mounted() {
     this.Role = localStorage.getItem("Role");
-    this.$router.afterEach((to, from) => {
-      document.querySelector(".flex-sidebar").classList.add("hidden");
-    });
+    // this.$router.afterEach((to, from) => {
+    //   this.$refs.flex_sidebar.classList.add("hidden");
+    // });
   },
 };
 </script>

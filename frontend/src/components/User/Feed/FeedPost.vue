@@ -25,7 +25,7 @@
             </div>
             <div class="flex flex-col mb-2 ml-4 mt-1">
               <div class="text-gray-600 dark:text-white text-sm font-semibold">
-                Hala Ziani
+                {{ post.FirstName }} {{ post.LastName }}
               </div>
               <div class="flex w-full mt-1">
                 <div
@@ -80,7 +80,7 @@
               <li>
                 <a
                   @click="deletePost(post.id)"
-                  class="block py-2 px-4 hover:bg-primary hover:text-white"
+                  class="block py-2 px-4 hover:bg-primary-btn hover:text-white"
                 >
                   Delete
                 </a>
@@ -89,19 +89,28 @@
               <li>
                 <a
                   @click="editPost"
-                  class="block py-2 px-4 hover:bg-primary hover:text-white"
+                  class="block py-2 px-4 hover:bg-primary-btn hover:text-white"
                   >Edit</a
                 >
               </li>
             </div>
-            <li v-if="post.user_id !== userID">
-              <a
-                @click="deletePost(post.id)"
-                class="block py-2 px-4 hover:bg-primary hover:text-white"
-              >
-                Report
-              </a>
-            </li>
+            <div v-if="post.user_id != userID">
+              <li>
+                <a
+                  class="
+                    flex
+                    items-center
+                    gap-2
+                    py-2
+                    px-4
+                    hover:bg-primary-btn hover:text-white
+                  "
+                >
+                  <Icon icon="ic:round-report-problem" />
+                  <p class="">Report</p>
+                </a>
+              </li>
+            </div>
           </ul>
         </div>
       </transition>

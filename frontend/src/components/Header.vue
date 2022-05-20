@@ -1,7 +1,7 @@
 <template>
   <!-- this header -->
   <header
-    class=" bg-white dark:bg-gray-800 p-2 border-b-2 dark:border-gray-700 px-7"
+    class="bg-white dark:bg-gray-800 p-2 border-b-2 dark:border-gray-700 px-7"
   >
     <div class="side wrap-header flex items-center justify-between flex-wrap">
       <div class="flex flex-no-shrink items-center">
@@ -194,7 +194,7 @@
                 >
               </li>
             </ul>
-            <div class="py-1">
+            <div class="py-1" @click="signOut()">
               <a
                 class="
                   block
@@ -226,6 +226,12 @@ export default {
     Icon,
   },
   methods: {
+    signOut() {
+      console.log("sign out");
+      localStorage.removeItem("user_id");
+      localStorage.removeItem("Role");
+      window.location.href = "/Role";
+    },
     menuToggle: function () {
       this.menu = !this.menu;
     },
@@ -246,7 +252,6 @@ export default {
       }
     });
 
-    
     var themeToggleDarkIcon = document.getElementById("theme-toggle-dark-icon");
     var themeToggleLightIcon = document.getElementById(
       "theme-toggle-light-icon"
@@ -292,11 +297,6 @@ export default {
         }
       }
     });
- 
-
-
-
-    
   },
 };
 </script>
