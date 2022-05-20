@@ -1,4 +1,5 @@
 <?php
+
 class Database
 {
 	private $host = "localhost";
@@ -15,6 +16,8 @@ class Database
 		);
 		try {
 			$this->DB = new PDO($dsn, $this->user, $this->pass, $options);
+			// var_dump($this->DB);
+			// exit;
 		} catch (PDOException $e) {
 			$this->error = $e->getMessage();
 		}

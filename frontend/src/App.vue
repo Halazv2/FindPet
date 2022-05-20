@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex bg-packed font-lexend dark:bg-gray-900" v-if="Role == 'User'" >
+    <div class="flex bg-packed font-lexend dark:bg-gray-900" v-if="Role == 'Admin' || Role == 'User'" >
       <div
         id="sidebar-scroll"
         ref="flex_sidebar"

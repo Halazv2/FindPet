@@ -82,12 +82,12 @@ const router = createRouter({
 
 router.beforeEach((to, from) => {
   if (to.name === "ProfileView" || to.name === "FeedView" || to.name === "EventsView") {
-    if (!localStorage.getItem("user_id")) {
+    if (!localStorage.getItem("Role")) {
       router.push("/Login");
     }
   }
   if (to.name === "Login" || to.name === "Register") {
-    if (localStorage.getItem("user_id")) {
+    if (localStorage.getItem("Role")) {
       router.push("/");
     }
   }

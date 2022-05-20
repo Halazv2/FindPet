@@ -40,7 +40,7 @@
             bg-indigo-200
           "
         >
-          Welcome back, Riven
+          Welcome back, {{Role}}
         </h2>
       </div>
       <div class="mr-5 flex">
@@ -220,6 +220,7 @@ export default {
   data() {
     return {
       menu: false,
+      Role : localStorage.getItem('Role'),
     };
   },
   components: {
