@@ -97,7 +97,7 @@ export default {
           title: "Admin Dashboard",
           image:
             "https://us.123rf.com/450wm/igoun/igoun1903/igoun190300114/120383965-king-user-icon-logo-design-element-admin-icon-administrator-crowned-king-sign-manager-symbol-power-u.jpg?ver=6",
-          link: "",
+          link: "/LoginAdmin",
         },
         {
           name: "User",
