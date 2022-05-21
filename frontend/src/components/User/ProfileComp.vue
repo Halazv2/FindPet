@@ -1,13 +1,16 @@
 <template>
   <div class="">
-    <div class="bg-white pb-10">
+    <div class="text-gray-600 dark:text-white pb-8">
       <div class="flex flex-col gap-1 text-center items-center">
         <div
           class="
             bg-primary-btn
-            h-80
+            lg:h-80
+            h-40
             relative
-            w-[100%]
+            w-[90%]
+            mt-10
+            rounded-2xl
             justify-center
             flex
             items-end
@@ -20,7 +23,7 @@
           />
         </div>
         <div class="mt-24">
-          <p class="font-semibold">Riven</p>
+          <p class="font-semibold">{{ user.FirstName }} {{ user.LastName }}</p>
           <div
             class="
               text-sm
@@ -45,27 +48,12 @@
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
               <circle cx="12" cy="10" r="3"></circle>
             </svg>
-            Oujda, Oriental
+            {{ user.City }}
           </div>
         </div>
       </div>
-      <div class="flex justify-center items-center gap-2 my-3">
-        <div class="font-semibold text-center mx-4">
-          <p class="text-black">102</p>
-          <span class="text-gray-400">Posts</span>
-        </div>
-        <div class="font-semibold text-center mx-4">
-          <p class="text-black">102</p>
-          <span class="text-gray-400">Followers</span>
-        </div>
-        <div class="font-semibold text-center mx-4">
-          <p class="text-black">102</p>
-          <span class="text-gray-400">Folowing</span>
-        </div>
-      </div>
     </div>
-
-    <div class="min-h-screen bg-base-100 py-8">
+    <div class="py-16 ">
       <div class="flex justify-around items-center flex-col lg:flex-row">
         <div class="flex gap-7">
           <div class="text-center lg:text-left text-blue-600 font-semibold">
@@ -110,7 +98,7 @@
                 </label>
                 <input
                   type="text"
-                  placeholder="Joe"
+                  v-model="user.FirstName"
                   class="
                     w-full
                     rounded
@@ -141,7 +129,7 @@
                 </label>
                 <input
                   type="text"
-                  placeholder="Deo"
+                  v-model="user.LastName"
                   class="
                     w-full
                     rounded
@@ -172,7 +160,7 @@
                 </label>
                 <input
                   type="text"
-                  placeholder="+212 7 00 94 07 62"
+                  v-model="user.PhoneNumber"
                   class="
                     w-full
                     rounded
@@ -201,10 +189,19 @@
                 >
                   City
                 </label>
-                <select class="select select-bordered w-full">
-                  <option disabled selected>Who shot first?</option>
-                  <option>Han Solo</option>
-                  <option>Greedo</option>
+                <select
+                  class="
+                    select select-bordered
+                    w-full
+                    text-gray-800
+                    dark:text-gray-50 dark:bg-slate-700
+                    border-gray-500
+                    dark:border-slate-600
+                  "
+                  v-model="user.City"
+                >
+                  <option disabled selected>Whare are you from?</option>
+                  <option v-for="city in Cities" :key="city">{{ city }}</option>
                 </select>
               </div>
               <div class="my-6">
@@ -223,7 +220,6 @@
                 </label>
                 <input
                   type="file"
-                  placeholder="+212 7 00 94 07 62"
                   class="
                     w-full
                     rounded
@@ -263,16 +259,58 @@
 </template>
 
 <script>
+import axios from "axios";
 import DeleteAccount from "./ModalDeleteAccount.vue";
+import userData from "./city.json";
 export default {
   components: { DeleteAccount },
   name: "ProfileComp",
 
-
+  data() {
+    return {
+      user: {
+        FirstName: "",
+        LastName: "",
+        Email: "",
+        Password: "",
+        PhoneNumber: "",
+        City: "",
+        ProfilePic: "",
+      },
+      userData: userData,
+      Cities: [],
+      id: localStorage.getItem("user_id"),
+      errors: {},
+    };
+  },
   methods: {
     UpadateUser() {
       alert("Update User");
     },
+    getuser() {
+      axios
+        .get(
+          `http://localhost/fil-rouge-find-pet/UserController/getUser?id=` +
+            this.id
+        )
+        .then((res) => {
+          this.user = res.data;
+          console.log(this.user.FirstName);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    getcity() {
+      this.Cities = require("./city.json").map((city) => city.city);
+      this.Cities.forEach((city) => {
+        console.log(city);
+      });
+    },
+  },
+  mounted() {
+    this.getuser();
+    this.getcity();
   },
 };
 </script>
