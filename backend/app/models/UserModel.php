@@ -31,11 +31,11 @@ class UserModel
             echo json_encode(["user" => $user]);
         }
     }
-    public function getUser($Email)
+    public function getUser($id)
     {
-        $request = "SELECT * FROM users WHERE Email = :Email";
+        $request = "SELECT * FROM users WHERE id = :id";
         $stmt = $this->db->prepare($request);
-        $stmt->bindParam(':Email', $Email);
+        $stmt->bindParam(':id', $id);
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         return $user;

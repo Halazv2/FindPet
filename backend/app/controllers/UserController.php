@@ -12,6 +12,16 @@
         {
             echo json_encode(['message' => 'Mre7ba Bik f findpet API']);
         }
+        public function getUser()
+        {
+            if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+                $id = $_GET['id'];
+                $user = $this->model('UserModel')->getUser($id);
+                $this->json($user);
+            } else {
+                echo json_encode(['message' => 'Invalid request']);
+            }
+        }
 
         public function register()
         {
@@ -77,6 +87,5 @@
                     echo json_encode(['message' => 'Invalid file type.']);
                 }
             }
-
         }
     }
