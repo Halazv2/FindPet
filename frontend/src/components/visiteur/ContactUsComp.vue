@@ -1,11 +1,10 @@
 <template>
-  <div class="container mx-auto ">
-    <div class="ml-14 ">
+  <div class="container mx-auto">
+    <div class="ml-14">
       <h1 class="mt-9">
         Sign up and stay <br />
         <span class="text-primary-btn">CONNECTED</span>
       </h1>
-      
     </div>
     <div class="flex flex-col items-center">
       <center>
@@ -20,20 +19,24 @@
     </div>
 
     <div class="flex justify-center py-16">
-      <div class="rounded card w-[554px] bg-base-100 shadow-xl">
+      <div
+        class="
+          rounded
+          card
+          w-[554px]
+          bg-base-100
+          dark:bg-gray-800
+          text-gray-800
+          dark:text-gray-50
+          shadow-xl
+        "
+      >
         <div class="card-body items-center">
           <form class="w-full max-w-lg">
             <div class="flex flex-col -mx-3 mb-6">
               <div class="w-full px-3 mb-6 md:mb-0">
                 <label
-                  class="
-                    block
-                    uppercase
-                    tracking-wide
-                    text-gray-700 text-xs
-                    font-bold
-                    mb-2
-                  "
+                  class="block uppercase tracking-wide text-xs font-bold mb-2"
                   for="grid-first-name"
                 >
                   First Name <span class="text-red-700">*</span>
@@ -45,10 +48,12 @@
                     appearance-none
                     block
                     w-full
-                    text-gray-700
                     border border-gray-200
                     rounded
                     py-3
+                    dark:bg-gray-800
+                    text-gray-800
+                    dark:text-gray-50
                     px-4
                     leading-tight
                     focus:outline-none focus:bg-white focus:border-gray-500
@@ -60,14 +65,7 @@
               </div>
               <div class="w-full py-3 px-3">
                 <label
-                  class="
-                    block
-                    uppercase
-                    tracking-wide
-                    text-gray-700 text-xs
-                    font-bold
-                    mb-2
-                  "
+                  class="block uppercase tracking-wide text-xs font-bold mb-2"
                   for="grid-last-name"
                 >
                   Email <span class="text-red-700">*</span>
@@ -77,11 +75,13 @@
                     appearance-none
                     block
                     w-full
-                    text-gray-700
                     border border-gray-200
                     rounded
                     py-3
                     px-4
+                    dark:bg-gray-800
+                    text-gray-800
+                    dark:text-gray-50
                     leading-tight
                     focus:outline-none focus:bg-white focus:border-gray-500
                   "
@@ -94,14 +94,7 @@
             <div class="flex flex-wrap -mx-3 mb-6">
               <div class="w-full px-3">
                 <label
-                  class="
-                    block
-                    uppercase
-                    tracking-wide
-                    text-gray-700 text-xs
-                    font-bold
-                    mb-2
-                  "
+                  class="block uppercase tracking-wide text-xs font-bold mb-2"
                   for="grid-password"
                 >
                   Message <span class="text-red-700">*</span>
@@ -111,9 +104,11 @@
                     appearance-none
                     block
                     w-full
-                    text-gray-700
                     border border-gray-200
                     rounded
+                    dark:bg-gray-800
+                    text-gray-800
+                    dark:text-gray-50
                     py-3
                     px-4
                     mb-3

@@ -1,10 +1,10 @@
 <template>
-  <div class="container">
+  <div class="container mt-6">
     <figure>
       <img src="../../assets/images/support.png" class="px-11" alt="" />
     </figure>
     <div>
-      <div class="flex items-center flex-col lg:flex-row justify-center p-11">
+      <div class="flex items-center flex-col lg:flex-row justify-center p-11 gap-20">
         <div class="lg:w-[35%] pb-7">
           <div class="font-bold text-4xl flex flex-col lg:flex-row py-7">
             <h1>

@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto">
+  <div class="container mx-auto mt-6">
     <figure class="flex justify-center">
       <img
         src="../../assets/images/AboutHero.png"

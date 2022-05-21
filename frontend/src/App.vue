@@ -10,7 +10,6 @@
           w-sidebar
           lg:block
           hidden
-          w-full
           lg:w-[20%]
           bg-white
           dark:bg-gray-800
@@ -18,9 +17,8 @@
           dark:border-gray-700
           lg:z-0
           z-40
-          overflow-auto
           lg:relative
-          h-auto
+          h-inherit
           fixed
         "
       >

@@ -6,10 +6,9 @@
       bg-white
       dark:bg-gray-800
       fixed
-      h-auto
+      h-screen
       text-gray-700
       dark:text-gray-200
-      overflow-y-scroll
     "
   >
     <!-- sidebar head -->

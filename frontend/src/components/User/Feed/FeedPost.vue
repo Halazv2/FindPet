@@ -76,7 +76,7 @@
             class="py-1 text-sm text-gray-700 dark:text-gray-200"
             aria-labelledby="dropdownSmallButton"
           >
-            <div v-if="post.user_id == userID">
+            <div v-if="post.UserID == userID">
               <li>
                 <a
                   @click="deletePost(post.id)"
@@ -94,7 +94,7 @@
                 >
               </li>
             </div>
-            <div v-if="post.user_id != userID">
+            <div v-else>
               <li>
                 <a
                   class="
@@ -123,8 +123,8 @@
       <div class="md:flex-shrink pr-6 pt-3">
         <!-- <div class="bg-cover bg-no-repeat bg-center rounded-lg w-full h-64" style="height: 200px; background-image: url(https://media.wired.co.uk/photos/60c8730fa81eb7f50b44037e/3:2/w_3329,h_2219,c_limit/1521-WIRED-Cat.jpeg);"> -->
         <img
-          class="w-full h-full"
-          :src="`http://localhost/fil-rouge-find-pet/uploads/` + post.Image"
+          class="w-full h-full bg-cover rounded-lg"
+          :src="`http://localhost/fil-rouge-find-pet/uploads/Feedimages/` + post.Image"
           alt=""
         />
         <!-- </div> -->
