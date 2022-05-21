@@ -21,4 +21,14 @@ class AdminController extends Controller
 
         }
     }
+
+    public function getAllUsers()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $admin = $this->model('AdminModel');
+            return $this->json($admin->getAllusers());
+        }
+    }
+
+    
 }

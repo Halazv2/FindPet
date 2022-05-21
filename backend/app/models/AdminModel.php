@@ -27,4 +27,13 @@ class AdminModel
             echo json_encode(['message' => 'Admin not found']);
         }
     }
+
+    public function getAllusers()
+    {
+        $request = "SELECT * FROM users";
+        $stmt = $this->db->prepare($request);
+        $stmt->execute();
+        $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($users);
+    }
 }
