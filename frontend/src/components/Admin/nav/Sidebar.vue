@@ -97,7 +97,7 @@
           </a>
         </div>
       </div>
-      <content class="flex grid-cols-6 absolute bottom-0 w-full">
+      <content class="flex grid-cols-6 absolute bottom-0 w-full" v-if="Role == 'User'">
         <div class="">
           <img
             src="../../../assets/images/catMatch.png"
@@ -105,7 +105,7 @@
           />
         </div>
 
-        <div class="col-span-3 px-3 font-semibold flex flex-col">
+        <div class="col-span-3 px-3 font-semibold flex flex-col" >
           <div class="">Riven Ziani</div>
           <div class="text-sm text-gray-400 font-light">@RivenZiani</div>
         </div>

@@ -51,12 +51,12 @@ class AdminController extends Controller
             if (!empty($_FILES['Image']['name'])) {
                 if (in_array($imageFileType, $extensions_arr)) {
                     // Insert record
-                    $postsModel = $this->model('AdminModel');
-                    $postsModel->createEvent($Title, $Description, $Date, $Time, $City, $Image);
-                    // Upload file
                     $file_name = uniqid('', true) . '.' . $imageFileType;
                     $target_path = $file_name;
                     move_uploaded_file($_FILES['Image']['tmp_name'], 'C:\xampp\htdocs\fil-rouge-find-pet\backend\public\uploads\Eventimages\\' . $target_path);
+                    $postsModel = $this->model('AdminModel');
+                    $postsModel->createEvent($Title, $Description, $Date, $Time, $City, $target_path);
+                    // Upload file
                     return $this->json(['message' => 'Post Added Successfully']);
                 } else {
                     return $this->json(['message' => 'Invalid File Type']);

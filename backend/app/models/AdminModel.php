@@ -55,6 +55,5 @@ class AdminModel
         $stmt->bindParam(':City', $City);
         $stmt->bindParam(':Image', $Image);
         $stmt->execute();
-        echo json_encode(['message' => 'Event created successfully']);
     }
 }

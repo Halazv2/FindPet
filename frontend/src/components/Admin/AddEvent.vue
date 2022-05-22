@@ -76,7 +76,7 @@
                   focus:outline-none focus:ring
                   w-full
                 "
-                v-model="event.title"
+                v-model="event.Title"
               />
             </div>
           </div>
@@ -103,7 +103,7 @@
                   border-gray-500
                   dark:border-slate-600
                 "
-                v-model="event.localisation"
+                v-model="event.City"
               >
                 <option disabled selected>
                   where is this event happening?
@@ -140,7 +140,7 @@
                   shadow
                   w-full
                 "
-                v-model="event.date"
+                v-model="event.Date"
               />
             </div>
           </div>
@@ -172,7 +172,7 @@
                   shadow
                   w-full
                 "
-                v-model="event.time"
+                v-model="event.Time"
               />
             </div>
           </div>
@@ -220,7 +220,7 @@
                   shadow
                   w-full
                 "
-                v-model="event.description"
+                v-model="event.Description"
               ></textarea>
             </div>
           </div>
@@ -359,7 +359,7 @@ export default {
     },
     onFileChange(e) {
       const file = e.target.files[0];
-      this.Post.Image = file;
+      this.event.Image = file;
     },
     getcity() {
       this.Cities = require("../../assets/js/city.json").map(
