@@ -18,7 +18,10 @@
         >
           <img
             class="image absolute h-40 w-40 bg-white p-2 rounded-full"
-            src="../../assets/images/riven.jpeg"
+            :src="
+              `http://localhost/fil-rouge-find-pet/uploads/profileImages/` +
+              user.ProfilePic
+            "
             alt=""
           />
         </div>
@@ -323,7 +326,6 @@
 <script>
 import axios from "axios";
 import DeleteAccount from "./ModalDeleteAccount.vue";
-import userData from "./city.json";
 export default {
   components: { DeleteAccount },
   name: "ProfileComp",
@@ -340,26 +342,40 @@ export default {
         City: "",
         ProfilePic: "",
       },
-      userData: userData,
       Cities: [],
       id: localStorage.getItem("user_id"),
       errors: {},
     };
   },
   methods: {
+    onFileChange(e) {
+      const file = e.target.files[0];
+      this.user.ProfilePic = file;
+    },
     UpadateUser(id) {
-      fetch(`http://localhost/fil-rouge-find-pet/UserController/updateUser?id=`+id, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(this.user),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data) {
-            console.log(data);
+      const formData = new FormData();
+      formData.append("FirstName", this.user.FirstName);
+      formData.append("LastName", this.user.LastName);
+      formData.append("Email", this.user.Email);
+      formData.append("Password", this.user.Password);
+      formData.append("PhoneNumber", this.user.PhoneNumber);
+      formData.append("City", this.user.City);
+      formData.append("ProfilePic", this.user.ProfilePic);
+      axios
+        .post(
+          `http://localhost/fil-rouge-find-pet/UserController/updateUser?id=${id}`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
           }
+        )
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
         });
     },
     getuser() {
@@ -376,10 +392,9 @@ export default {
         });
     },
     getcity() {
-      this.Cities = require("./city.json").map((city) => city.city);
-      // this.Cities.forEach((city) => {
-      //   console.log(city);
-      // });
+      this.Cities = require("../../assets/js/city.json").map(
+        (city) => city.city
+      );
     },
   },
   mounted() {

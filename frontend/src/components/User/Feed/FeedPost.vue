@@ -113,9 +113,7 @@
             </div>
           </ul>
           <input type="checkbox" id="my-modal-5" class="modal-toggle" />
-          <UpdatePost class="modal" id="my-modal-5" 
-          :post="post"
-          />
+          <UpdatePost class="modal" id="my-modal-5" :post="post" />
         </div>
       </transition>
     </div>
@@ -255,16 +253,21 @@ export default {
     menuToggleBlur: function () {
       this.menu = false;
     },
-    getpost(){
-      fetch('http://localhost/fil-rouge-find-pet/FeedController/getPost?id='+this.post.id,{
-        method:'GET',
-        headers:{
-          'Content-Type':'application/json',
+    getpost() {
+      fetch(
+        "http://localhost/fil-rouge-find-pet/FeedController/getPost?id=" +
+          this.post.id,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
-      }).then(res=>res.json())
-      .then(data=>{
-        // console.log(data)
-      }) 
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          // console.log(data)
+        });
     },
     //deletePost
     deletePost(id) {

@@ -198,7 +198,7 @@
               <input
                 name="Image"
                 id="dropzone-file"
-                @change="onFileChange"
+                @change="onileChange"
                 type="file"
                 class="hidden"
               />
@@ -216,7 +216,7 @@
             <div class="hidden" id="done">Done!</div>
           </div>
           <button
-            @click="AddPost()"
+            @click="UpdatePost()"
             class="
               flex
               items-center
@@ -260,36 +260,36 @@ export default {
   props: {
     post: {
       type: Object,
-      required: true,
     },
   },
   data() {
     return {
-      Post: [
+      Post: 
         {
-          title: "",
-          description: "",
-          PetType: "",
-          PostType: "Offre",
-          image: "",
+          id: this.post.id,
+          title: this.post.Title,
+          description: this.post.Description,
+          PetType: this.post.PetType,
+          PostType: this.post.PostType,
+          image: this.post.Image,
         },
-      ],
       imageData: null,
       picture: null,
       uploadValue: 0,
     };
   },
   methods: {
-    onFileChange(e) {
+    onileChange(e) {
       const file = e.target.files[0];
       this.Post.image = file;
+      console.log(file);
       const progresss = document.getElementById("progress");
       const done = document.getElementById("done");
       progresss.classList.remove("hidden");
       if (this.uploadValue < 100) {
         this.uploadValue += 10;
         setTimeout(() => {
-          this.onFileChange(e);
+          this.onileChange(e);
         }, 100);
         if (this.uploadValue === 100) {
           done.classList.remove("hidden");
@@ -300,17 +300,22 @@ export default {
     },
     UpdatePost() {
       const formData = new FormData();
-      formData.append("title", this.Post.title);
-      formData.append("description", this.Post.description);
+      formData.append("id", this.Post.id);
+      formData.append("Title", this.Post.title);
+      formData.append("Description", this.Post.description);
       formData.append("PetType", this.Post.PetType);
       formData.append("PostType", this.Post.PostType);
-      formData.append("image", this.Post.image);
+      formData.append("Image", this.Post.image);
       axios
-        .post("/api/post/add", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        })
+        .post(
+          "http://localhost/fil-rouge-find-pet/FeedController/updatePost",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        )
         .then((res) => {
           console.log(res);
         })
@@ -319,7 +324,9 @@ export default {
         });
     },
   },
-  mounted() {},
+  mounted() {
+    console.log(this.post);
+  },
 };
 </script>
 

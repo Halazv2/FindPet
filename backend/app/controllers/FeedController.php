@@ -37,34 +37,22 @@ class FeedController extends Controller
             if (!empty($_FILES['Image']['name'])) {
                 if (in_array($imageFileType, $extensions_arr)) {
                     // Insert record
-                    $postsModel = $this->model('FeedModel');
-                    $postsModel->addPost($Title, $PetType, $Description, $PostType, $Image, $UserID);
                     // Upload file
-                    move_uploaded_file($_FILES['Image']['tmp_name'], "uploads/Feedimages/" . $_FILES['Image']['name']);
+                    $file_name = uniqid('', true) . '.' . $imageFileType;
+                    $target_path = $file_name;
+                    move_uploaded_file($_FILES['Image']['tmp_name'], 'C:\xampp\htdocs\fil-rouge-find-pet\backend\public\uploads\Feedimages\\' . $target_path);
+                    $postsModel = $this->model('FeedModel');
+                    $postsModel->addPost($Title, $PetType, $Description, $PostType, $target_path, $UserID);
                     return $this->json(['message' => 'Post Added Successfully']);
                 } else {
                     return $this->json(['message' => 'Invalid File Type']);
                 }
             } else {
                 $postsModel = $this->model('FeedModel');
-                $postsModel->addPost($Title, $PetType, $Description, $PostType, $Image, $UserID);
+                $postsModel->addPost($Title, $PetType, $Description, $PostType, null, $UserID);
+                $lastInsertId = $postsModel->lastInsertId();
+                return $this->json($lastInsertId);
             }
-            // if (in_array($imageFileType, $extensions_arr)) {
-            //     // save file to uploads folder
-            //     $file_name = uniqid('', true) . '.' . $imageFileType;
-            //     $target_path = $file_name;
-            //     if (move_uploaded_file($_FILES['Image']['tmp_name'], 'C:\xampp\htdocs\fil-rouge-find-pet\backend\public\uploads\Feedimages\\' . $target_path)) {
-            //         $post = $this->model('FeedModel');
-            //         $post->addPost($Title, $PetType, $Description, $PostType, $target_path, $UserID);
-            //         //return last inserted id
-            //         $lastInsertId = $post->lastInsertId();
-            //         echo json_encode($lastInsertId);
-            //     } else {
-            //         echo json_encode(['message' => 'Error uploading file']);
-            //     }
-            // } else {
-            //     echo json_encode(['message' => 'Invalid file type.']);
-            // }
         }
     }
     public function deletePost()
@@ -83,25 +71,36 @@ class FeedController extends Controller
     }
     public function updatePost()
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
-            $data = json_decode(file_get_contents("php://input"));
-            $id = $data->id;
-            $Title = $data->Title;
-            $PetType = $data->PetType;
-            $Description = $data->Description;
-            $PostType = $data->PostType;
-            $Image = $data->Image;
-            $UserID = $data->UserID;
-            $post = $this->model('FeedModel');
-            $post->updatePost($id, $Title, $PetType, $Description, $PostType, $Image, $UserID);
-            if ($post) {
-                echo json_encode(['message' => 'Post updated successfully']);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id'];
+            $Title = $_POST['Title'];
+            $PetType = $_POST['PetType'];
+            $Description = $_POST['Description'];
+            $PostType = $_POST['PostType'];
+            $Image = $_FILES['Image']['name'] ?? null;
+
+            $imageFileType = strtolower(pathinfo($Image, PATHINFO_EXTENSION));
+            $extensions_arr = array("jpg", "jpeg", "png", "gif");
+
+            if (isset($_FILES['Image']) && !empty($_FILES['Image']['name'])) {
+                if (in_array($imageFileType, $extensions_arr)) {
+                    $file_name = uniqid('', true) . '.' . $imageFileType;
+                    $target_path = $file_name;
+                    move_uploaded_file($_FILES['Image']['tmp_name'], 'C:\xampp\htdocs\fil-rouge-find-pet\backend\public\uploads\Feedimages\\' . $target_path);
+                    $postsModel = $this->model('FeedModel');
+                    $postsModel->updatePost($id, $Title, $PetType, $Description, $PostType, $target_path);
+                    return $this->json(['message' => 'Post Added Successfully']);
+                } else {
+                    return $this->json(['message' => 'Invalid File Type']);
+                }
             } else {
-                echo json_encode(['message' => 'Error updating post']);
+                $postsModel = $this->model('FeedModel');
+                $postsModel->updatePost($id, $Title, $PetType, $Description, $PostType, null);
             }
         }
     }
-    public function getPost(){
+    public function getPost()
+    {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             //get post id from url
             $id = $_GET['id'];

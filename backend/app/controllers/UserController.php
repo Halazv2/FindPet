@@ -57,56 +57,38 @@
         }
         public function updateUser()
         {
-            if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $id = $_GET['id'];
-                var_dump($id);
                 $FirstName = $_POST['FirstName'];
                 $LastName = $_POST['LastName'];
                 $Email = $_POST['Email'];
                 $Password = password_hash($_POST['Password'], PASSWORD_DEFAULT);
                 $PhoneNumber = $_POST['PhoneNumber'];
                 $City = $_POST['City'];
-                $ProfilePic = $_FILES['ProfilePic'];
-
-                // $user = $this->model('UserModel');
-                // $user->updateUser($id, $FirstName, $LastName, $Email, $Password, $PhoneNumber, $City, $ProfilePic);
+                $ProfilePic = $_FILES['ProfilePic']['name'] ?? null;
+                // print_r($ProfilePic);
+                $user = $this->model('UserModel');
                 $imageFileType = strtolower(pathinfo($ProfilePic, PATHINFO_EXTENSION));
                 $extensions_arr = array("jpg", "jpeg", "png", "gif");
 
-                if (!empty($_FILES['Image']['name'])) {
+                if (isset($_FILES['ProfilePic']) && !empty($_FILES['ProfilePic']['name'])) {
                     if (in_array($imageFileType, $extensions_arr)) {
-                        // Insert record
-                        $user = $this->model('UserModel');
-                        $user->updateUser($id, $FirstName, $LastName, $Email, $Password, $PhoneNumber, $City, $ProfilePic);
                         // Upload file
                         $file_name = uniqid('', true) . '.' . $imageFileType;
                         $target_path = $file_name;
-                        move_uploaded_file($_FILES['Image']['tmp_name'], 'C:\xampp\htdocs\fil-rouge-find-pet\backend\public\uploads\profileImages\\' . $target_path);
-                        return true;
+                        move_uploaded_file($_FILES['ProfilePic']['tmp_name'], 'C:\xampp\htdocs\fil-rouge-find-pet\backend\public\uploads\profileImages\\' . $target_path);
+                        // Insert record
+                        $user = $this->model('UserModel');
+                        $user->updateUser($id, $FirstName, $LastName, $Email, $Password, $PhoneNumber, $City, $target_path);
+                        return $this->json(['message' => 'User updated successfully']);
                     } else {
                         return false;
                     }
                 } else {
                     $user = $this->model('UserModel');
-                    $user->updateUser($id, $FirstName, $LastName, $Email, $Password, $PhoneNumber, $City, $ProfilePic);
+                    $user->updateUser($id, $FirstName, $LastName, $Email, $Password, $PhoneNumber, $City, null);
                     return true;
                 }
-
-                // if (in_array($imageFileType, $extensions_arr)) {
-                //     // save file to uploads folder
-                //     $file_name = uniqid('', true) . '.' . $imageFileType;
-                //     $target_path = $file_name;
-                //     if (move_uploaded_file($_FILES['Image']['tmp_name'], 'C:\xampp\htdocs\fil-rouge-find-pet\backend\public\uploads\profileImages\\' . $target_path)) {
-                //         $user = $this->model('UserModel');
-                //         $user->updateUser($FirstName, $LastName, $Email, $Password, $PhoneNumber, $City, $ProfilePic);
-                //     } else {
-                //         echo json_encode(['message' => 'Error uploading file']);
-                //     }
-                // } else {
-                //     echo json_encode(['message' => 'Invalid file type.']);
-                // }
-
-
             }
         }
     }
