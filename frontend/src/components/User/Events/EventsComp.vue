@@ -42,7 +42,7 @@
                   alt="Avatar of Jonathan Reinink"
                 />
                 <div class="text-sm">
-                  <p class="text-black leading-none">Safi</p>
+                  <p class="leading-none">Safi</p>
                   <p class="text-grey-dark">Aug 18</p>
                 </div>
               </div>

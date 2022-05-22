@@ -21,14 +21,33 @@ class AdminController extends Controller
 
         }
     }
-
     public function getAllUsers()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $admin = $this->model('AdminModel');
-            return $this->json($admin->getAllusers());
+            $admin->getAllusers();
         }
     }
-
-    
+    public function getlastthreeusers()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $admin = $this->model('AdminModel');
+            $admin->getlastthreeusers();
+        }
+    }
+    public function createEvent()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = json_decode(file_get_contents("php://input"));
+            $Title = $data->Title;
+            $Description = $data->Description;
+            $Date = $data->Date;
+            $Time = $data->Time;
+            $City = $data->City;
+            $Image = $data->Image;
+            $admin = $this->model('AdminModel');
+            $admin->createEvent($Title, $Description, $Date, $Time, $City, $Image);
+            return $this->json($admin);
+        }
+    }
 }

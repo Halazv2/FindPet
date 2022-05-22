@@ -36,4 +36,25 @@ class AdminModel
         $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
         echo json_encode($users);
     }
+    public function getlastthreeusers()
+    {
+        $request = "SELECT * FROM users ORDER BY id DESC LIMIT 3";
+        $stmt = $this->db->prepare($request);
+        $stmt->execute();
+        $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($users);
+    }
+    public function createEvent($Title, $Description, $Date, $Time, $City, $Image)
+    {
+        $request = "INSERT INTO events (Title, Description, Date, Time, City, Image) VALUES (:Title, :Description, :Date, :Time, :City, :Image)";
+        $stmt = $this->db->prepare($request);
+        $stmt->bindParam(':Title', $Title);
+        $stmt->bindParam(':Description', $Description);
+        $stmt->bindParam(':Date', $Date);
+        $stmt->bindParam(':Time', $Time);
+        $stmt->bindParam(':City', $City);
+        $stmt->bindParam(':Image', $Image);
+        $stmt->execute();
+        echo json_encode(['message' => 'Event created successfully']);
+    }
 }
