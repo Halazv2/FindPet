@@ -62,19 +62,21 @@ class UserModel
         }
     }
 
-    public function updateUser($FirstName, $LastName, $Email, $Password, $PhoneNumber, $City, $ProfilePic)
+    public function updateUser($id, $FirstName, $LastName, $Email, $Password, $PhoneNumber, $City, $ProfilePic)
     {
-        $request = "UPDATE users SET FirstName = :FirstName,
-    LastName = :LastName, Email = :Email, Password = :Password, PhoneNumber = :PhoneNumber,
-    City = :City, ProfilePic = :ProfilePic WHERE Email = :Email";
+        $request = "UPDATE users SET FirstName = :FirstName, LastName = :LastName, Email = :Email, Password = :Password, PhoneNumber = :PhoneNumber, City = :City, ProfilePic = :ProfilePic WHERE id = :id";
         $stmt = $this->db->prepare($request);
-        $stmt->bindParam(':FirstName', $FirstName);
-        $stmt->bindParam(':Lastname', $LastName);
-        $stmt->bindParam(':Email', $Email);
-        $stmt->bindParam(':Password', $Password);
-        $stmt->bindParam(':PhoneNumber', $PhoneNumber);
-        $stmt->bindParam(':City', $City);
-        $stmt->bindParam(':ProfilePic', $ProfilePic);
-        $stmt->execute();
+        $stmt->execute(
+            [
+                'FirstName' => $FirstName,
+                'LastName' => $LastName,
+                'Email' => $Email,
+                'Password' => $Password,
+                'PhoneNumber' => $PhoneNumber,
+                'City' => $City,
+                'ProfilePic' => $ProfilePic,
+                'id' => $id
+            ]
+        );
     }
 }
