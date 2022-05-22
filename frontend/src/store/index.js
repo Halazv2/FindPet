@@ -6,14 +6,16 @@ export default createStore({
   },
   getters: {},
   mutations: {
-    Post(state, posts) {
-      state.posts.push(...posts);
-    },
+    // Post(state, posts) {
+    //   state.posts.push(...posts);
+    // },
+    
   },
   actions: {
     logout(){
       localStorage.removeItem('user_id');
-    }
+    },
+    
   },
   modules: {},
 });

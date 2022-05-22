@@ -87,10 +87,10 @@
               </li>
 
               <li>
-                <a
-                  @click="editPost"
+                <label
+                  for="my-modal-5"
                   class="block py-2 px-4 hover:bg-primary-btn hover:text-white"
-                  >Edit</a
+                  >Edit</label
                 >
               </li>
             </div>
@@ -112,6 +112,10 @@
               </li>
             </div>
           </ul>
+          <input type="checkbox" id="my-modal-5" class="modal-toggle" />
+          <UpdatePost class="modal" id="my-modal-5" 
+          :post="post"
+          />
         </div>
       </transition>
     </div>
@@ -124,7 +128,10 @@
         <!-- <div class="bg-cover bg-no-repeat bg-center rounded-lg w-full h-64" style="height: 200px; background-image: url(https://media.wired.co.uk/photos/60c8730fa81eb7f50b44037e/3:2/w_3329,h_2219,c_limit/1521-WIRED-Cat.jpeg);"> -->
         <img
           class="w-full h-full bg-cover rounded-lg"
-          :src="`http://localhost/fil-rouge-find-pet/uploads/Feedimages/` + post.Image"
+          :src="
+            `http://localhost/fil-rouge-find-pet/uploads/Feedimages/` +
+            post.Image
+          "
           alt=""
         />
         <!-- </div> -->
@@ -221,10 +228,11 @@
 
 <script>
 import { Icon } from "@iconify/vue";
+import UpdatePost from "./UppdatePost.vue";
 import axios from "axios";
 export default {
   name: "Post",
-  components: { Icon },
+  components: { Icon, UpdatePost },
   props: {
     post: {
       type: Object,
@@ -246,6 +254,17 @@ export default {
     },
     menuToggleBlur: function () {
       this.menu = false;
+    },
+    getpost(){
+      fetch('http://localhost/fil-rouge-find-pet/FeedController/getPost?id='+this.post.id,{
+        method:'GET',
+        headers:{
+          'Content-Type':'application/json',
+        }
+      }).then(res=>res.json())
+      .then(data=>{
+        // console.log(data)
+      }) 
     },
     //deletePost
     deletePost(id) {
@@ -279,6 +298,7 @@ export default {
   },
   //close menu when click outside
   mounted() {
+    // this.getpost();
     document.addEventListener("click", (e) => {
       if (this.menu && !this.$el.contains(e.target)) {
         this.menuToggleBlur();

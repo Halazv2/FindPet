@@ -53,7 +53,7 @@
         </div>
       </div>
     </div>
-    <div class="py-16 ">
+    <div class="py-16">
       <div class="flex justify-around items-center flex-col lg:flex-row">
         <div class="flex gap-7">
           <div class="text-center lg:text-left text-blue-600 font-semibold">
@@ -187,6 +187,68 @@
                   "
                   for="grid-last-name"
                 >
+                  Phone Number
+                </label>
+                <input
+                  type="text"
+                  v-model="user.Email"
+                  class="
+                    w-full
+                    rounded
+                    p-3
+                    text-gray-800
+                    dark:text-gray-50 dark:bg-slate-700
+                    border-gray-500
+                    dark:border-slate-600
+                    outline-none
+                    focus-visible:shadow-none
+                    focus:border-primary
+                  "
+                />
+              </div>
+              <div class="my-6">
+                <label
+                  class="
+                    block
+                    uppercase
+                    tracking-wide
+                    text-gray-700 text-xs
+                    font-bold
+                    mb-2
+                  "
+                  for="grid-last-name"
+                >
+                  Phone Number
+                </label>
+                <input
+                  type="password"
+                  v-model="user.Password"
+                  class="
+                    w-full
+                    rounded
+                    p-3
+                    text-gray-800
+                    dark:text-gray-50 dark:bg-slate-700
+                    border-gray-500
+                    dark:border-slate-600
+                    outline-none
+                    focus-visible:shadow-none
+                    focus:border-primary
+                  "
+                />
+              </div>
+              <div class="my-6">
+                <label
+                  class="
+                    block
+                    uppercase
+                    tracking-wide
+                    text-gray-700 text-xs
+                    font-bold
+                    mb-2
+                  "
+                  for="grid-last-name"
+                >
                   City
                 </label>
                 <select
@@ -238,7 +300,7 @@
               <div>
                 <div class="modal-action">
                   <a
-                    @click="UpadateUser"
+                    @click="UpadateUser(user.id)"
                     class="
                       btn
                       bg-primary-btn
@@ -269,6 +331,7 @@ export default {
   data() {
     return {
       user: {
+        id: "",
         FirstName: "",
         LastName: "",
         Email: "",
@@ -284,8 +347,20 @@ export default {
     };
   },
   methods: {
-    UpadateUser() {
-      alert("Update User");
+    UpadateUser(id) {
+      fetch(`http://localhost/fil-rouge-find-pet/UserController/updateUser?id=`+id, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(this.user),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data) {
+            console.log(data);
+          }
+        });
     },
     getuser() {
       axios
@@ -295,7 +370,6 @@ export default {
         )
         .then((res) => {
           this.user = res.data;
-          console.log(this.user.FirstName);
         })
         .catch((err) => {
           console.log(err);
@@ -303,9 +377,9 @@ export default {
     },
     getcity() {
       this.Cities = require("./city.json").map((city) => city.city);
-      this.Cities.forEach((city) => {
-        console.log(city);
-      });
+      // this.Cities.forEach((city) => {
+      //   console.log(city);
+      // });
     },
   },
   mounted() {
