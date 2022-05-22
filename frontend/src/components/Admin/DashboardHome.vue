@@ -203,22 +203,6 @@
           Users table
         </h2>
         <p class="text-gray-400 font-lexend font-normal">your users table</p>
-        <!-- <span class="float-right mr-20">
-          <h2 class="text-red-500 -mt-12 flex">
-            <span class="mr-2"> sdqsdq </span
-            ><span>
-              <Icon icon="akar-icons:arrow-down" />
-            </span>
-          </h2>
-        </span>
-        <span class="float-right">
-          <h2 class="text-green-500 -mt-12 flex">
-            <span class="mr-2"> qsdq </span
-            ><span>
-              <Icon icon="akar-icons:arrow-up" />
-            </span>
-          </h2>
-        </span> -->
         <br />
         <!--- table -->
         <div class="table-responsive">
@@ -238,14 +222,22 @@
                         border-b border-gray-600
                       "
                     >
+                      <th class="px-4 py-2">ID</th>
                       <th class="px-4 py-3">Name</th>
-                      <th class="px-4 py-3">Age</th>
-                      <th class="px-4 py-3">Status</th>
-                      <th class="px-4 py-3">Date</th>
+                      <th class="px-4 py-3">Email</th>
+                      <th class="px-4 py-3">Phone Number</th>
+                      <th class="px-4 py-3">City</th>
                     </tr>
                   </thead>
-                  <tbody class="bg-white">
-                    <tr class="text-gray-700">
+                  <tbody class="bg-white  overflow-y-auto">
+                    <tr
+                      class="text-gray-700"
+                      v-for="(user, index) in users"
+                      :key="index"
+                    >
+                      <td class="px-4 py-3 text-ms font-semibold border">
+                        {{ user.id }}
+                      </td>
                       <td class="px-4 py-3 border">
                         <div class="flex items-center text-sm">
                           <div
@@ -263,12 +255,16 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold text-black">Sufyan</p>
+                            <p class="font-semibold text-black">
+                              {{ user.FirstName }} {{ user.LastName }}
+                            </p>
                             <p class="text-xs text-gray-600">Developer</p>
                           </div>
                         </div>
                       </td>
-                      <td class="px-4 py-3 text-ms font-semibold border">22</td>
+                      <td class="px-4 py-3 text-ms font-semibold border">
+                        {{ user.Email }}
+                      </td>
                       <td class="px-4 py-3 text-xs border">
                         <span
                           class="
@@ -281,127 +277,10 @@
                             rounded-sm
                           "
                         >
-                          Acceptable
+                          {{ user.PhoneNumber }}
                         </span>
                       </td>
-                      <td class="px-4 py-3 text-sm border">6/4/2000</td>
-                    </tr>
-                    <tr class="text-gray-700">
-                      <td class="px-4 py-3 border">
-                        <div class="flex items-center text-sm">
-                          <div class="relative w-8 h-8 mr-3 rounded-full">
-                            <img
-                              class="object-cover w-full h-full rounded-full"
-                              src=""
-                              alt=""
-                              loading="lazy"
-                            />
-                            <div
-                              class="absolute inset-0 rounded-full shadow-inner"
-                              aria-hidden="true"
-                            ></div>
-                          </div>
-                          <div>
-                            <p class="font-semibold text-black">Stevens</p>
-                            <p class="text-xs text-gray-600">Programmer</p>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="px-4 py-3 text-md font-semibold border">27</td>
-                      <td class="px-4 py-3 text-xs border">
-                        <span
-                          class="
-                            px-2
-                            py-1
-                            font-semibold
-                            leading-tight
-                            text-orange-700
-                            bg-gray-100
-                            rounded-sm
-                          "
-                        >
-                          Pending
-                        </span>
-                      </td>
-                      <td class="px-4 py-3 text-sm border">6/10/2020</td>
-                    </tr>
-                    <tr class="text-gray-700">
-                      <td class="px-4 py-3 border">
-                        <div class="flex items-center text-sm">
-                          <div class="relative w-8 h-8 mr-3 rounded-full">
-                            <img
-                              class="object-cover w-full h-full rounded-full"
-                              src=""
-                              alt=""
-                              loading="lazy"
-                            />
-                            <div
-                              class="absolute inset-0 rounded-full shadow-inner"
-                              aria-hidden="true"
-                            ></div>
-                          </div>
-                          <div>
-                            <p class="font-semibold">Nora</p>
-                            <p class="text-xs text-gray-600">Designer</p>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="px-4 py-3 text-md font-semibold border">17</td>
-                      <td class="px-4 py-3 text-xs border">
-                        <span
-                          class="
-                            px-2
-                            py-1
-                            font-semibold
-                            leading-tight
-                            text-red-700
-                            bg-red-100
-                            rounded-sm
-                          "
-                        >
-                          Nnacceptable
-                        </span>
-                      </td>
-                      <td class="px-4 py-3 text-sm border">6/10/2020</td>
-                    </tr>
-                    <tr class="text-gray-700">
-                      <td class="px-4 py-3 border">
-                        <div class="flex items-center text-sm">
-                          <div class="relative w-8 h-8 mr-3 rounded-full">
-                            <img
-                              class="object-cover w-full h-full rounded-full"
-                              src=""
-                              alt=""
-                              loading="lazy"
-                            />
-                            <div
-                              class="absolute inset-0 rounded-full shadow-inner"
-                              aria-hidden="true"
-                            ></div>
-                          </div>
-                          <div>
-                            <p class="font-semibold">Ali</p>
-                            <p class="text-xs text-gray-600">Programmer</p>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="px-4 py-3 border text-md font-semibold">23</td>
-                      <td class="px-4 py-3 border text-xs">
-                        <span
-                          class="
-                            px-2
-                            py-1
-                            font-semibold
-                            leading-tight
-                            text-green-700
-                            bg-green-100
-                            rounded-sm
-                          "
-                        >
-                          Acceptable
-                        </span>
-                      </td>
-                      <td class="px-4 py-3 border text-sm">6/10/2020</td>
+                      <td class="px-4 py-3 text-sm border">{{ user.City }}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -441,22 +320,20 @@
         <h2 class="dark:text-gray-200 text-xl font-bold">New Users</h2>
         <p class="text-gray-400">This is list if your new users.</p>
         <div class="mt-4 grid grid-cols-1 gap-4">
-          <button class="w-full box-border flex items-center gap-4">
+          <div
+            class="w-full box-border flex items-center gap-4"
+            v-for="(last, index) in lastThree"
+            :key="index"
+          >
             <span>
               <img src="" alt="" width="50" height="50" class="rounded-full" />
             </span>
             <span class="text-left">
-              <h1 class="font-bold text-xl dark:text-gray-200">Hafid Fauzi</h1>
+              <h1 class="font-bold text-xl dark:text-gray-200">
+                {{ last.FirstName }} {{ last.LastName }}
+              </h1>
             </span>
-          </button>
-          <button class="w-full box-border flex items-center gap-4">
-            <span>
-              <img src="" alt="" width="50" height="50" class="rounded-full" />
-            </span>
-            <span class="text-left">
-              <h1 class="font-bold text-xl dark:text-gray-200">Hala Ziani</h1>
-            </span>
-          </button>
+          </div>
         </div>
       </div>
     </div>
@@ -465,13 +342,71 @@
 
 <script>
 import { Icon } from "@iconify/vue";
+import { ref } from "vue";
 export default {
   components: {
     Icon,
   },
   name: "dashboard-card",
+
+  // setup() {
+  //   const users = ref([]);
+  //   const getUsers = async () => {
+  //     const response = await fetch(
+  //       "http://localhost/fil-rouge-find-pet/AdminController/getAllUsers",
+  //       {
+  //         method: "GET",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //       }
+  //     );
+  //     const data = await response.json();
+  //     users.value = data;
+  //   };
+  //   getUsers();
+  // },
+  data() {
+    return {
+      users: [],
+      lastThree: [],
+    };
+  },
+  methods: {
+    getUsers() {
+      fetch("http://localhost/fil-rouge-find-pet/AdminController/getAllUsers", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          this.users = data;
+        });
+    },
+    getlast3() {
+      fetch(
+        "http://localhost/fil-rouge-find-pet/AdminController/getlastthreeusers",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          this.lastThree = data;
+        });
+    },
+  },
+  mounted() {
+    this.getUsers();
+    this.getlast3();
+  },
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 </style>

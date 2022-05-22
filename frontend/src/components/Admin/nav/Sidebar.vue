@@ -12,7 +12,7 @@
     "
   >
     <!-- sidebar head -->
-    <div class="sidebar-head p-4 ">
+    <div class="sidebar-head p-4">
       <router-link to="/" exact>
         <img src="../../../assets/images/logo1.png" alt="logo" class="w-16" />
       </router-link>
@@ -75,8 +75,29 @@
           <span class="w-full"> {{ item.name }} </span>
         </a>
       </div>
-
-      <content class="flex grid-cols-6 mt-52">
+      <div v-if="Role == 'Admin'">
+        <p class="font-medium">Admin Menu</p>
+        <div class="item" v-for="(item, index) in adminNavElements" :key="index">
+          <a
+            @click="regorecte(item.link)"
+            class="
+              w-full
+              flex
+              text-left
+              rounded-md
+              box-border
+              items-center
+              p-3
+              hover:bg-gray-100
+              dark:hover:bg-gray-700
+            "
+          >
+            <span class="mr-3 text-xl"><Icon :icon="item.icon" width="24" /></span>
+            <span class="w-full"> {{ item.name }} </span>
+          </a>
+        </div>
+      </div>
+      <content class="flex grid-cols-6 absolute bottom-0 w-full">
         <div class="">
           <img
             src="../../../assets/images/catMatch.png"
@@ -104,6 +125,7 @@ export default {
   },
   data() {
     return {
+      Role: localStorage.getItem("Role"),
       NavElements: [
         {
           name: "Home",
@@ -139,6 +161,18 @@ export default {
           link: "/events",
         },
       ],
+      adminNavElements: [
+        {
+          name: "Dashboard",
+          icon: "eos-icons:admin",
+          link: "/admin/dashboard",
+        },
+        {
+          name: "Events",
+          icon: "carbon:data-table",
+          link: "/events",
+        },
+      ]
     };
   },
   methods: {
