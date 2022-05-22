@@ -1,5 +1,17 @@
 <template>
   <div>
+    <div>
+      <label
+        for="my-modal-3"
+        class="btn border-none bg-primary-btn hover:bg-secondary-brn mb-6"
+        >Add Post</label
+      >
+      <input type="checkbox" id="my-modal-3" class="modal-toggle" />
+      <AddEvent
+        class="modal modal-bottom sm:modal-middle"
+        
+      />
+    </div>
     <div class="w-full lg:flex">
       <div class="bg-base-200 rounded-lg">
         <div
@@ -56,7 +68,13 @@
 
 <script>
 import { Icon } from "@iconify/vue";
+import AddEvent from "@/components/Admin/AddEvent.vue";
+
 export default {
+  components: {
+    AddEvent,
+    Icon,
+  },
   name: "EventsComp",
 };
 </script>
