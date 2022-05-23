@@ -36,7 +36,7 @@
         flex
         gap-5
         mt-4
-        border-2 border-orange-500
+        
         flex-col
         lg:flex-row
       "
@@ -55,8 +55,8 @@
           flex
         "
       >
-        <div class="p-2 max-w-sm border-2 border-orange-500 flex">
-          <div class="border-2 border-orange-500 flex items-center">
+        <div class="p-2 max-w-sm  flex">
+          <div class=" flex items-center">
             <div
               class="
                 bg-orange-200
@@ -65,7 +65,7 @@
                 h-14
                 text-lg
                 p-3
-                border-2 border-orange-500
+                
                 text-orange-600
                 flex
                 items-center
@@ -99,8 +99,8 @@
           flex
         "
       >
-        <div class="p-2 max-w-sm border-2 border-orange-500 flex">
-          <div class="border-2 border-orange-500 flex items-center">
+        <div class="p-2 max-w-sm  flex">
+          <div class=" flex items-center">
             <div
               class="
                 bg-green-200
@@ -142,8 +142,8 @@
           flex
         "
       >
-        <div class="p-2 max-w-sm border-2 border-orange-500 flex">
-          <div class="border-2 border-orange-500 flex items-center">
+        <div class="p-2 max-w-sm  flex">
+          <div class=" flex items-center">
             <div
               class="
                 bg-purple-200
@@ -187,7 +187,7 @@
       </div>
       <!-- end card -->
     </div>
-    <div class="mt-2 lg:flex block lg:gap-2 border-2 border-orange-500">
+    <div class="mt-2 lg:flex block lg:gap-2 ">
       <div
         class="
           bg-white
@@ -227,9 +227,10 @@
                       <th class="px-4 py-3">Email</th>
                       <th class="px-4 py-3">Phone Number</th>
                       <th class="px-4 py-3">City</th>
+                      <th class="px-4 py-3">Action</th>
                     </tr>
                   </thead>
-                  <tbody class="bg-white  overflow-y-auto">
+                  <tbody class="bg-white overflow-y-auto">
                     <tr
                       class="text-gray-700"
                       v-for="(user, index) in users"
@@ -245,7 +246,10 @@
                           >
                             <img
                               class="object-cover w-full h-full rounded-full"
-                              src=""
+                              :src="
+                                `http://localhost/fil-rouge-find-pet/uploads/profileImages/` +
+                                user.ProfilePic
+                              "
                               alt=""
                               loading="lazy"
                             />
@@ -272,8 +276,8 @@
                             py-1
                             font-semibold
                             leading-tight
-                            text-green-700
-                            bg-green-100
+                            text-primary-btn
+                            bg-orange-200
                             rounded-sm
                           "
                         >
@@ -281,6 +285,11 @@
                         </span>
                       </td>
                       <td class="px-4 py-3 text-sm border">{{ user.City }}</td>
+                      <td class="px-4 py-3 text-sm border">
+                        <a class="cursor-pointer text-red-600">Delete</a>
+                        &nbsp;
+                        <a class="cursor-pointer text-primary-btn">Update</a>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
@@ -326,7 +335,15 @@
             :key="index"
           >
             <span>
-              <img src="" alt="" width="50" height="50" class="rounded-full" />
+              <img
+                :src="
+                  `http://localhost/fil-rouge-find-pet/uploads/profileImages/` +
+                  last.ProfilePic
+                "
+                alt=""
+
+                class="rounded-full w-8 h-8"
+              />
             </span>
             <span class="text-left">
               <h1 class="font-bold text-xl dark:text-gray-200">
