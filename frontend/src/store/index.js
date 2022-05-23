@@ -3,13 +3,12 @@ import { createStore } from "vuex";
 export default createStore({
   state: {
     posts: [],
+    user: {
+      
+    }
   },
   getters: {},
   mutations: {
-    // Post(state, posts) {
-    //   state.posts.push(...posts);
-    // },
-    
   },
   actions: {
     logout(){
