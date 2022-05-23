@@ -1,5 +1,6 @@
 <template>
   <div class="flex justify-center relative">
+    <AddPost @getPosts="getPosts" v-if="AddPost"  class="z-50" @closeModal="openModalADD"/>
     <main
       class="
         container
@@ -18,16 +19,12 @@
       <div class="w-full">
         <div class="flex justify-between">
           <div>
-            <label
+            <a
               for="my-modal-3"
               class="btn border-none bg-primary-btn hover:bg-secondary-brn mb-6"
-              >Add Post</label
+              @click="openModalADD()"
+              >Add Post</a
             >
-            <input type="checkbox" id="my-modal-3" class="modal-toggle" />
-            <AddPost
-              class="modal modal-bottom sm:modal-middle"
-              @getPosts="getPosts"
-            />
           </div>
 
           <div>
@@ -45,15 +42,21 @@
                 text-sm
               "
             >
-              <option value="All" @click="currentType = 'All'" >All Post</option>
-              <option value="for-rent" @click="currentType = 'Adoption'" >For Adoption</option>
-              <option value="for-sale" @click="currentType = 'Offer'" >To Adopt</option>
+              <option value="All" @click="currentType = 'All'">All Post</option>
+              <option value="for-rent" @click="currentType = 'Adoption'">
+                For Adoption
+              </option>
+              <option value="for-sale" @click="currentType = 'Offer'">
+                Offer
+              </option>
             </select>
           </div>
         </div>
         <!-- posts -->
         <FeedPost
-          v-for="post in posts.filter(post => post.PostType === currentType || currentType === 'All')"
+          v-for="post in posts.filter(
+            (post) => post.PostType === currentType || currentType === 'All'
+          )"
           :key="post.id"
           :post="post"
           @getPosts="getPosts"
@@ -84,9 +87,13 @@ export default {
       posts: [],
       menu: false,
       currentType: "All",
+      AddPost: false,
     };
   },
   methods: {
+    openModalADD() {
+      this.AddPost = !this.AddPost;
+    },
     getPosts() {
       fetch("http://localhost/fil-rouge-find-pet/FeedController/getFeed", {
         method: "GET",

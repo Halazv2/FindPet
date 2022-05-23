@@ -297,6 +297,7 @@
                     focus-visible:shadow-none
                     focus:border-primary
                   "
+                  @change="onFileChange"
                 />
               </div>
 
@@ -351,6 +352,8 @@ export default {
     onFileChange(e) {
       const file = e.target.files[0];
       this.user.ProfilePic = file;
+      console.log(this.user.ProfilePic);
+      
     },
     UpadateUser(id) {
       const formData = new FormData();

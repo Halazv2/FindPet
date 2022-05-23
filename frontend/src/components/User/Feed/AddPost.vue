@@ -1,8 +1,9 @@
 <template>
-  <div class="modal">
-    <div class="modal-box w-11/12 max-w-5xl relative">
+  <dialog
+    class="flex fixed inset-0 justify-center bg-black bg-opacity-20"
+  >
+    <div class="modal-box w-full relative ">
       <label
-        for="my-modal-3"
         id="close-modal"
         class="
           btn btn-sm
@@ -197,7 +198,7 @@
               <input
                 name="Image"
                 id="dropzone-file"
-                @change="onFileChange"
+                @change="upFile"
                 type="file"
                 class="hidden"
               />
@@ -248,9 +249,8 @@
         </footer>
       </form>
     </div>
-  </div>
+  </dialog>
 </template>
-
 <script>
 import * as fireStorage from "firebase/storage";
 import axios from "axios";
@@ -273,7 +273,8 @@ export default {
     };
   },
   methods: {
-    onFileChange(e) {
+    upFile(e) {
+      console.log("eejsde");
       const file = e.target.files[0];
       this.Post.image = file;
       const progresss = document.getElementById("progress");
@@ -282,7 +283,7 @@ export default {
       if (this.uploadValue < 100) {
         this.uploadValue += 10;
         setTimeout(() => {
-          this.onFileChange(e);
+          this.upFile(e);
         }, 100);
         if (this.uploadValue === 100) {
           done.classList.remove("hidden");
@@ -335,6 +336,7 @@ export default {
         .then((response) => {
           // console.log(response);
           this.$emit("getPosts");
+          this.$$emit('closeModal');
           const close_model = document.getElementById("close-modal");
           close_model.click();
           this.uploadValue = 0;
@@ -352,12 +354,15 @@ export default {
       this.Post.PostType = "";
       this.Post.image = "";
     },
-
   },
-  mounted() {
-  },
+  mounted() {},
 };
 </script>
 
 <style>
+dialog {
+  width: 100vw !important;
+  height: 100vh !important;
+  background-color: rgba(0, 0, 0, 0.5);
+}
 </style>

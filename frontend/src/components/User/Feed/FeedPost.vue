@@ -1,4 +1,4 @@
-<template>
+<template> 
   <article
     ref="feed"
     class="
@@ -12,6 +12,12 @@
       mb-6
     "
   >
+      <UpdatePost
+        :post="post"
+        v-if="updateModal"
+        @closeModal="editPost"
+        @updateModal="updateModal"
+      />
     <div class="flex justify-between">
       <div class="flex flex-shrink-0 p-4 pb-0">
         <a class="flex-shrink-0 group block">
@@ -87,10 +93,10 @@
               </li>
 
               <li>
-                <label
-                  for="my-modal-5"
+                <a
+                  @click="editPost"
                   class="block py-2 px-4 hover:bg-primary-btn hover:text-white"
-                  >Edit</label
+                  >Edit</a
                 >
               </li>
             </div>
@@ -112,8 +118,6 @@
               </li>
             </div>
           </ul>
-          <input type="checkbox" id="my-modal-5" class="modal-toggle" />
-          <UpdatePost class="modal" id="my-modal-5" :post="post" />
         </div>
       </transition>
     </div>
@@ -242,6 +246,7 @@ export default {
       menu: false,
       active: false,
       userID: localStorage.getItem("user_id"),
+      updateModal: false,
     };
   },
 
@@ -252,6 +257,9 @@ export default {
     },
     menuToggleBlur: function () {
       this.menu = false;
+    },
+    editPost: function () {
+      this.updateModal = !this.updateModal;
     },
     getpost() {
       fetch(
@@ -311,5 +319,6 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+
 </style>

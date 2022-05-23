@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import EventsComp from "@/components/User/Events/EventsComp.vue";
+import EventsComp from "@/components/Events/EventsComp.vue";
 export default {
   name: "EventsView",
   components: { EventsComp },
