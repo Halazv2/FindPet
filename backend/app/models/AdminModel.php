@@ -56,4 +56,12 @@ class AdminModel
         $stmt->bindParam(':Image', $Image);
         $stmt->execute();
     }
+    public function getAllEvents()
+    {
+        $request = "SELECT * FROM events";
+        $stmt = $this->db->prepare($request);
+        $stmt->execute();
+        $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($events);
+    }
 }
