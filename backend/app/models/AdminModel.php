@@ -44,6 +44,14 @@ class AdminModel
         $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
         echo json_encode($users);
     }
+    public function getAllEvents()
+    {
+        $request = "SELECT * FROM events";
+        $stmt = $this->db->prepare($request);
+        $stmt->execute();
+        $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($events);
+    }
     public function createEvent($Title, $Description, $Date, $Time, $City, $Image)
     {
         $request = "INSERT INTO events (Title, Description, Date, Time, City, Image) VALUES (:Title, :Description, :Date, :Time, :City, :Image)";
@@ -56,12 +64,11 @@ class AdminModel
         $stmt->bindParam(':Image', $Image);
         $stmt->execute();
     }
-    public function getAllEvents()
+    public function deleteEvent($id)
     {
-        $request = "SELECT * FROM events";
+        $request = "DELETE FROM events WHERE id = :id";
         $stmt = $this->db->prepare($request);
+        $stmt->bindParam(':id', $id);
         $stmt->execute();
-        $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        echo json_encode($events);
     }
 }

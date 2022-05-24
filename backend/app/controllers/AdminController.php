@@ -34,6 +34,13 @@ class AdminController extends Controller
             $admin->getlastthreeusers();
         }
     }
+    public function getAllEvents()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $admin = $this->model('AdminModel');
+            $admin->getAllEvents();
+        }
+    }
     public function createEvent()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -68,11 +75,15 @@ class AdminController extends Controller
         }
     }
 
-    public function getAllEvents()
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    public function deleteEvent(){
+        if ($_SERVER['REQUEST_METHOD'] === 'DELETE'){
+            $data = json_decode(file_get_contents("php://input"));
+            $id = $data->id;
             $admin = $this->model('AdminModel');
-            $admin->getAllEvents();
+            $admin->deleteEvent($id);
+            return $this->json(['message' => 'Post Deleted Successfully']);
         }
     }
+
+
 }
