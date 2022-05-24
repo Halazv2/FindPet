@@ -69,9 +69,11 @@ const routes = [
   },
   {
     path: "/admin/dashboard",
-    name: "NotFoundView",
+    name: "Dashboard",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Admin/DashboardView.vue"),
+      import(
+        /* webpackChunkName: "about" */ "../views/Admin/DashboardView.vue"
+      ),
   },
 ];
 
@@ -81,7 +83,11 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from) => {
-  if (to.name === "ProfileView" || to.name === "FeedView" || to.name === "EventsView") {
+  if (
+    to.name === "ProfileView" ||
+    to.name === "FeedView" ||
+    to.name === "EventsView"
+  ) {
     if (!localStorage.getItem("Role")) {
       router.push("/Login");
     }
@@ -91,9 +97,10 @@ router.beforeEach((to, from) => {
       router.push("/");
     }
   }
-
-
-  
-
+  if (to.name === "Dashboard") {
+    if (localStorage.getItem("Role") !== "Admin") {
+      router.push("/");
+    }
+  }
 });
 export default router;

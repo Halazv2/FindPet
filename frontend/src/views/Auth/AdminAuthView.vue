@@ -4,10 +4,15 @@
       <div class="flex justify-center">
         <div class="rounded mt-[59px] bg-white shadow-xl">
           <div class="p-6 sm:p-16">
-              <div class="flex flex-col items-center justify-center">
-            <img src="../../assets/images/logo1.png" alt="" width="100" class="mb-2"/>
-            <h1 class="mb-6">FindPet - Admin</h1>
-              </div>
+            <div class="flex flex-col items-center justify-center">
+              <img
+                src="../../assets/images/logo1.png"
+                alt=""
+                width="100"
+                class="mb-2"
+              />
+              <h1 class="mb-6">FindPet - Admin</h1>
+            </div>
             <p class="text-red-600 text-center mb-3">{{ errors }}</p>
             <div class="space-y-4">
               <form
@@ -166,6 +171,7 @@
 import { computed } from "@vue/runtime-core";
 export default {
   name: "LoginComp",
+  inject: ["setRole"],
   data() {
     return {
       login: {
@@ -187,10 +193,11 @@ export default {
         .then((Response) => Response.json())
         .then((data) => {
           if (data.id) {
-              console.log(data);
+            console.log(data);
             localStorage.setItem("Admin_id", data.id);
             localStorage.setItem("Role", "Admin");
             this.$router.push("/admin/dashboard");
+            this.setRole("Admin");
           } else if (data.message) {
             this.errors = data.message;
           }
