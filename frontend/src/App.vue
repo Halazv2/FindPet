@@ -1,6 +1,9 @@
 <template>
   <div>
-    <div class="flex bg-packed font-lexend dark:bg-gray-900" v-if="Role == 'Admin' || Role == 'User'" >
+    <div
+      class="flex bg-packed font-lexend dark:bg-gray-900"
+      v-if="Role == 'Admin' || Role == 'User'"
+    >
       <div
         id="sidebar-scroll"
         ref="flex_sidebar"
@@ -30,7 +33,7 @@
       </div>
     </div>
     <div v-if="!Role">
-      <navigation-vist  />
+      <navigation-vist />
       <router-view />
     </div>
   </div>
@@ -40,21 +43,31 @@ import NavigationUser from "./components/Navigation-User.vue";
 import NavigationVist from "./components/Navigation-Vist.vue";
 import Header from "@/components/Header.vue";
 import Sidebar from "@/components/Admin/nav/Sidebar.vue";
-
+import { computed } from '@vue/runtime-core';
 export default {
   components: { NavigationVist, NavigationUser, Sidebar, Header },
   data() {
     return {
       nav: this.$store.state.isLoggedIn,
-      Role: "",
+      Role: localStorage.getItem("Role"),
     };
   },
-  mounted() {
-    this.Role = localStorage.getItem("Role");
-    // this.$router.afterEach((to, from) => {
-    //   this.$refs.flex_sidebar.classList.add("hidden");
-    // });
+  provide() {
+    return {
+      setRole: this.setRole,
+      Role: computed(() => {
+        return this.Role;
+      }),
+    };
   },
+  methods: {
+    setRole(role) {
+      this.Role = role;
+    },
+  },
+  // mounted() {
+  //   this.Role = localStorage.getItem("Role");
+  // },
 };
 </script>
 

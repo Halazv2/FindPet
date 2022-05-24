@@ -4,9 +4,7 @@
       <div class="flex justify-center">
         <div class="rounded mt-[59px] bg-white shadow-xl">
           <div class="p-6 sm:p-16">
-            <h1 class="mb-6">
-              Join our community 
-            </h1>
+            <h1 class="mb-6">Join our community</h1>
             <p class="text-red-600 text-center mb-3">{{ errors }}</p>
             <div class="space-y-4">
               <form
@@ -162,9 +160,11 @@
 </template>
 
 <script>
-import { computed } from '@vue/runtime-core';
+import { computed } from "@vue/runtime-core";
 export default {
   name: "LoginComp",
+  inject: ["setRole"],
+
   data() {
     return {
       login: {
@@ -188,8 +188,8 @@ export default {
           if (data.id) {
             localStorage.setItem("user_id", data.id);
             localStorage.setItem("Role", "User");
-            this.$router.push("profile");
-            // this.$store.commit('changeIs')
+            this.$router.push("feed");
+            this.setRole("User");           
           } else if (data.message) {
             this.errors = data.message;
           }

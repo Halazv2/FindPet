@@ -359,30 +359,12 @@
 
 <script>
 import { Icon } from "@iconify/vue";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 export default {
   components: {
     Icon,
   },
   name: "dashboard-card",
-
-  // setup() {
-  //   const users = ref([]);
-  //   const getUsers = async () => {
-  //     const response = await fetch(
-  //       "http://localhost/fil-rouge-find-pet/AdminController/getAllUsers",
-  //       {
-  //         method: "GET",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //       }
-  //     );
-  //     const data = await response.json();
-  //     users.value = data;
-  //   };
-  //   getUsers();
-  // },
   data() {
     return {
       users: [],
@@ -427,3 +409,43 @@ export default {
 
 <style lang="scss" scoped>
 </style>
+
+
+// <script setup>
+// import { defineComponent } from '@vue/composition-api'
+
+// const users = ref([]);
+// const getUsers = async () => {
+//   const response = await fetch(
+//     "http://localhost/fil-rouge-find-pet/AdminController/getAllUsers",
+//     {
+//       method: "GET",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//     }
+//   );
+//   const data = await response.json();
+//   users.value = data;
+// };
+// getUsers();
+
+// const users = ref([])
+
+// onMounted(()=>{
+
+// })
+
+// const taha = computed(()=> {
+//   return users.value
+// })
+
+// jkhkjhkj
+// khgih()
+// jhsiqjbdijqd
+// qqsuhiqsdn()
+
+
+
+
+// </script>

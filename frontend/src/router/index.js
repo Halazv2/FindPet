@@ -86,7 +86,7 @@ router.beforeEach((to, from) => {
       router.push("/Login");
     }
   }
-  if (to.name === "Login" || to.name === "Register") {
+  if (to.name === "Login" || to.name === "Register" || to.name === "Role") {
     if (localStorage.getItem("Role")) {
       router.push("/");
     }

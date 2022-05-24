@@ -259,13 +259,9 @@ export default {
       })
         .then((response) => response.json())
         .then((data) => {
-          if(data.message){
-            this.errors = data.message;
-            console.log(data.message);
-          }
-          else if (data.user) {
+          if (data) {
             this.$emit("shows");
-          } 
+          }
         })
         .catch((error) => {
           console.log(error);
