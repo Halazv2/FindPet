@@ -189,7 +189,7 @@ export default {
             localStorage.setItem("user_id", data.id);
             localStorage.setItem("Role", "User");
             this.$router.push("feed");
-            this.setRole("User");           
+            this.setRole("User");
           } else if (data.message) {
             this.errors = data.message;
           }

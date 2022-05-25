@@ -1,13 +1,15 @@
 <template>
   <div class="home">
     <HomeComp />
+    <Footer />
   </div>
 </template>
 
 <script>
 import HomeComp from "../components/visiteur/home/HomeComp.vue";
+import Footer from "../components/FooterComp.vue";
 export default {
-  components: { HomeComp },
+  components: { HomeComp, Footer },
   name: "HomeView",
 };
 </script>

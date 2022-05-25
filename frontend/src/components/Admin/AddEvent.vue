@@ -128,7 +128,8 @@
                 Date
               </label>
               <input
-                type="text"
+                :min="new Date().toISOString().substr(0, 10)"
+                type="date"
                 class="
                   px-3
                   py-3
@@ -159,7 +160,7 @@
                 Time
               </label>
               <input
-                type="text"
+                type="time"
                 class="
                   border-0
                   px-3
@@ -352,6 +353,7 @@ export default {
         .then((response) => {
           const close_model = document.getElementById("close-modal");
           close_model.click();
+          this.$emit("getEvents");
         })
         .catch((error) => {
           console.log(error);

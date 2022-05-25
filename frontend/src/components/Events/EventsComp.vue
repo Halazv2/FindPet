@@ -7,7 +7,10 @@
         >Add Post</label
       >
       <input type="checkbox" id="my-modal-3" class="modal-toggle" />
-      <AddEvent class="modal modal-bottom sm:modal-middle" />
+      <AddEvent
+        class="modal modal-bottom sm:modal-middle"
+        @getEvents="getEvents"
+      />
     </div>
     <div>
       <h1 class="text-5xl font-bold text-center mb-10 dark:text-white">

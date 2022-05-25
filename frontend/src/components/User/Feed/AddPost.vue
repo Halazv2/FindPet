@@ -274,7 +274,6 @@ export default {
   },
   methods: {
     upFile(e) {
-      console.log("eejsde");
       const file = e.target.files[0];
       this.Post.image = file;
       const progresss = document.getElementById("progress");
@@ -327,7 +326,6 @@ export default {
       formData.append("Image", this.Post.image);
       formData.append("UserID", localStorage.getItem("user_id"));
       // console.log(this.Post.image);
-
       axios
         .post(
           "http://localhost/fil-rouge-find-pet/FeedController/addPost",

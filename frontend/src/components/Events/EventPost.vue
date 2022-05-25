@@ -44,15 +44,17 @@
                 alt="Avatar of Jonathan Reinink"
               />
               <div class="text-sm">
-                <p class="leading-none">{{ event.City }}</p>
-                <p class="text-grey-dark">{{ event.Date }} {{ event.Time }}</p>
+                <p class="leading-none mb-1">{{ event.City }}</p>
+                <p class="text-grey-dark">
+                  {{ event.Date }} | {{ event.Time }}
+                </p>
               </div>
             </div>
           </div>
         </div>
         <div class="absolute top-0 right-4">
           <div>
-            <button @click="menuToggle(event.id)">
+            <button @click="menuToggle(event.id)" v-if="Role == 'Admin'">
               <div class="dropdown flex p-1 cursor-pointer rounded-md">
                 <span class="text-md mt-4 text-gray-300"
                   ><Icon icon="bi:caret-down-fill"
@@ -88,7 +90,7 @@
                 <div>
                   <li>
                     <a
-                    @click="deleteEvent(event.id)"
+                      @click="deleteEvent(event.id)"
                       class="
                         block
                         py-2
@@ -96,7 +98,7 @@
                         hover:bg-primary-btn hover:text-white
                       "
                     >
-                      Delete {{event.id}}
+                      Delete {{ event.id }}
                     </a>
                   </li>
 
@@ -123,9 +125,9 @@
 </template>
 
 <script>
+import { ref } from "vue";
 import { Icon } from "@iconify/vue";
 import axios from "axios";
-
 export default {
   name: "EventPost",
   props: {
@@ -146,19 +148,22 @@ export default {
     };
   },
   methods: {
-    menuToggle: function (id) {
+    menuToggle() {
       this.menu = !this.menu;
     },
-    menuToggleBlur: function () {
+    menuToggleBlur() {
       this.menu = false;
     },
-    deleteEvent (id) {
+    deleteEvent(id) {
       axios
-        .delete(`http://localhost/fil-rouge-find-pet/AdminController/deleteEvent/`, {
-          data: {
-            id: id,
-          },
-        })
+        .delete(
+          `http://localhost/fil-rouge-find-pet/AdminController/deleteEvent/`,
+          {
+            data: {
+              id: id,
+            },
+          }
+        )
         .then((response) => {
           console.log(response);
           this.$emit("getEvents");
@@ -167,6 +172,13 @@ export default {
           console.log(error);
         });
     },
+  },
+  mounted() {
+    document.addEventListener("click", (e) => {
+      if (this.menu && !this.$el.contains(e.target)) {
+        this.menuToggleBlur();
+      }
+    });
   },
 };
 </script>
