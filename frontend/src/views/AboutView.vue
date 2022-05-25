@@ -1,13 +1,15 @@
 <template>
   <div class="about text-gray-700 dark:text-gray-200">
     <about-comp />
+    <Footer />
   </div>
 </template>
 <script>
 import AboutComp from "../components/visiteur/AboutComp.vue";
+import Footer from "../components/FooterComp.vue";
 
 export default {
-  components: { AboutComp },
+  components: { AboutComp, Footer },
   name: "AbotView",
 };
 </script>

@@ -3,7 +3,7 @@
     <div class="mx-6 py-10 text-center md:text-left">
       <!-- <div class="grid grid-1 md:grid-cols-2 lg:grid-cols-4 gap-8"> -->
       <div class="flex lg:flex-row flex-col justify-evenly">
-        <div class="flex flex-col justify-center">
+        <div class="flex flex-col justify-center items-center  w-1/2">
           <p class="mb-4">
             <a href="#!" class="text-gray-600">Home</a>
           </p>
@@ -17,11 +17,11 @@
             <a href="#!" class="text-gray-600">Contact us</a>
           </p>
         </div>
-        <div class="flex flex-col justify-center items-center">
+        <div class="flex flex-col justify-center items-center w-full">
           <img
             src="../assets/images/logo1.png"
             alt="FindPet"
-            class="w-1/3 mb-3"
+            class="w-1/5 mb-3"
             srcset=""
           />
           <a class="text-gray-600 font-semibold py-2"> +212 7 00 94 07 62</a>
@@ -223,15 +223,8 @@
 
 <style lang="scss" scoped>
 .container {
-  // position: absolute;
-  border: 1px solid red;
-  // top: 0;
-  // left: 0;
   width: 100%;
   height: 100%;
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
 }
 
 .content {

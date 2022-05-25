@@ -1,6 +1,7 @@
 <template>
   <div class="flex justify-center relative">
     <AddPost @getPosts="getPosts" v-if="AddPost"  class="z-50" @closeModal="openModalADD"/>
+    
     <main
       class="
         container
