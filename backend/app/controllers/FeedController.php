@@ -102,8 +102,8 @@ class FeedController extends Controller
     public function getPost()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            //get post id from url
-            $id = $_GET['id'];
+            $data = json_decode(file_get_contents("php://input"));
+            $id = $data->id;
             $post = $this->model('FeedModel');
             $post = $post->getPost($id);
             return $this->json($post);
@@ -133,6 +133,17 @@ class FeedController extends Controller
             $user_id = $data->user_id;
             $post = $this->model('FeedModel');
             $post->checkLike($post_id, $user_id);
+            return $this->json($post);
+        }
+    }
+
+    public function countUserPosts()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+
+            $id = $_GET['id'];
+            $post = $this->model('FeedModel');
+            $post = $post->countUserPosts($id);
             return $this->json($post);
         }
     }

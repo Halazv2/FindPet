@@ -33,8 +33,8 @@ class FeedModel
         $stmt = $this->db->prepare($request);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
-        $post = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $post;
+        $feed = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $feed;
     }
 
     public function addPost($Title, $PetType, $Description, $PostType, $Image, $UserID)
@@ -125,5 +125,15 @@ class FeedModel
         $stmt->execute();
         $feed = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $feed;
+    }
+
+    public function countUserPosts($user_id)
+    {
+        $request = "SELECT COUNT(id) as count FROM posts WHERE UserID = :user_id";
+        $stmt = $this->db->prepare($request);
+        $stmt->bindParam(':user_id', $user_id);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['count'];
     }
 }

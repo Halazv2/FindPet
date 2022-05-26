@@ -334,9 +334,7 @@ export default {
         .then((response) => {
           // console.log(response);
           this.$emit("getPosts");
-          this.$$emit('closeModal');
-          const close_model = document.getElementById("close-modal");
-          close_model.click();
+          this.$emit('closeModal');
           this.uploadValue = 0;
           done.classList.add("hidden");
           this.resetPostinput();

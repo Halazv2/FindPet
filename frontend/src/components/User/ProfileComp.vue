@@ -1,325 +1,127 @@
 <template>
-  <div class="">
-    <div class="text-gray-600 dark:text-white pb-8">
-      <div class="flex flex-col gap-1 text-center items-center">
-        <div
+  <div class="flex flex-col justify-between">
+    <div class="text-gray-600 dark:text-white pb-8 w-full">
+      <div class="flex flex-col gap-1 text-center">
+        <ProfileCard :user="user" />
+        <!-- <div
           class="
             bg-primary-btn
-            lg:h-80
-            h-40
+            h-80
             relative
             w-[90%]
-            mt-10
             rounded-2xl
-            justify-center
+            justify-evenly
             flex
-            items-end
+            gap-1
+            items-center
           "
         >
           <img
-            class="image absolute h-40 w-40 bg-white p-2 rounded-full"
+            class="h-40 w-40 bg-white p-2 rounded-full"
             :src="
               `http://localhost/fil-rouge-find-pet/uploads/profileImages/` +
               user.ProfilePic
             "
             alt=""
           />
-        </div>
-        <div class="mt-24">
-          <p class="font-semibold">{{ user.FirstName }} {{ user.LastName }}</p>
-          <div
-            class="
-              text-sm
-              leading-normal
-              text-gray-400
-              flex
-              justify-center
-              items-center
-            "
-          >
-            <svg
-              viewBox="0 0 24 24"
-              class="mr-1"
-              width="16"
-              height="16"
-              stroke="currentColor"
-              stroke-width="2"
-              fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+          <div class="">
+            <p class="font-semibold">
+              {{ user.FirstName }} {{ user.LastName }}
+            </p>
+            <div
+              class="
+                text-sm
+                leading-normal
+                text-gray-400
+                flex
+                justify-center
+                items-center
+              "
             >
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-              <circle cx="12" cy="10" r="3"></circle>
-            </svg>
-            {{ user.City }}
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="py-16">
-      <div class="flex justify-around items-center flex-col lg:flex-row">
-        <div class="flex gap-7">
-          <div class="text-center lg:text-left text-blue-600 font-semibold">
-            <a href="#Update-Account">Update Account</a>
-          </div>
-          <div class="text-center lg:text-left text-red-600 font-semibold">
-            <label for="my-modal-6" class="cursor-pointer"
-              >Delete Account
-            </label>
-          </div>
-        </div>
-
-        <!-- Delete account Model -->
-        <input type="checkbox" id="my-modal-6" class="modal-toggle" />
-        <delete-account class="modal modal-bottom sm:modal-middle" />
-        <!-- Update account Model -->
-        <div class="modal" id="Update-Account">
-          <div class="modal-box relative">
-            <div class="modal-action">
+              <svg
+                viewBox="0 0 24 24"
+                class="mr-1"
+                width="16"
+                height="16"
+                stroke="currentColor"
+                stroke-width="2"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              {{ user.City }}
+            </div>
+            <div
+              class="
+                text-sm
+                leading-normal
+                text-gray-400
+                flex
+                justify-center
+                items-center
+              "
+            >
               <a
                 href="#"
-                for="my-modal-3"
-                class="btn btn-error btn-sm btn-circle absolute right-2 top-2"
-                >✕</a
+                class="
+                  flex
+                  h-20
+                  w-40
+                  flex-col
+                  items-center
+                  justify-center
+                  rounded-md
+                  border border-dashed border-gray-200
+                  transition-colors
+                  duration-100
+                  ease-in-out
+                  hover:border-gray-400/80
+                "
               >
-            </div>
-            <h3 class="font-bold text-lg">Update Account informations</h3>
-            <form>
-              <div class="my-6">
-                <label
-                  class="
-                    block
-                    uppercase
-                    tracking-wide
-                    text-gray-700 text-xs
-                    font-bold
-                    mb-2
-                  "
-                  for="grid-last-name"
-                >
-                  First Name
-                </label>
-                <input
-                  type="text"
-                  v-model="user.FirstName"
-                  class="
-                    w-full
-                    rounded
-                    p-3
-                    text-gray-800
-                    dark:text-gray-50 dark:bg-slate-700
-                    border-gray-500
-                    dark:border-slate-600
-                    outline-none
-                    focus-visible:shadow-none
-                    focus:border-primary
-                  "
-                />
-              </div>
-              <div class="my-6">
-                <label
-                  class="
-                    block
-                    uppercase
-                    tracking-wide
-                    text-gray-700 text-xs
-                    font-bold
-                    mb-2
-                  "
-                  for="grid-last-name"
-                >
-                  Last Name
-                </label>
-                <input
-                  type="text"
-                  v-model="user.LastName"
-                  class="
-                    w-full
-                    rounded
-                    p-3
-                    text-gray-800
-                    dark:text-gray-50 dark:bg-slate-700
-                    border-gray-500
-                    dark:border-slate-600
-                    outline-none
-                    focus-visible:shadow-none
-                    focus:border-primary
-                  "
-                />
-              </div>
-              <div class="my-6">
-                <label
-                  class="
-                    block
-                    uppercase
-                    tracking-wide
-                    text-gray-700 text-xs
-                    font-bold
-                    mb-2
-                  "
-                  for="grid-last-name"
-                >
-                  Phone Number
-                </label>
-                <input
-                  type="text"
-                  v-model="user.PhoneNumber"
-                  class="
-                    w-full
-                    rounded
-                    p-3
-                    text-gray-800
-                    dark:text-gray-50 dark:bg-slate-700
-                    border-gray-500
-                    dark:border-slate-600
-                    outline-none
-                    focus-visible:shadow-none
-                    focus:border-primary
-                  "
-                />
-              </div>
-              <div class="my-6">
-                <label
-                  class="
-                    block
-                    uppercase
-                    tracking-wide
-                    text-gray-700 text-xs
-                    font-bold
-                    mb-2
-                  "
-                  for="grid-last-name"
-                >
-                  Phone Number
-                </label>
-                <input
-                  type="text"
-                  v-model="user.Email"
-                  class="
-                    w-full
-                    rounded
-                    p-3
-                    text-gray-800
-                    dark:text-gray-50 dark:bg-slate-700
-                    border-gray-500
-                    dark:border-slate-600
-                    outline-none
-                    focus-visible:shadow-none
-                    focus:border-primary
-                  "
-                />
-              </div>
-              <div class="my-6">
-                <label
-                  class="
-                    block
-                    uppercase
-                    tracking-wide
-                    text-gray-700 text-xs
-                    font-bold
-                    mb-2
-                  "
-                  for="grid-last-name"
-                >
-                  Phone Number
-                </label>
-                <input
-                  type="password"
-                  v-model="user.Password"
-                  class="
-                    w-full
-                    rounded
-                    p-3
-                    text-gray-800
-                    dark:text-gray-50 dark:bg-slate-700
-                    border-gray-500
-                    dark:border-slate-600
-                    outline-none
-                    focus-visible:shadow-none
-                    focus:border-primary
-                  "
-                />
-              </div>
-              <div class="my-6">
-                <label
-                  class="
-                    block
-                    uppercase
-                    tracking-wide
-                    text-gray-700 text-xs
-                    font-bold
-                    mb-2
-                  "
-                  for="grid-last-name"
-                >
-                  City
-                </label>
-                <select
-                  class="
-                    select select-bordered
-                    w-full
-                    text-gray-800
-                    dark:text-gray-50 dark:bg-slate-700
-                    border-gray-500
-                    dark:border-slate-600
-                  "
-                  v-model="user.City"
-                >
-                  <option disabled selected>Whare are you from?</option>
-                  <option v-for="city in Cities" :key="city">{{ city }}</option>
-                </select>
-              </div>
-              <div class="my-6">
-                <label
-                  class="
-                    block
-                    uppercase
-                    tracking-wide
-                    text-gray-700 text-xs
-                    font-bold
-                    mb-2
-                  "
-                  for="grid-last-name"
-                >
-                  Profile pic
-                </label>
-                <input
-                  type="file"
-                  class="
-                    w-full
-                    rounded
-                    p-3
-                    text-gray-800
-                    dark:text-gray-50 dark:bg-slate-700
-                    border-gray-500
-                    dark:bg-secondary-brt
-                    outline-none
-                    focus-visible:shadow-none
-                    focus:border-primary
-                  "
-                  @change="onFileChange"
-                />
-              </div>
-
-              <div>
-                <div class="modal-action">
-                  <a
-                    @click="UpadateUser(user.id)"
-                    class="
-                      btn
-                      bg-primary-btn
-                      hover:bg-secondary-brn
-                      border-none
-                      rounded-full
-                    "
-                    >Save</a
+                <div class="flex flex-row items-center justify-center">
+                  <svg
+                    class="mr-3 fill-gray-500/95"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    version="1.1"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
                   >
+                    <path
+                      d="M12,23A1,1 0 0,1 11,22V19H7A2,2 0 0,1 5,17V7A2,2 0 0,1 7,5H21A2,2 0 0,1 23,7V17A2,2 0 0,1 21,19H16.9L13.2,22.71C13,22.89 12.76,23 12.5,23H12M13,17V20.08L16.08,17H21V7H7V17H13M3,15H1V3A2,2 0 0,1 3,1H19V3H3V15M9,9H19V11H9V9M9,13H17V15H9V13Z"
+                    />
+                  </svg>
+
+                  <span class="font-bold text-gray-600">{{ postCount }} </span>
                 </div>
-              </div>
-            </form>
+
+                <div class="mt-2 text-sm text-gray-400">Posts</div>
+              </a>
+            </div>
           </div>
+        </div> -->
+      </div>
+    </div>
+    <div class="px-5 w-full">
+      <h1 class="py-5 lg:text-left text-center dark:text-white">MY POSTS</h1>
+      <div class="flex justify-around items-center flex-col lg:flex-row">
+        <div class="overflow-y-auto h-[670px]">
+          <UserPost
+            v-for="post in posts.filter((post) => post.UserID == user.id)"
+            :key="post.id"
+            :post="post"
+            @getPosts="getPosts"
+          />
         </div>
       </div>
+      <!-- Delete account Model -->
+      <!-- <input type="checkbox" id="my-modal-6" class="modal-toggle" />
+      <delete-account class="modal modal-bottom sm:modal-middle" /> -->
+      <!-- Update account Model -->
     </div>
   </div>
 </template>
@@ -327,8 +129,10 @@
 <script>
 import axios from "axios";
 import DeleteAccount from "./ModalDeleteAccount.vue";
+import UserPost from "../User/Feed/FeedPost.vue";
+import ProfileCard from "./ProfileleftSide.vue";
 export default {
-  components: { DeleteAccount },
+  components: { DeleteAccount, UserPost, ProfileCard },
   name: "ProfileComp",
 
   data() {
@@ -343,44 +147,12 @@ export default {
         City: "",
         ProfilePic: "",
       },
-      Cities: [],
       id: localStorage.getItem("user_id"),
       errors: {},
+      posts: [],
     };
   },
   methods: {
-    onFileChange(e) {
-      const file = e.target.files[0];
-      this.user.ProfilePic = file;
-      console.log(this.user.ProfilePic);
-      
-    },
-    UpadateUser(id) {
-      const formData = new FormData();
-      formData.append("FirstName", this.user.FirstName);
-      formData.append("LastName", this.user.LastName);
-      formData.append("Email", this.user.Email);
-      formData.append("Password", this.user.Password);
-      formData.append("PhoneNumber", this.user.PhoneNumber);
-      formData.append("City", this.user.City);
-      formData.append("ProfilePic", this.user.ProfilePic);
-      axios
-        .post(
-          `http://localhost/fil-rouge-find-pet/UserController/updateUser?id=${id}`,
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        )
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
     getuser() {
       axios
         .get(
@@ -394,15 +166,22 @@ export default {
           console.log(err);
         });
     },
-    getcity() {
-      this.Cities = require("../../assets/js/city.json").map(
-        (city) => city.city
-      );
+
+    getPosts() {
+      fetch("http://localhost/fil-rouge-find-pet/FeedController/getFeed", {
+        method: "GET",
+      })
+        .then((result) => {
+          return result.json();
+        })
+        .then((reponse) => {
+          this.posts = reponse.reverse();
+        });
     },
   },
   mounted() {
     this.getuser();
-    this.getcity();
+    this.getPosts();
   },
 };
 </script>
@@ -413,5 +192,12 @@ export default {
   left: 50%;
   top: 83%;
   transform: translate(-50%, -15%);
+}
+h1 {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 42px;
+  line-height: 51px;
 }
 </style>
