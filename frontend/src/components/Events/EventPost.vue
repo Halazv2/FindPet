@@ -1,5 +1,16 @@
 <template>
   <div class="w-full relative rounded-lg lg:flex mb-7">
+    <UpdateEvent
+      v-if="UpdateEvent"
+      class="z-50"
+      :event="event"
+      @editPost="editPost"
+    />
+    <VolunteerModal class="z-50" 
+      v-if="OpenVolunteerModal"
+      @VolunteerModal="VolunteerModal"
+      :event="event"
+     />
     <div class="bg-base-200 rounded-lg w-full">
       <div
         class="
@@ -32,6 +43,7 @@
           </div>
           <div class="flex items-center justify-between">
             <button
+              @click="VolunteerModal"
               v-if="Role == 'User'"
               class="btn bg-primary-btn hover:bg-secondary-brn border-none"
             >
@@ -46,7 +58,7 @@
               <div class="text-sm">
                 <p class="leading-none mb-1">{{ event.City }}</p>
                 <p class="text-grey-dark">
-                  {{ event.Date }} | {{ event.Time }}
+                  {{ event.Date }} | {{ event.Time }} 
                 </p>
               </div>
             </div>
@@ -128,6 +140,8 @@
 import { ref } from "vue";
 import { Icon } from "@iconify/vue";
 import axios from "axios";
+import UpdateEvent from "./UpdateEvent";
+import VolunteerModal from "./VolunteerModal.vue";
 export default {
   name: "EventPost",
   props: {
@@ -138,6 +152,8 @@ export default {
   },
   components: {
     Icon,
+    UpdateEvent,
+    VolunteerModal,
   },
 
   data() {
@@ -145,9 +161,14 @@ export default {
       Role: localStorage.getItem("Role"),
       menu: false,
       active: null,
+      UpdateEvent: false,
+      OpenVolunteerModal: false,
     };
   },
   methods: {
+    VolunteerModal() {
+      this.OpenVolunteerModal = !this.OpenVolunteerModal;
+    },
     menuToggle() {
       this.menu = !this.menu;
     },
@@ -171,6 +192,9 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+    },
+    editPost() {
+      this.UpdateEvent = !this.UpdateEvent;
     },
   },
   mounted() {

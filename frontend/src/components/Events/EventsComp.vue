@@ -35,6 +35,7 @@ import { ref } from "vue";
 import axios from "axios";
 import EventPost from "@/components/Events/EventPost.vue";
 
+
 export default {
   components: {
     AddEvent,

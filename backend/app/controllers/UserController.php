@@ -91,4 +91,15 @@
                 }
             }
         }
+        public function volunteer()
+        {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $data = json_decode(file_get_contents("php://input"));
+                $id = $data->id;
+                $event_id = $data->event_id;
+                $description = $data->description;
+                $user = $this->model('UserModel');
+                $user->volunteer($id, $event_id, $description);
+            }
+        }
     }

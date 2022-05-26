@@ -79,4 +79,17 @@ class UserModel
             ]
         );
     }
+    public function volunteer($id, $event_id , $Description)
+    {
+        $request = "INSERT INTO volunteer (user_id, event_id, Description) VALUES (:user_id, :event_id, :Description)";
+        $stmt = $this->db->prepare($request);
+        $stmt->execute(
+            [
+                'user_id' => $id,
+                'event_id' => $event_id,
+                'Description' => $Description
+            ]
+        );
+        echo json_encode(['message' => 'Volunteer added']);
+    }
 }
