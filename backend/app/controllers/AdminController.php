@@ -41,6 +41,14 @@ class AdminController extends Controller
             $admin->getAllEvents();
         }
     }
+    public function getOneEvent()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $id = $_GET['id'];
+            $admin = $this->model('AdminModel');
+            $admin->getOneEvent($id);
+        }
+    }
     public function createEvent()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -75,8 +83,9 @@ class AdminController extends Controller
         }
     }
 
-    public function deleteEvent(){
-        if ($_SERVER['REQUEST_METHOD'] === 'DELETE'){
+    public function deleteEvent()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
             $data = json_decode(file_get_contents("php://input"));
             $id = $data->id;
             $admin = $this->model('AdminModel');
@@ -85,5 +94,38 @@ class AdminController extends Controller
         }
     }
 
-
+    public function updateEvent()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id'];
+            $Title = $_POST['Title'];
+            $Description = $_POST['Description'];
+            $Date = $_POST['Date'];
+            $Time = $_POST['Time'];
+            $City = $_POST['City'];
+            $Image = $_FILES['Image']['name'];
+            $imageFileType = strtolower(pathinfo($Image, PATHINFO_EXTENSION));
+            // valid file extensions
+            $extensions_arr = array("jpg", "jpeg", "png", "gif");
+            // Check extension
+            //check if request has image
+            if (!empty($_FILES['Image']['name'])) {
+                if (in_array($imageFileType, $extensions_arr)) {
+                    // Insert record
+                    $file_name = uniqid('', true) . '.' . $imageFileType;
+                    $target_path = $file_name;
+                    move_uploaded_file($_FILES['Image']['tmp_name'], 'C:\xampp\htdocs\fil-rouge-find-pet\backend\public\uploads\Eventimages\\' . $target_path);
+                    $postsModel = $this->model('AdminModel');
+                    $postsModel->updateEvent($id, $Title, $Description, $Date, $Time, $City, $target_path);
+                    // Upload file
+                    return $this->json(['message' => 'Post updated Successfully']);
+                } else {
+                    return $this->json(['message' => 'Invalid File Type']);
+                }
+            } else {
+                $postsModel = $this->model('AdminModel');
+                $postsModel->updateEvent($id, $Title, $Description, $Date, $Time, $City, $Image);
+            }
+        }
+    }
 }

@@ -2,9 +2,9 @@
   <dialog
     class="flex fixed inset-0 justify-center bg-black bg-opacity-20"
   >
-    <div class="modal-box w-full relative ">
+    <div class="modal-box w-full h-fit relative ">
       <label
-        id="close-modal"
+        @click="closeModal"
         class="
           btn btn-sm
           border-none
@@ -349,6 +349,9 @@ export default {
       this.Post.PetType = "";
       this.Post.PostType = "";
       this.Post.image = "";
+    },
+    closeModal() {
+      this.$emit("closeModal");
     },
   },
   mounted() {},
