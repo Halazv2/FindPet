@@ -128,4 +128,12 @@ class AdminController extends Controller
             }
         }
     }
+
+    public function getAllVolunteers()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $admin = $this->model('AdminModel');
+            $admin->getAllVolunteers();
+        }
+    }
 }

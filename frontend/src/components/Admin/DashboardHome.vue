@@ -354,12 +354,14 @@
         </div>
       </div>
     </div>
+    
   </div>
 </template>
 
 <script>
 import { Icon } from "@iconify/vue";
 import { onMounted, ref } from "vue";
+
 export default {
   components: {
     Icon,

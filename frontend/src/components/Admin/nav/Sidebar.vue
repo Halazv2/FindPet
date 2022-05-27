@@ -92,7 +92,7 @@
               dark:hover:bg-gray-700
             "
           >
-            <span class="mr-3 text-xl"><Icon :icon="item.icon" width="24" /></span>
+            <span class="mr-3 text-xl"><Icon :icon="item.icon" width="22" /></span>
             <span class="w-full"> {{ item.name }} </span>
           </a>
         </div>

@@ -95,7 +95,7 @@ class AdminModel
     }
     public function getAllVolunteers()
     {
-        $request = "SELECT * FROM volunteers";
+        $request = "SELECT * FROM volunteer";
         $stmt = $this->db->prepare($request);
         $stmt->execute();
         $volunteers = $stmt->fetchAll(PDO::FETCH_ASSOC);
