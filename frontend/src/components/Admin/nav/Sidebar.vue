@@ -51,7 +51,7 @@
               dark:hover:bg-gray-700
             "
           >
-            <span class="mr-3 text-xl"><Icon :icon="item.icon" /></span>
+            <span class="mr-3 text-xl"><Icon :icon="item.icon" width="22"  /></span>
             <span class="w-full"> {{ item.name }} </span>
           </router-link>
         </div>
@@ -71,7 +71,7 @@
             dark:hover:bg-gray-700
           "
         >
-          <span class="mr-3 text-xl"><Icon :icon="item.icon" /></span>
+          <span class="mr-3 text-xl"><Icon :icon="item.icon" width="22" /></span>
           <span class="w-full"> {{ item.name }} </span>
         </a>
       </div>
@@ -168,9 +168,9 @@ export default {
           link: "/admin/dashboard",
         },
         {
-          name: "Events",
+          name: "Volunteers Table",
           icon: "carbon:data-table",
-          link: "/events",
+          link: "/admin/EventAdmin",
         },
       ]
     };

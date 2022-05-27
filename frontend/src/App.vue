@@ -75,5 +75,6 @@ export default {
 <style lang="scss">
 body {
   background-color: #e5e5e5;
+  height: screen height;
 }
 </style>

@@ -1,170 +1,101 @@
 <template>
-  <div>
+  <div class="dashboard p-4">
+        <nav class="flex" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <router-link
+            to="/admin/dashboard"
+            class="
+              inline-flex
+              items-center
+              text-sm
+              font-medium
+              text-gray-700
+              hover:text-gray-900
+              dark:text-gray-400 dark:hover:text-white
+            "
+          >
+            <svg
+              class="mr-2 w-4 h-4"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
+              ></path>
+            </svg>
+            Dashboard
+          </router-link>
+        </li>
+      </ol>
+    </nav>
+    <!--Table-->
+    <div class="mt-3">
     <div>
+      <h1>
+        <span class="text-gray-700 dark:text-gray-400 text-xl">
+          Volunteers list
+        </span>
+      </h1>
+    </div>
       <div class="overflow-x-auto w-full">
         <table class="table w-full">
           <!-- head -->
           <thead>
             <tr>
-              <th>
-                <label>
-                  <input type="checkbox" class="checkbox" />
-                </label>
-              </th>
-              <th>Name</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
-              <th></th>
+              <th>ID</th>
+              <th>User ID</th>
+              <th>Event ID</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            <!-- row 1 -->
-            <tr>
-              <th>
-                <label>
-                  <input type="checkbox" class="checkbox" />
-                </label>
-              </th>
-              <td>
-                <div class="flex items-center space-x-3">
-                  <div class="avatar">
-                    <div class="mask mask-squircle w-12 h-12">
-                      <img
-                        src="/tailwind-css-component-profile-2@56w.png"
-                        alt="Avatar Tailwind CSS Component"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <div class="font-bold">Hart Hagerty</div>
-                    <div class="text-sm opacity-50">United States</div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                Zemlak, Daniel and Leannon
-                <br />
-                <span class="badge badge-ghost badge-sm"
-                  >Desktop Support Technician</span
-                >
-              </td>
-              <td>Purple</td>
-              <th>
-                <button class="btn btn-ghost btn-xs">details</button>
-              </th>
-            </tr>
-            <!-- row 2 -->
-            <tr>
-              <th>
-                <label>
-                  <input type="checkbox" class="checkbox" />
-                </label>
-              </th>
-              <td>
-                <div class="flex items-center space-x-3">
-                  <div class="avatar">
-                    <div class="mask mask-squircle w-12 h-12">
-                      <img
-                        src="/tailwind-css-component-profile-3@56w.png"
-                        alt="Avatar Tailwind CSS Component"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <div class="font-bold">Brice Swyre</div>
-                    <div class="text-sm opacity-50">China</div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                Carroll Group
-                <br />
-                <span class="badge badge-ghost badge-sm">Tax Accountant</span>
-              </td>
-              <td>Red</td>
-              <th>
-                <button class="btn btn-ghost btn-xs">details</button>
-              </th>
-            </tr>
-            <!-- row 3 -->
-            <tr>
-              <th>
-                <label>
-                  <input type="checkbox" class="checkbox" />
-                </label>
-              </th>
-              <td>
-                <div class="flex items-center space-x-3">
-                  <div class="avatar">
-                    <div class="mask mask-squircle w-12 h-12">
-                      <img
-                        src="/tailwind-css-component-profile-4@56w.png"
-                        alt="Avatar Tailwind CSS Component"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <div class="font-bold">Marjy Ferencz</div>
-                    <div class="text-sm opacity-50">Russia</div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                Rowe-Schoen
-                <br />
-                <span class="badge badge-ghost badge-sm"
-                  >Office Assistant I</span
-                >
-              </td>
-              <td>Crimson</td>
-              <th>
-                <button class="btn btn-ghost btn-xs">details</button>
-              </th>
-            </tr>
             <!-- row 4 -->
-            <tr>
-              <th>
-                <label>
-                  <input type="checkbox" class="checkbox" />
-                </label>
-              </th>
+            <tr v-for="(Volunteer, index) in Volunteers" :key="index">
+              <td class="font-bold">{{ Volunteer.id }}</td>
+
               <td>
-                <div class="flex items-center space-x-3">
-                  <div class="avatar">
-                    <div class="mask mask-squircle w-12 h-12">
-                      <img
-                        src="/tailwind-css-component-profile-5@56w.png"
-                        alt="Avatar Tailwind CSS Component"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <div class="font-bold">Yancy Tear</div>
-                    <div class="text-sm opacity-50">Brazil</div>
-                  </div>
+                {{ Volunteer.fullName }}
+                <br />
+                <div class="flex gap-2">
+                  <span class="badge badge-ghost badge-sm"
+                    >{{ Volunteer.Email }}
+                  </span>
+                  <span class="badge badge-ghost badge-sm">
+                    {{ Volunteer.PhoneNumber }}
+                  </span>
                 </div>
               </td>
               <td>
-                Wyman-Ledner
-                <br />
-                <span class="badge badge-ghost badge-sm"
-                  >Community Outreach Specialist</span
-                >
+                <div class="flex items-center space-x-3">
+                  <div>
+                    <div class="font-bold">{{ Volunteer.event_id }}</div>
+                    <div class="text-sm opacity-50">
+                      {{ Volunteer.event_City }}
+                    </div>
+                  </div>
+                </div>
               </td>
-              <td>Indigo</td>
               <th>
-                <button class="btn btn-ghost btn-xs">details</button>
+                <div>
+                  <button class="btn btn-ghost text-green-500 btn-xs">
+                    Accept
+                  </button>
+                  <button class="btn btn-ghost text-red-600 btn-xs" @click="RejectVolunteer(Volunteer.id)">
+                    Reject
+                  </button>
+                </div>
               </th>
             </tr>
           </tbody>
           <!-- foot -->
           <tfoot>
             <tr>
-              <th></th>
-              <th>Name</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
-              <th></th>
+              <th>ID</th>
+              <th>User ID</th>
+              <th>Event ID</th>
+              <th>Action</th>
             </tr>
           </tfoot>
         </table>
@@ -174,7 +105,46 @@
 </template>
 
 <script>
-export default {};
+import axios from "axios";
+export default {
+  name: "EventAdmin",
+  data() {
+    return {
+      Volunteers: [],
+    };
+  },
+  methods: {
+    getAllVoulunteer() {
+      axios
+        .get(
+          "http://localhost/fil-rouge-find-pet/AdminController/getAllVolunteers"
+        )
+        .then((response) => {
+          this.Volunteers = response.data;
+        });
+    },
+    
+    RejectVolunteer(id) {
+      axios
+        .post(
+          "http://localhost/fil-rouge-find-pet/AdminController/deleteVolunteer",
+          {
+            id:id,
+          }
+        )
+        .then((response) => {
+          console.log(response);
+          this.getAllVoulunteer();
+        });
+    },
+  },
+  created() {
+    //
+  },
+  mounted() {
+    this.getAllVoulunteer();
+  },
+};
 </script>
 
 <style>
