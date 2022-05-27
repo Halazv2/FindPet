@@ -37,6 +37,25 @@
           py-6
         "
       >
+        <div class="alert alert-error shadow-lg mb-3" v-if="alert">
+          <div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="stroke-current flex-shrink-0 h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <span>{{ message }}</span>
+          </div>
+        </div>
+
         <div class="text-center flex justify-between">
           <h6 class="text-blueGray-700 text-xl font-bold">Volunteer</h6>
         </div>
@@ -93,7 +112,7 @@
               shadow-lg
             "
           >
-            Send 
+            Send
             <svg
               class="ml-1"
               viewBox="0 0 24 24"
@@ -117,13 +136,14 @@
 
 <script>
 import axios from "axios";
+import computed from "vue";
 export default {
   name: "AddEvent",
-  props:{
+  props: {
     event: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -132,7 +152,11 @@ export default {
         id: localStorage.getItem("user_id"),
         event_id: this.event.id,
       },
+
       Cities: [],
+      message: "",
+      alert: false,
+      // successAlert: false,
     };
   },
   methods: {
@@ -152,12 +176,28 @@ export default {
           "Content-Type": "application/json",
         },
       })
+        .then((response) => response.json())
         .then((data) => {
-          console.log(data);
+          this.message = data.message;
+          if (data.message == "Volunteer added") {
+            this.$emit("VolunteerModal");
+            // alert(this.message);
+            // this.$store.commit("setSuccessAlert", true);
+            this.$store.commit("setSuccessAlert", true);
+            // this.$emit("openSuccessAlert(successAlert)");
+          } else {
+            this.message = data.message;
+            this.alert = true;
+          }
         });
     },
   },
-  mounted() {
+  mounted() {},
+  computed() {
+    return {
+      successAlert: this.$store.state.successAlert,
+      // setSuccesAlert: ()=> this.$store.commit('setSuccesAlert', this.successAlert)
+    };
   },
 };
 </script>

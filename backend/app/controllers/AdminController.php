@@ -136,4 +136,14 @@ class AdminController extends Controller
             $admin->getAllVolunteers();
         }
     }
+    public function deleteVolunteer()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+            $data = json_decode(file_get_contents("php://input"));
+            $id = $data->id;
+            $admin = $this->model('AdminModel');
+            $admin->deleteVolunteer($id);
+            return $this->json(['message' => 'Post Deleted Successfully']);
+        }
+    }
 }

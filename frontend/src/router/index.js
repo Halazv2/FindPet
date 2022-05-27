@@ -75,6 +75,14 @@ const routes = [
         /* webpackChunkName: "about" */ "../views/Admin/DashboardView.vue"
       ),
   },
+  {
+    path: "/admin/EventAdmin",
+    name: "EventAdmin",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/Admin/EventAdminView.vue"
+      ),
+  },
 ];
 
 const router = createRouter({

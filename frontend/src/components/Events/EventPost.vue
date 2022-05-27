@@ -6,11 +6,12 @@
       :event="event"
       @editPost="editPost"
     />
-    <VolunteerModal class="z-50" 
+    <VolunteerModal
+      class="z-50"
       v-if="OpenVolunteerModal"
       @VolunteerModal="VolunteerModal"
       :event="event"
-     />
+    />
     <div class="bg-base-200 rounded-lg w-full">
       <div
         class="
@@ -58,7 +59,7 @@
               <div class="text-sm">
                 <p class="leading-none mb-1">{{ event.City }}</p>
                 <p class="text-grey-dark">
-                  {{ event.Date }} | {{ event.Time }} 
+                  {{ event.Date }} | {{ event.Time }}
                 </p>
               </div>
             </div>

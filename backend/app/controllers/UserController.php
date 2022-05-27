@@ -2,6 +2,7 @@
     Header('Access-Control-Allow-Origin: *'); //for allow any domain, insecure
     Header('Access-Control-Allow-Headers: *'); //for allow any headers, insecure
     Header('Access-Control-Allow-Methods: *'); //method allowed
+    
     class UserController extends Controller
     {
         public function __construct()

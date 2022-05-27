@@ -79,17 +79,39 @@ class UserModel
             ]
         );
     }
-    public function volunteer($id, $event_id , $Description)
+    public function volunteer($id, $event_id, $Description)
     {
-        $request = "INSERT INTO volunteer (user_id, event_id, Description) VALUES (:user_id, :event_id, :Description)";
+        if ($this->CheckVolunteer($id, $event_id) == true) {
+            echo json_encode(['message' => 'You are already volunteer for this event :)']);
+        } else {
+            $request = "INSERT INTO volunteer (user_id, event_id, Description) VALUES (:user_id, :event_id, :Description)";
+            $stmt = $this->db->prepare($request);
+            $stmt->execute(
+                [
+                    'user_id' => $id,
+                    'event_id' => $event_id,
+                    'Description' => $Description
+                ]
+            );
+            echo json_encode(['message' => 'Volunteer added']);
+        }
+    }
+
+    public function CheckVolunteer($id, $event_id)
+    {
+        $request = "SELECT * FROM volunteer WHERE user_id = :user_id AND event_id = :event_id";
         $stmt = $this->db->prepare($request);
         $stmt->execute(
             [
                 'user_id' => $id,
-                'event_id' => $event_id,
-                'Description' => $Description
+                'event_id' => $event_id
             ]
         );
-        echo json_encode(['message' => 'Volunteer added']);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($user == false) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

@@ -2,19 +2,17 @@ import { createStore } from "vuex";
 
 export default createStore({
   state: {
-    posts: [],
-    user: {
-      
+    SuccessAlert: false,
+  },
+  getters: {
+    SuccessAlert: (state) => state.SuccessAlert
+  },
+  mutations: {
+    setSuccessAlert(state, payload) {
+      state.SuccessAlert = payload;
+      console.log(state.SuccessAlert);
     }
   },
-  getters: {},
-  mutations: {
-  },
-  actions: {
-    logout(){
-      localStorage.removeItem('user_id');
-    },
-    
-  },
+  actions: {},
   modules: {},
 });

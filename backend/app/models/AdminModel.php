@@ -52,7 +52,8 @@ class AdminModel
         $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
         echo json_encode($events);
     }
-    public function getOneEvent($id){
+    public function getOneEvent($id)
+    {
         $request = "SELECT * FROM events WHERE id = :id";
         $stmt = $this->db->prepare($request);
         $stmt->bindParam(':id', $id);
@@ -79,7 +80,8 @@ class AdminModel
         $stmt->bindParam(':id', $id);
         $stmt->execute();
     }
-    public function updateEvent($id, $Title, $Description, $Date, $Time, $City, $Image){
+    public function updateEvent($id, $Title, $Description, $Date, $Time, $City, $Image)
+    {
         $request = "UPDATE events SET Title = :Title, Description = :Description, Date = :Date, Time = :Time, City = :City, Image = :Image WHERE id = :id";
         $stmt = $this->db->prepare($request);
         $stmt->bindParam(':Title', $Title);
@@ -95,10 +97,18 @@ class AdminModel
     }
     public function getAllVolunteers()
     {
-        $request = "SELECT * FROM volunteer";
+        $request = "SELECT users.id as user_id, CONCAT(users.FirstName, ' ', users.LastName) as fullName, users.Email , users.PhoneNumber, events.City as event_City, events.id as event_id, volunteer.id FROM users INNER JOIN volunteer ON users.id = volunteer.user_id INNER JOIN events ON volunteer.event_id = events.id";
         $stmt = $this->db->prepare($request);
         $stmt->execute();
         $volunteers = $stmt->fetchAll(PDO::FETCH_ASSOC);
         echo json_encode($volunteers);
     }
+    public function deleteVolunteer($id)
+    {
+        $request = "DELETE FROM volunteer WHERE id = :id";
+        $stmt = $this->db->prepare($request);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+    }
+
 }
