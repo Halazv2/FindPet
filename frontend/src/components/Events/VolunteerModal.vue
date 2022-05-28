@@ -137,6 +137,7 @@
 <script>
 import axios from "axios";
 import computed from "vue";
+import { mapMutations } from 'vuex'
 export default {
   name: "AddEvent",
   props: {
@@ -160,6 +161,9 @@ export default {
     };
   },
   methods: {
+    ...mapMutations(["setSuccessAlert"]),
+
+
     closeModal() {
       this.$emit("VolunteerModal");
     },
@@ -183,8 +187,9 @@ export default {
             this.$emit("VolunteerModal");
             // alert(this.message);
             // this.$store.commit("setSuccessAlert", true);
-            this.$store.commit("setSuccessAlert", true);
+            // this.$store.commit("setSuccessAlert", true);
             // this.$emit("openSuccessAlert(successAlert)");
+            this.setSuccessAlert(true);
           } else {
             this.message = data.message;
             this.alert = true;

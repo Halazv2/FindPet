@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper-card flex gap-5 mt-4 flex-col lg:flex-row">
-    <!-- card  -->
+    <!-- ------------------------------------------------------------------------------  -->
     <div
       class="
         card
@@ -43,7 +43,6 @@
         </div>
       </div>
     </div>
-    <!-- end card -->
     <div
       class="
         card
@@ -86,7 +85,8 @@
         </div>
       </div>
     </div>
-    <!-- end card -->
+    <!-- ------------------------------------------------------------------------------  -->
+
     <div
       class="
         card
@@ -134,7 +134,7 @@
             </span>
           </div>
         </div>
-
+        <!-- ------------------------------------------------------------------------------  -->
         <div class="block p-2 w-full">
           <p class="font-semibold text-gray-900 dark:text-gray-200 text-xl">
             7 230
@@ -143,7 +143,6 @@
         </div>
       </div>
     </div>
-    <!-- end card -->
   </div>
 </template>
 

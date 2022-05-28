@@ -87,7 +87,7 @@
                     }
                 } else {
                     $user = $this->model('UserModel');
-                    $user->updateUser($id, $FirstName, $LastName, $Email, $Password, $PhoneNumber, $City, null);
+                    $user->updateUser($id, $FirstName, $LastName, $Email, $Password, $PhoneNumber, $City, "avatar.jpg");
                     return true;
                 }
             }

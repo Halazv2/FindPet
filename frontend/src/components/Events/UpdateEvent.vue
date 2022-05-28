@@ -280,8 +280,15 @@
                   <polyline points="21 15 16 10 5 21"></polyline>
                 </svg>
               </span>
-              <input
+              <!-- <input
                 name="Image"
+                
+                @change="ok"
+                type="file"
+                class="hidden"
+              /> -->
+              <input
+                name="image"
                 id="dropzone-file"
                 @change="FileChange"
                 type="file"
@@ -343,10 +350,13 @@ export default {
     };
   },
   methods: {
+    ok(e) {
+      console.log("oooooo");
+      this.Image = e.target.files[0];
+    },
     FileChange(e) {
+      this.Image = e.target.files[0];
       console.log("dsqdq");
-      const file = e.target.files[0];
-      this.Image = file;
     },
     editPost() {
       this.$emit("editPost");
@@ -360,7 +370,7 @@ export default {
     UpdateEvent() {
       const formData = new FormData();
       formData.append("id", this.event.id);
-      formData.append("Image", this.Image);
+      formData.append("image", this.Image);
       formData.append("Title", this.event.Title);
       formData.append("City", this.event.City);
       formData.append("Date", this.event.Date);

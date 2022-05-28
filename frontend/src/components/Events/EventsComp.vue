@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div class="alert alert-success shadow-lg mb-3"
-     v-if="successAlert"
-     >
+    <div class="alert alert-success shadow-lg mb-3" v-if="successAlert">
       <div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -17,26 +15,34 @@
             d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
           />
         </svg>
-        <span>Your purchase has been confirmed!</span>
+        <span> sucess purchase!</span>
       </div>
     </div>
 
     <div v-if="Role == 'Admin'">
       <label
-        for="my-modal-3"
         class="btn border-none bg-primary-btn hover:bg-secondary-brn mb-6"
-        >Add Post</label
+        @click="OpenAddEventModal"
       >
-      <input type="checkbox" id="my-modal-3" class="modal-toggle" />
+        Add Post</label
+      >
       <AddEvent
-        class="modal modal-bottom sm:modal-middle"
+        class="z-50"
+        v-if="AddEvent"
         @getEvents="getEvents"
+        @OpenAddEventModal="OpenAddEventModal"
       />
     </div>
-    <div>
-      <h1 class="text-5xl font-bold text-center mb-10 dark:text-white">
-        Volunteer to help animals
+    <div class="mb-10 " v-if="Role == 'User'">
+      <h1 class="text-5xl font-bold text-center mb-2  dark:text-white">
+        Get Involved
       </h1>
+      <p class="text-center text-lg">
+        There are so afun ways to get involved and support our lifesaving
+        mission. We offer events and training classes that are for, about and
+        sometimes even with your favorite animal friend. We’re pleased to say
+        that there’s something truly for everyone.
+      </p>
     </div>
     <div>
       <EventPost
@@ -56,6 +62,9 @@ import { ref } from "vue";
 import axios from "axios";
 import EventPost from "@/components/Events/EventPost.vue";
 import computed from "vue";
+import { mapMutations } from "vuex";
+import { mapState } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   components: {
     AddEvent,
@@ -71,14 +80,11 @@ export default {
       Role: localStorage.getItem("Role"),
       menu: false,
       active: null,
-      successAlert: true,
+      AddEvent: false,
     };
   },
   methods: {
-    // openSuccessAlert(successAlert){
-    //   this.successAlert = successAlert;
-    //   successAlert = true;
-    // },
+    ...mapMutations(["setSuccessAlert"]),
     getEvents() {
       axios
         .get("http://localhost/fil-rouge-find-pet/AdminController/getAllEvents")
@@ -86,16 +92,17 @@ export default {
           this.events = res.data.reverse();
         });
     },
+    OpenAddEventModal() {
+      this.AddEvent = !this.AddEvent;
+    },
   },
   mounted() {
     this.getEvents();
-    
-    this.successAlert = this.$store.state.successAlert
   },
-  computed(){
-    return{
-    }
-  }
+  computed: {
+    // mix the getters into computed with object spread operator
+    ...mapGetters(["successAlert"]),
+  },
 };
 </script>
 

@@ -1,7 +1,7 @@
 <template>
-  <div class="dashboard p-4">
+  <div class="">
     <DashboardHeader />
-    <div class="mt-2 lg:flex block lg:gap-2 ">
+    <div class="mt-2 lg:flex flex-wrap block lg:gap-2">
       <div
         class="
           bg-white
@@ -155,7 +155,6 @@
                   last.ProfilePic
                 "
                 alt=""
-
                 class="rounded-full w-8 h-8"
               />
             </span>
@@ -168,7 +167,6 @@
         </div>
       </div>
     </div>
-    
   </div>
 </template>
 
@@ -180,7 +178,7 @@ import DashboardHeader from "./DashboardHeader.vue";
 export default {
   components: {
     Icon,
-    DashboardHeader
+    DashboardHeader,
   },
   name: "dashboard-card",
   data() {
@@ -263,7 +261,5 @@ export default {
 // jhsiqjbdijqd
 // qqsuhiqsdn()
 
-
-
-
-// </script>
+//
+</script>

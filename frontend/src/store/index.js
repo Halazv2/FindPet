@@ -5,12 +5,12 @@ export default createStore({
     SuccessAlert: false,
   },
   getters: {
-    SuccessAlert: (state) => state.SuccessAlert
+    successAlert: (state) => state.SuccessAlert
   },
   mutations: {
     setSuccessAlert(state, payload) {
       state.SuccessAlert = payload;
-      console.log(state.SuccessAlert);
+      console.log('im commit success alert' + state.SuccessAlert);
     }
   },
   actions: {},

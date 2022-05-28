@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard p-4">
-        <nav class="flex" aria-label="Breadcrumb">
+    <nav class="flex" aria-label="Breadcrumb">
       <ol class="inline-flex items-center space-x-1 md:space-x-3">
         <li class="inline-flex items-center">
           <router-link
@@ -32,13 +32,13 @@
     </nav>
     <!--Table-->
     <div class="mt-3">
-    <div>
-      <h1>
-        <span class="text-gray-700 dark:text-gray-400 text-xl">
-          Volunteers list
-        </span>
-      </h1>
-    </div>
+      <div>
+        <h1>
+          <span class="text-gray-700 dark:text-gray-400 text-xl">
+            Volunteers list
+          </span>
+        </h1>
+      </div>
       <div class="overflow-x-auto w-full">
         <table class="table w-full">
           <!-- head -->
@@ -82,7 +82,10 @@
                   <button class="btn btn-ghost text-green-500 btn-xs">
                     Accept
                   </button>
-                  <button class="btn btn-ghost text-red-600 btn-xs" @click="RejectVolunteer(Volunteer.id)">
+                  <button
+                    class="btn btn-ghost text-red-600 btn-xs"
+                    @click="RejectVolunteer(Volunteer.id)"
+                  >
                     Reject
                   </button>
                 </div>
@@ -123,18 +126,41 @@ export default {
           this.Volunteers = response.data;
         });
     },
-    
+
+    // RejectVolunteer(id) {
+    //   axios
+    //     .delete(
+    //       "http://localhost/fil-rouge-find-pet/AdminController/deleteVolunteer",
+    //       {
+    //         params: {
+    //           id: id,
+    //         },
+    //       }
+    //     )
+    //     .then((response) => {
+    //       console.log(response);
+    //       this.getAllVoulunteer();
+    //     });
+    // },
     RejectVolunteer(id) {
-      axios
-        .post(
-          "http://localhost/fil-rouge-find-pet/AdminController/deleteVolunteer",
-          {
-            id:id,
-          }
-        )
+      fetch(
+        "http://localhost/fil-rouge-find-pet/AdminController/deleteVolunteer",
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id: id,
+          }),
+        }
+      )
         .then((response) => {
           console.log(response);
           this.getAllVoulunteer();
+        })
+        .catch((error) => {
+          console.log(error);
         });
     },
   },

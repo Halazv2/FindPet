@@ -1,9 +1,18 @@
   <template>
-  <div class="modal">
-    <div class="modal-box w-11/12 max-w-5xl relative dark:bg-gray-800 bg-white">
+  <dialog
+    class="
+      w-full
+      h-screen
+      flex
+      fixed
+      inset-0
+      justify-center
+      bg-black bg-opacity-20
+    "
+  >
+    <div class="modal-box w-full relative">
       <label
-        for="my-modal-3"
-        id="close-modal"
+        @click="closeModal"
         class="
           btn btn-sm
           border-none
@@ -314,7 +323,7 @@
         </footer>
       </form>
     </div>
-  </div>
+  </dialog>
 </template>
 
 <script>
@@ -360,13 +369,15 @@ export default {
         });
     },
     onFileChange(e) {
-      const file = e.target.files[0];
-      this.event.Image = file;
+      this.event.Image = e.target.files[0];
     },
     getcity() {
       this.Cities = require("../../assets/js/city.json").map(
         (city) => city.city
       );
+    },
+    closeModal() {
+      this.$emit("OpenAddEventModal");
     },
   },
   mounted() {
