@@ -125,6 +125,7 @@
             "
           />
         </div>
+        <!-- theme-toggle -->
         <button
           id="theme-toggle"
           type="button"
@@ -164,10 +165,55 @@
             ></path>
           </svg>
         </button>
-
-        <button class="mr-5 text-2xl text-gray-500">
+        <!-- notification -->
+        <button class="mr-5 text-2xl text-gray-500" @click="notificationToggle">
           <Icon icon="clarity:notification-line" />
+          hh
         </button>
+
+        <transition>
+          <div
+            v-if="notification"
+            class="
+              block
+              absolute
+              right-10
+              mt-12
+              z-10
+              w-44
+              border
+              dark:border-gray-700
+              bg-white
+              dark:bg-gray-800
+              rounded
+              divide-y
+              dark:divide-gray-700
+              divide-gray-100
+              shadow
+            "
+          >
+            <div class="py-3 px-4 text-sm text-gray-900 dark:text-gray-200">
+              <div>Logged As</div>
+              <div class="font-medium truncate">Riven BechBech</div>
+            </div>
+            <ul
+              class="py-1 text-sm text-gray-700 dark:text-gray-200"
+              aria-labelledby="dropdownSmallButton"
+            >
+              <li>
+                <a
+                  href="#"
+                  class="block py-2 px-4 hover:bg-primary hover:text-white"
+                  >Settings</a
+                >
+              </li>
+            </ul>
+
+          </div>
+        </transition>
+        <!-- end of notification -->
+
+
         <button @click="menuToggle">
           <div
             class="
@@ -270,12 +316,14 @@ export default {
     return {
       menu: false,
       sidebar: false,
+      notification: true,
     };
   },
   components: {
     Icon,
   },
   methods: {
+
     menuToggle: function () {
       this.menu = !this.menu;
     },

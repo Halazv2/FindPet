@@ -37,7 +37,7 @@
 
         <div class="block p-2 w-full">
           <p class="font-semibold text-gray-900 dark:text-gray-200 text-xl">
-            2 300 Posts
+            {{ countP }}
           </p>
           <h2 class="font-normal text-gray-400 text-md mt-1">Total Posts</h2>
         </div>
@@ -79,7 +79,7 @@
 
         <div class="block p-2 w-full">
           <p class="font-semibold text-gray-900 dark:text-gray-200 text-xl">
-            2 300 908
+            {{ countU }}
           </p>
           <h2 class="font-normal text-gray-400 text-md mt-1">Total Users</h2>
         </div>
@@ -152,6 +152,36 @@ import { Icon } from "@iconify/vue";
 export default {
   components: {
     Icon,
+  },
+  data() {
+    return {
+      countP: 0,
+      countU: 0,
+    };
+  },
+  methods: {
+    countPosts() {
+      fetch("http://localhost/fil-rouge-find-pet/AdminController/countPosts", {
+        method: "GET",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          this.countP = data.count;
+        });
+    },
+    countUsers() {
+      fetch("http://localhost/fil-rouge-find-pet/AdminController/countUsers", {
+        method: "GET",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          this.countU = data.count;
+        });
+    },
+  },
+  mounted() {
+    this.countPosts();
+    this.countUsers();
   },
 };
 </script>

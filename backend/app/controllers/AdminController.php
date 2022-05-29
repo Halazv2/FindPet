@@ -146,4 +146,18 @@ class AdminController extends Controller
             return $this->json(['message' => 'Post Deleted Successfully']);
         }
     }
+    public function countPosts()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $admin = $this->model('AdminModel');
+            $admin->countPosts();
+        }
+    }
+    public function countUsers()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $admin = $this->model('AdminModel');
+            $admin->countUsers();
+        }
+    }
 }

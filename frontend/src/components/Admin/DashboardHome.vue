@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <DashboardHeader />
-    <div class="mt-2 lg:flex flex-wrap block lg:gap-2">
+    <div class="mt-2 lg:flex-row flex-col flex lg:gap-2">
       <div
         class="
           bg-white
@@ -100,9 +100,9 @@
                       </td>
                       <td class="px-4 py-3 text-sm border">{{ user.City }}</td>
                       <td class="px-4 py-3 text-sm border">
-                        <a class="cursor-pointer text-red-600">Delete</a>
+                        <a class="cursor-pointer text-red-600" @click="deleteUser(user.id)">Delete</a>
                         &nbsp;
-                        <a class="cursor-pointer text-primary-btn">Update</a>
+                        <a class="cursor-pointer text-blue-600">Contact</a>
                       </td>
                     </tr>
                   </tbody>
@@ -139,6 +139,7 @@
           rounded-md
           w-full
         "
+        style="width: 100%"
       >
         <h2 class="dark:text-gray-200 text-xl font-bold">New Users</h2>
         <p class="text-gray-400">This is list if your new users.</p>
@@ -213,6 +214,21 @@ export default {
         .then((response) => response.json())
         .then((data) => {
           this.lastThree = data;
+        });
+    },
+    deleteUser(id) {
+      fetch(
+        "http://localhost/fil-rouge-find-pet/AdminController/deleteUser/" + id,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          this.getUsers();
         });
     },
   },

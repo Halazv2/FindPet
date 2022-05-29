@@ -8,10 +8,9 @@ class UserModel
         $conn = new Database();
         $this->db = $conn->DB;
     }
-    public function register($FirstName, $LastName, $Email, $Password)
+    public function register($FirstName, $LastName, $Email, $Password,$ProfilePic)
     {
-        $request = "INSERT  INTO users (FirstName, LastName, Email, Password) VALUES (:FirstName, :LastName, :Email, :Password)";
-        //check if user is already registered
+        $request = "INSERT  INTO users (FirstName, LastName, Email, Password, ProfilePic) VALUES (:FirstName, :LastName, :Email, :Password, :ProfilePic)";
         $check = "SELECT * FROM users WHERE Email = :Email";
         $stmt = $this->db->prepare($check);
         $stmt->bindParam(':Email', $Email);
@@ -25,6 +24,7 @@ class UserModel
             $stmt->bindParam(':LastName', $LastName);
             $stmt->bindParam(':Email', $Email);
             $stmt->bindParam(':Password', $Password);
+            $stmt->bindParam(':ProfilePic', $ProfilePic);
             $stmt->execute();
             //return user data
             $user = $this->getUser($Email);

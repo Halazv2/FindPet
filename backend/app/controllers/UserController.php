@@ -2,7 +2,7 @@
     Header('Access-Control-Allow-Origin: *'); //for allow any domain, insecure
     Header('Access-Control-Allow-Headers: *'); //for allow any headers, insecure
     Header('Access-Control-Allow-Methods: *'); //method allowed
-    
+
     class UserController extends Controller
     {
         public function __construct()
@@ -33,8 +33,9 @@
                 $LastName = $data->LastName;
                 $Email = $data->Email;
                 $Password = password_hash($data->Password, PASSWORD_DEFAULT);
+                $ProfilePic = "avatar.jpg";
                 $user = $this->model('UserModel');
-                $user->register($FirstName, $LastName, $Email, $Password);
+                $user->register($FirstName, $LastName, $Email, $Password, $ProfilePic);
             }
         }
 

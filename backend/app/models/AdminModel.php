@@ -110,5 +110,20 @@ class AdminModel
         $stmt->bindParam(':id', $id);
         $stmt->execute();
     }
-
+    public function countPosts()
+    {
+        $request = "SELECT COUNT(*) as count FROM posts";
+        $stmt = $this->db->prepare($request);
+        $stmt->execute();
+        $count = $stmt->fetch(PDO::FETCH_ASSOC);
+        echo json_encode($count);
+    }
+    public function countUsers()
+    {
+        $request = "SELECT COUNT(*) as count FROM users";
+        $stmt = $this->db->prepare($request);
+        $stmt->execute();
+        $count = $stmt->fetch(PDO::FETCH_ASSOC);
+        echo json_encode($count);
+    }
 }
