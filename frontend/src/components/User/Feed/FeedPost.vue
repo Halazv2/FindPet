@@ -7,13 +7,13 @@
       class="
         bg-white
         dark:bg-gray-800 dark:text-white
-        p-3
+        p-7
         h-32
         absolute
-        top-0
+        top-16
+        left-14
         rounded-lg
         shadow-lg
-        left-20
         z-10
       "
       :post="post"

@@ -1,7 +1,12 @@
 <template>
   <div class="flex justify-center relative">
-    <AddPost @getPosts="getPosts" v-if="AddPost"  class="z-50" @closeModal="openModalADD"/>
-    
+    <AddPost
+      @getPosts="getPosts"
+      v-if="AddPost"
+      class="z-50"
+      @closeModal="openModalADD"
+    />
+
     <main
       class="
         container
@@ -54,14 +59,17 @@
           </div>
         </div>
         <!-- posts -->
-        <FeedPost
-          v-for="post in posts.filter(
-            (post) => post.PostType === currentType || currentType === 'All'
-          )"
-          :key="post.id"
-          :post="post"
-          @getPosts="getPosts"
-        />
+        <div>
+          <FeedPost
+            v-for="post in posts.filter(
+              (post) => post.PostType === currentType || currentType === 'All'
+            )"
+            :key="post.id"
+            :post="post"
+            @getPosts="getPosts"
+            class="relative"
+          />
+        </div>
       </div>
       <aside class="hidden md:block w-1/2 lg:sticky">
         <feed-side-comp />
