@@ -4,7 +4,7 @@
       <div class="modal-action">
         <a
           href="#"
-          ref="close-modal"
+          ref="closeModal"
           for="my-modal-3"
           class="
             btn btn-error btn-sm btn-circle
@@ -320,6 +320,8 @@ export default {
         )
         .then((res) => {
           console.log(res);
+          const closeModal = this.$refs.closeModal;
+          closeModal.click();
         })
         .catch((err) => {
           console.log(err);

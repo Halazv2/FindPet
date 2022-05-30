@@ -360,8 +360,7 @@ export default {
           },
         })
         .then((response) => {
-          const close_model = document.getElementById("close-modal");
-          close_model.click();
+          this.closeModal();
           this.$emit("getEvents");
         })
         .catch((error) => {

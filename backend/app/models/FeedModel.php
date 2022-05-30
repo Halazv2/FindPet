@@ -119,7 +119,7 @@ class FeedModel
 
     public function fetchFeedWithLikes()
     {
-        $request = "select posts.*, count(likes.id) as likesCount, users.FirstName, users.LastName from posts LEFT join likes on posts.id = likes.post_id left join users on posts.UserID = users.id group by posts.id";
+        $request = "select posts.*, count(likes.id) as likesCount, users.* from posts LEFT join likes on posts.id = likes.post_id left join users on posts.UserID = users.id group by posts.id";
         $stmt = $this->db->prepare($request);
         $stmt->execute();
         $feed = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -135,4 +135,5 @@ class FeedModel
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result['count'];
     }
+
 }

@@ -145,7 +145,8 @@
       <div class="w-100 flex flex-grow flex-col lg:items-end lg:justify-start">
         <div class="flex lg:flex-row space-x-3">
           <!-- Follow Button -->
-          <button
+          <a
+          href="#Update-Account"
             class="
               flex
               rounded-md
@@ -162,8 +163,8 @@
             "
           >
             <Icon icon="bxs:edit" />
-            <a href="#Update-Account" class="lg:block hidden">Update Profile</a>
-          </button>
+            <a  class="lg:block hidden">Update Profile</a>
+          </a>
 
           <!-- More Actions Button -->
           <UpdateModel :user="user"  class="modal" id="Update-Account" />
