@@ -100,7 +100,11 @@
                       </td>
                       <td class="px-4 py-3 text-sm border">{{ user.City }}</td>
                       <td class="px-4 py-3 text-sm border">
-                        <a class="cursor-pointer text-red-600" @click="deleteUser(user.id)">Delete</a>
+                        <a
+                          class="cursor-pointer text-red-600"
+                          @click="deleteUser(user.id)"
+                          >Delete</a
+                        >
                         &nbsp;
                         <a class="cursor-pointer text-blue-600">Contact</a>
                       </td>
@@ -217,18 +221,19 @@ export default {
         });
     },
     deleteUser(id) {
-      fetch(
-        "http://localhost/fil-rouge-find-pet/AdminController/deleteUser/" + id,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
+      fetch("http://localhost/fil-rouge-find-pet/AdminController/deleteUser", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: id,
+        }),
+      })
         .then((response) => response.json())
         .then((data) => {
           this.getUsers();
+          this.getlast3();
         });
     },
   },

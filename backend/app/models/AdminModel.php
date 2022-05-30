@@ -44,6 +44,14 @@ class AdminModel
         $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
         echo json_encode($users);
     }
+    public function deleteUser($id)
+    {
+        $request = "DELETE FROM users WHERE id = :id";
+        $stmt = $this->db->prepare($request);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        
+    }
     public function getAllEvents()
     {
         $request = "SELECT * FROM events";

@@ -34,6 +34,15 @@ class AdminController extends Controller
             $admin->getlastthreeusers();
         }
     }
+    public function deleteUser(){
+        if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+            $data = json_decode(file_get_contents("php://input"));
+            $id = $data->id;
+            $admin = $this->model('AdminModel');
+            $admin->deleteUser($id);
+            return $this->json($admin);
+        }
+    }
     public function getAllEvents()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
