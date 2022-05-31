@@ -31,7 +31,6 @@
           duration-300
         "
       >
-        {{ post.id }}
         <div class="text-center flex justify-between">
           <h6 class="text-blueGray-700 text-xl font-bold">Comments</h6>
           <label

@@ -43,7 +43,6 @@
         @updateModal="updateModal"
       />
       <div class="flex justify-between">
-        {{post.id}}
         <div class="flex flex-shrink-0 p-4 pb-0">
           <a
             class="flex-shrink-0 group block"
