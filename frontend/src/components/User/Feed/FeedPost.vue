@@ -18,7 +18,11 @@
       "
       :post="post"
     />
-
+    <Comments
+      :post="post"
+      v-if="commentModel"
+      @closeComments="openCommentModel"
+    />
     <article
       ref="feed"
       class="
@@ -39,6 +43,7 @@
         @updateModal="updateModal"
       />
       <div class="flex justify-between">
+        {{post.id}}
         <div class="flex flex-shrink-0 p-4 pb-0">
           <a
             class="flex-shrink-0 group block"
@@ -180,14 +185,17 @@
           <!-- </div> -->
         </div>
 
-        <div class="flex items-center py-4">
+        <div class="flex items-center justify-center w-full py-4">
+          <!-- comment -->
           <div
+          @click="openCommentModel"
             class="
               flex-1 flex
               items-center
               text-xs text-gray-400
               hover:text-blue-400
               transition
+              justify-center
               duration-350
               ease-in-out
             "
@@ -201,26 +209,8 @@
             </svg>
             12.3 k
           </div>
-          <div
-            class="
-              flex-1 flex
-              items-center
-              text-xs text-gray-400
-              hover:text-green-400
-              transition
-              duration-350
-              ease-in-out
-            "
-          >
-            <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-2">
-              <g>
-                <path
-                  d="M23.77 15.67c-.292-.293-.767-.293-1.06 0l-2.22 2.22V7.65c0-2.068-1.683-3.75-3.75-3.75h-5.85c-.414 0-.75.336-.75.75s.336.75.75.75h5.85c1.24 0 2.25 1.01 2.25 2.25v10.24l-2.22-2.22c-.293-.293-.768-.293-1.06 0s-.294.768 0 1.06l3.5 3.5c.145.147.337.22.53.22s.383-.072.53-.22l3.5-3.5c.294-.292.294-.767 0-1.06zm-10.66 3.28H7.26c-1.24 0-2.25-1.01-2.25-2.25V6.46l2.22 2.22c.148.147.34.22.532.22s.384-.073.53-.22c.293-.293.293-.768 0-1.06l-3.5-3.5c-.293-.294-.768-.294-1.06 0l-3.5 3.5c-.294.292-.294.767 0 1.06s.767.293 1.06 0l2.22-2.22V16.7c0 2.068 1.683 3.75 3.75 3.75h5.85c.414 0 .75-.336.75-.75s-.337-.75-.75-.75z"
-                ></path>
-              </g>
-            </svg>
-            14 k
-          </div>
+          <!-- end of comment -->
+
           <div
             @click="LikePost(post.id)"
             :class="{ 'text-red-600': active }"
@@ -229,6 +219,7 @@
               items-center
               text-xs text-gray-400
               transition
+              justify-center
               duration-350
               ease-in-out
             "
@@ -249,6 +240,7 @@
               text-xs text-gray-400
               hover:text-blue-400
               transition
+              justify-center
               duration-350
               ease-in-out
             "
@@ -275,9 +267,10 @@ import { Icon } from "@iconify/vue";
 import UpdatePost from "./UppdatePost.vue";
 import axios from "axios";
 import CardHover from "./CardHover.vue";
+import Comments from "./Comments/Comments.vue";
 export default {
   name: "Post",
-  components: { Icon, UpdatePost, CardHover },
+  components: { Icon, UpdatePost, CardHover, Comments },
   props: {
     post: {
       type: Object,
@@ -298,10 +291,14 @@ export default {
       userID: localStorage.getItem("user_id"),
       updateModal: false,
       cardHover: false,
+      commentModel: false,
     };
   },
 
   methods: {
+    openCommentModel() {
+      this.commentModel = !this.commentModel;
+    },
     // open menu
     menuToggle: function () {
       this.menu = !this.menu;

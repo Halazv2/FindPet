@@ -6,7 +6,6 @@
       class="z-50"
       @closeModal="openModalADD"
     />
-
     <main
       class="
         container

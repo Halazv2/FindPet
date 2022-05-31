@@ -24,4 +24,13 @@ class CommentController extends Controller
             return $this->json(['message' => 'Comment added']);
         }
     }
+    public function getComments()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $post_id = $_GET['post_id'];
+            $postsModel = $this->model('CommentModel');
+            $comments = $postsModel->getComments($post_id);
+            return $this->json($comments);
+        }
+    }
 }

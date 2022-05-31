@@ -18,4 +18,13 @@ class CommentModel
         $stmt->bindParam(':post_id', $post_id);
         $stmt->execute();
     }
+    public function getComments($post_id)
+    {
+        $request = "SELECT comments.*, users.FirstName, users.ProfilePic FROM comments INNER JOIN users ON comments.user_id = users.id WHERE comments.post_id = :post_id";
+        $stmt = $this->db->prepare($request);
+        $stmt->bindParam(':post_id', $post_id);
+        $stmt->execute();
+        $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $comments;
+    }
 }
