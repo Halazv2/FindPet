@@ -6,6 +6,7 @@
         lg:w-1/2
         w-full
         mx-auto
+        h-[683px]
         bg-white
         rounded-xl
         shadow-xl
@@ -14,7 +15,7 @@
         relative
       "
     >
-    <!-- heeder -->
+      <!-- heeder -->
       <header
         class="
           show-more
@@ -49,26 +50,29 @@
         </div>
         <hr class="border-b-1 mt-2 border-blueGray-300" />
       </header>
-    <!-- heeder -->
+      <!-- heeder -->
 
       <!-- comment -->
-      <div v-for="(comment, index) in comments" :key="index">
-        <div
-          class="
-            user-row
-            flex flex-col
-            cursor-pointer
-            p-4
-            duration-300
-            sm:py-4 sm:px-8
-            w-full
-          "
-        >
-          <SingleComment :comment="comment" />
+
+      <div class="h-[500px] overflow-y-auto">
+        <div v-for="(comment, index) in comments" :key="index">
+          <div
+            class="
+              user-row
+              flex
+              justify-between
+              cursor-pointer
+              p-4
+              duration-300
+              sm:py-4 sm:px-8
+              w-full
+            "
+          >
+            <SingleComment :comment="comment" @getComments="getComments" />
+          </div>
         </div>
+        <!-- comment -->
       </div>
-      <!-- comment -->
-
       <!-- add comment -->
       <form class="p-4 absolute w-full bottom-0" @submit.prevent>
         <div class="relative w-full mb-3 flex gap-2">

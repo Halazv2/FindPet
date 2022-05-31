@@ -73,9 +73,7 @@
                   </div>
                   <div
                     class="text-gray-400 dark:text-gray-200 font-thin text-xs"
-                  >
-                    • 30 seconds ago
-                  </div>
+                  ></div>
                 </div>
               </div>
             </div>
@@ -172,7 +170,6 @@
         </p>
 
         <div class="md:flex-shrink pr-6 pt-3">
-          <!-- <div class="bg-cover bg-no-repeat bg-center rounded-lg w-full h-64" style="height: 200px; background-image: url(https://media.wired.co.uk/photos/60c8730fa81eb7f50b44037e/3:2/w_3329,h_2219,c_limit/1521-WIRED-Cat.jpeg);"> -->
           <img
             class="w-full h-full bg-cover rounded-lg"
             :src="
@@ -181,13 +178,12 @@
             "
             alt=""
           />
-          <!-- </div> -->
         </div>
 
         <div class="flex items-center justify-center w-full py-4">
           <!-- comment -->
           <div
-          @click="openCommentModel"
+            @click="openCommentModel"
             class="
               flex-1 flex
               items-center
@@ -206,7 +202,7 @@
                 ></path>
               </g>
             </svg>
-            12.3 k
+            {{ post.CommentCount}}
           </div>
           <!-- end of comment -->
 
@@ -232,6 +228,7 @@
             </svg>
             {{ post.likesCount }}
           </div>
+
           <div
             class="
               flex-1 flex
@@ -308,22 +305,22 @@ export default {
     editPost: function () {
       this.updateModal = !this.updateModal;
     },
-    getpost() {
-      fetch(
-        "http://localhost/fil-rouge-find-pet/FeedController/getPost?id=" +
-          this.post.id,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          // console.log(data)
-        });
-    },
+    // getpost() {
+    //   fetch(
+    //     "http://localhost/fil-rouge-find-pet/FeedController/getPost?id=" +
+    //       this.post.id,
+    //     {
+    //       method: "GET",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //       },
+    //     }
+    //   )
+    //     .then((res) => res.json())
+    //     .then((data) => {
+    //       // console.log(data)
+    //     });
+    // },
     //deletePost
     deletePost(id) {
       console.log(id);

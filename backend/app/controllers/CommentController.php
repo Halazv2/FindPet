@@ -33,4 +33,21 @@ class CommentController extends Controller
             return $this->json($comments);
         }
     }
+    public function deleteComment(){
+        if ($_SERVER['REQUEST_METHOD'] === 'DELETE'){
+            $data = json_decode(file_get_contents('php://input'),true);
+            $comment_id = $data['comment_id'];
+            $commentModel = $this->model('CommentModel');
+            $commentModel->deleteComment($comment_id);
+            return $this->json(['message' => 'Comment deleted']);
+        }
+    }
+    public function countComments(){
+        if ($_SERVER['REQUEST_METHOD'] === 'GET'){
+            $post_id = $_GET['post_id'];
+            $commentModel = $this->model('CommentModel');
+            $count = $commentModel->countComments($post_id);
+            return $this->json(['count' => $count]);
+        }
+    }
 }

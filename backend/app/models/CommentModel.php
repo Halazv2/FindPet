@@ -20,11 +20,27 @@ class CommentModel
     }
     public function getComments($post_id)
     {
-        $request = "SELECT comments.*, users.FirstName, users.ProfilePic FROM comments INNER JOIN users ON comments.user_id = users.id WHERE comments.post_id = :post_id";
+        $request = "SELECT comments.*, users.FirstName, users.LastName, users.ProfilePic FROM comments INNER JOIN users ON comments.user_id = users.id WHERE comments.post_id = :post_id";
         $stmt = $this->db->prepare($request);
         $stmt->bindParam(':post_id', $post_id);
         $stmt->execute();
         $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $comments;
+    }
+    public function deleteComment($comment_id)
+    {
+        $request = "DELETE FROM comments WHERE id = :comment_id";
+        $stmt = $this->db->prepare($request);
+        $stmt->bindParam(':comment_id', $comment_id);
+        $stmt->execute();
+    }
+    public function countComments($post_id)
+    {
+        $request = "SELECT COUNT(*) AS count FROM comments WHERE post_id = :post_id";
+        $stmt = $this->db->prepare($request);
+        $stmt->bindParam(':post_id', $post_id);
+        $stmt->execute();
+        $count = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $count;
     }
 }
