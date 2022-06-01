@@ -34,13 +34,12 @@ class CommentModel
         $stmt->bindParam(':comment_id', $comment_id);
         $stmt->execute();
     }
-    public function countComments($post_id)
+    public function updateComment($comment, $comment_id)
     {
-        $request = "SELECT COUNT(*) AS count FROM comments WHERE post_id = :post_id";
+        $request = "UPDATE comments SET comment = :comment WHERE id = :comment_id";
         $stmt = $this->db->prepare($request);
-        $stmt->bindParam(':post_id', $post_id);
+        $stmt->bindParam(':comment', $comment);
+        $stmt->bindParam(':comment_id', $comment_id);
         $stmt->execute();
-        $count = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $count;
     }
 }
