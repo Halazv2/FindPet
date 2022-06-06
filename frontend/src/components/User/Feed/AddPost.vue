@@ -1,8 +1,6 @@
 <template>
-  <dialog
-    class="flex fixed inset-0 justify-center bg-black bg-opacity-20"
-  >
-    <div class="modal-box w-full h-fit relative ">
+  <dialog class="flex fixed inset-0 justify-center bg-black bg-opacity-20">
+    <div class="modal-box w-full h-fit relative">
       <label
         @click="closeModal"
         class="
@@ -203,17 +201,19 @@
                 class="hidden"
               />
             </label>
-            <div id="progress" class="hidden">
+            <!-- class="hidden" -->
+            <div id="progress">
               <p>
                 Progress: {{ uploadValue.toFixed() + "%" }}
                 <progress
-                  id="progresss"
+                  ref="progress"
+                  class="border-none rounded-md text-primary-btn hidden"
                   :value="uploadValue"
                   max="100"
                 ></progress>
               </p>
             </div>
-            <div class="hidden" id="done">Done!</div>
+            <div class="hidden" ref="done">Done!</div>
           </div>
           <button
             @click="AddPost()"
@@ -254,6 +254,7 @@
 <script>
 import * as fireStorage from "firebase/storage";
 import axios from "axios";
+import { ref } from "@vue/reactivity";
 export default {
   name: "AddPost",
   data() {
@@ -276,8 +277,8 @@ export default {
     upFile(e) {
       const file = e.target.files[0];
       this.Post.image = file;
-      const progresss = document.getElementById("progress");
-      const done = document.getElementById("done");
+      const progresss = this.$refs.progress;
+      const done = this.$refs.done;
       progresss.classList.remove("hidden");
       if (this.uploadValue < 100) {
         this.uploadValue += 10;
@@ -334,7 +335,7 @@ export default {
         .then((response) => {
           // console.log(response);
           this.$emit("getPosts");
-          this.$emit('closeModal');
+          this.$emit("closeModal");
           this.uploadValue = 0;
           done.classList.add("hidden");
           this.resetPostinput();

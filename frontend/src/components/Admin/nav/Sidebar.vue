@@ -129,7 +129,7 @@ export default {
       NavElements: [
         {
           name: "Home",
-          icon: "bxs:home",
+          icon: "bxs:home",                                
           link: "/",
         },
         {

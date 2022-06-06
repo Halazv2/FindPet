@@ -124,56 +124,10 @@
         <button class="mr-5 text-2xl text-gray-500" @click="notificationToggle">
           <Icon icon="clarity:notification-line" />
         </button>
-        <transition>
-          <div
-            v-if="notification"
-            class="
-              block
-              absolute
-              right-24
-              mt-12
-              z-10
-              w-80
-              border
-              dark:border-gray-700
-              bg-white
-              dark:bg-gray-800
-              rounded
-              divide-y
-              dark:divide-gray-700
-              divide-gray-100
-              shadow
-            "
-          >
-            <div class="py-3 px-4 text-sm text-gray-900 dark:text-gray-200">
-              <div>notification</div>
-            </div>
-            <ul
-              class="py-1 text-sm text-gray-700 dark:text-gray-200"
-              aria-labelledby="dropdownSmallButton"
-            >
-              <li class="flex">
-                <img
-                  src="https://thumbs.dreamstime.com/b/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.jpg"
-                  class="w-20 h-20 m-2 rounded-full"
-                  alt=""
-                />
-                <div class="ml-2">
-                  <p class="font-bold">3onwan</p>
-                  <p>
-                    <span class="text-green-500 cursor-pointer"> accepted </span>
-                    or
-                    <span class="text-red-500 cursor-pointer"> rejected </span>
-                  </p>
-                  <p>
-                    baba mamimon baba mamimon baba mamimon baba mamimon baba
-                    mamimon
-                  </p>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </transition>
+        <div  v-if="notification">
+          <Notification />
+        </div>
+
         <!-- end of notification -->
 
         <button @click="menuToggle">
@@ -269,6 +223,7 @@
 
 <script>
 import { Icon } from "@iconify/vue";
+import Notification from "@/components/Notification.vue";
 export default {
   data() {
     return {
@@ -279,6 +234,7 @@ export default {
   },
   components: {
     Icon,
+    Notification,
   },
   methods: {
     notificationToggle() {

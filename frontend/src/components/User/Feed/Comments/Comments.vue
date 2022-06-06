@@ -77,9 +77,8 @@
       <form class="p-4 absolute w-full bottom-0" @submit.prevent>
         <div class="relative w-full mb-3 flex gap-2">
           <img
-            src="https://randomuser.me/api/portraits/men/32.jpg"
-            class="rounded-full h-11 w-11"
-            alt=""
+            src="../../../../assets/images/catMatch.png"
+            class="h-11 w-11 rounded-full"
           />
           <input
             placeholder="Add a comment ..."

@@ -259,7 +259,9 @@ export default {
       })
         .then((response) => response.json())
         .then((data) => {
-          if (data) {
+          if (data.message) {
+            this.errors = data.message;
+          } else {
             this.$emit("shows");
           }
         })

@@ -16,6 +16,7 @@
     "firebase": "^9.8.1",
     "flowbite": "^1.4.2",
     "patreon": "^0.4.1",
+    "pusher-js": "^7.1.1-beta",
     "vue": "^3.2.13",
     "vue-axios": "^3.4.1",
     "vue-router": "^4.0.3",

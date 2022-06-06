@@ -168,7 +168,6 @@
         <!-- notification -->
         <button class="mr-5 text-2xl text-gray-500" @click="notificationToggle">
           <Icon icon="clarity:notification-line" />
-          hh
         </button>
 
         <transition>

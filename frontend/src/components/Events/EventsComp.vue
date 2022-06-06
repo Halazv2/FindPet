@@ -15,7 +15,7 @@
             d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
           />
         </svg>
-        <span> sucess purchase!</span>
+        <span> your application has been sent! We will contact you   </span>
       </div>
     </div>
 
@@ -37,7 +37,7 @@
       <h1 class="text-5xl font-bold text-center mb-2  dark:text-white">
         Get Involved
       </h1>
-      <p class="text-center text-lg">
+      <p class="text-center text-lg ">
         There are so afun ways to get involved and support our lifesaving
         mission. We offer events and training classes that are for, about and
         sometimes even with your favorite animal friend. We’re pleased to say

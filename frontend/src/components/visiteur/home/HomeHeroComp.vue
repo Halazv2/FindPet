@@ -1,35 +1,44 @@
 <template>
   <div class="py-16" data-aos="fade-up" data-aos-delay="50">
-    <div class="py-16 font-bold text-3xl text-center text-gray-700 dark:text-gray-200">
+    <div
+      class="
+        py-16
+        font-bold
+        text-3xl text-center text-gray-700
+        dark:text-gray-200
+      "
+    >
       Lend a helping hand and <span class="text-primary-btn">CHANGE LIVES</span>
     </div>
-    <div class="flex justify-evenly flex-wrap gap-4">
-      <div
-        class="card w-80 bg-base-100 shadow-xl"
-        v-for="(cards, index) in cards"
-        :key="index"
-      >
-        <figure class="px-10 pt-10">
-          <img :src="cards.img" alt="Cat" class="rounded-xl" />
-        </figure>
-        <div class="card-body items-center text-center">
-          <h2 class="card-title">{{ cards.titel }}</h2>
-          <div class="card-actions">
-            <button
-              class="
-                rounded-full
-                w-[180px]
-                h-[46px]
-                flex
-                items-center
-                justify-center
-                bg-primary-btn
-                text-white
-                hover:bg-secondary-brn
-              "
-            >
-              {{ cards.but }}
-            </button>
+    <div class=" flex overflow-x-auto lg:w-full lg:overflow-x-hidden lg:justify-center">
+      <div class="flex lg:w-full  justify-evenly gap-4">
+        <div
+          class="card w-80 bg-base-100 shadow-xl"
+          v-for="(cards, index) in cards"
+          :key="index"
+        >
+          <figure class="px-10 pt-10">
+            <img :src="cards.img" alt="Cat" class="rounded-xl" />
+          </figure>
+          <div class="card-body items-center text-center">
+            <h2 class="card-title">{{ cards.titel }}</h2>
+            <div class="card-actions">
+              <button
+                class="
+                  rounded-full
+                  w-[180px]
+                  h-[46px]
+                  flex
+                  items-center
+                  justify-center
+                  bg-primary-btn
+                  text-white
+                  hover:bg-secondary-brn
+                "
+              >
+                {{ cards.but }}
+              </button>
+            </div>
           </div>
         </div>
       </div>
