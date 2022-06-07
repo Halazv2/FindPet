@@ -38,28 +38,40 @@
             or
             <span class="text-red-500 cursor-pointer"> rejected </span>
           </p>
+          <ul>
+            <!-- <li v-for="message in Anwser" :key="message">
+              {{ Anwser.status }}
+            </li> -->
+            {{
+              Anwser
+            }}
+          </ul>
         </div>
       </li>
     </ul>
   </div>
 </template>
 
-<script>
-import Pusher from "pusher-js";
-export default {
-  setup() {
-    Pusher.logToConsole = true;
+<script setup>
 
-    var pusher = new Pusher("a69b81e700aaa217eaf4", {
-      cluster: "eu",
-    });
-    const id = localStorage.getItem("user_id");
-    var channel = pusher.subscribe("my-channel-"+id);
-    channel.bind("my-event", function (data) {
-      app.messages.push(JSON.stringify(data));
-    });
-  },
-};
+import Pusher from "pusher-js";
+import {computed,ref} from "vue";
+Pusher.logToConsole = true;
+var pusher = new Pusher("a69b81e700aaa217eaf4", {
+  cluster: "eu",
+});
+let resultO = ref([]);
+var Anwser = computed(()=>{
+    return resultO;
+});
+
+const id = localStorage.getItem("user_id");
+var channel = pusher.subscribe("my-channel-" + id);
+
+channel.bind("my-event", function (data) {
+  resultO.value.push(data);
+});
+
 </script>
 
 <style>
