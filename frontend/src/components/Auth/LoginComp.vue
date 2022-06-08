@@ -189,6 +189,7 @@ export default {
             localStorage.setItem("user_id", data.id);
             localStorage.setItem("Role", "User");
             this.$router.push("feed");
+            this.$store.sata.Connected = true;
             this.setRole("User");
           } else if (data.message) {
             this.errors = data.message;

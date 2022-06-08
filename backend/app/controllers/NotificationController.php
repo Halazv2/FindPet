@@ -26,13 +26,17 @@ class NotificationController extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = json_decode(file_get_contents("php://input"));
             $id = $data->id;
-
+            
             $Data = [
-                "titel" => "Application Review",
-                "status" => "Rejected",
-                "message" => "your application for volunteering in the event been rejected"
+                'titel' => 'Application Review',
+                'status' => 'Rejected',
+                'message' => 'your application for volunteering in the event been rejected'
             ];
-
+            // $Data {
+            //     "titel": "Application Review",
+            //     "status" => "Rejected",
+            //     "message" => "your application for volunteering in the event been rejected"
+            // };
             $this->pusher->trigger('my-channel-' . $id, 'my-event',  $Data);
         }
     }

@@ -43,13 +43,16 @@ import NavigationUser from "./components/Navigation-User.vue";
 import NavigationVist from "./components/Navigation-Vist.vue";
 import Header from "@/components/Header.vue";
 import Sidebar from "@/components/Admin/nav/Sidebar.vue";
-import { computed } from '@vue/runtime-core';
+// import { computed } from "@vue/runtime-core";
+import { computed, ref } from "vue";
 export default {
   components: { NavigationVist, NavigationUser, Sidebar, Header },
   data() {
     return {
       nav: this.$store.state.isLoggedIn,
       Role: localStorage.getItem("Role"),
+      user_id: localStorage.getItem("user_id"),
+      // Connection: "",
     };
   },
   provide() {
@@ -64,10 +67,14 @@ export default {
     setRole(role) {
       this.Role = role;
     },
+   
   },
-  // mounted() {
-  //   this.Role = localStorage.getItem("Role");
-  // },
+ 
+  mounted() {
+    // if (this.user_id) {
+    //   this.$store.state.Connected = true;
+    // }
+  },
 };
 </script>
 
