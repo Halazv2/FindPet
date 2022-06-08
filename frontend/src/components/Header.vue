@@ -121,10 +121,17 @@
         </button>
 
         <!-- notification -->
-        <button class="mr-5 text-2xl text-gray-500" @click="notificationToggle">
-          <Icon icon="clarity:notification-line" />
-        </button>
-        <div  v-if="notification">
+        <div class="flex relative cursor-pointer" @click="notificationToggle">
+          <Icon
+            icon="bi:dot"
+            v-if="newNotification"
+            class="text-red-600 absolute h-full w-full bottom-3"
+          />
+          <button class="mr-5 text-2xl text-gray-500">
+            <Icon icon="clarity:notification-line" />
+          </button>
+        </div>
+        <div v-if="notification">
           <Notification />
         </div>
 
@@ -224,7 +231,9 @@
 <script>
 import { Icon } from "@iconify/vue";
 import Notification from "@/components/Notification.vue";
+import {computed} from "vue";
 export default {
+
   data() {
     return {
       menu: false,
@@ -236,9 +245,19 @@ export default {
     Icon,
     Notification,
   },
+
+  computed : {
+    newNotification(){
+      return this.$store.state.newNotification;
+    },
+  },
+
   methods: {
     notificationToggle() {
       this.notification = !this.notification;
+      if(this.notification==false){
+        this.$store.commit("showDotNotification", false);
+      }
     },
     signOut() {
       console.log("sign out");

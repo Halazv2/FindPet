@@ -79,12 +79,15 @@
               </td>
               <th>
                 <div>
-                  <button class="btn btn-ghost text-green-500 btn-xs">
+                  <button
+                    class="btn btn-ghost text-green-500 btn-xs"
+                    @click="AcceptVolunteer(Volunteer.user_id)"
+                  >
                     Accept
                   </button>
                   <button
                     class="btn btn-ghost text-red-600 btn-xs"
-                    @click="RejectVolunteer(Volunteer.id)"
+                    @click="RejectVolunteer(Volunteer.user_id)"
                   >
                     Reject
                   </button>
@@ -144,9 +147,30 @@ export default {
     // },
     RejectVolunteer(id) {
       fetch(
-        "http://localhost/fil-rouge-find-pet/AdminController/deleteVolunteer",
+        "http://localhost/fil-rouge-find-pet/NotificationController/rejectVolunteer",
         {
-          method: "DELETE",
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id: id,
+          }),
+        }
+      )
+        .then((response) => {
+          console.log(response);
+          this.getAllVoulunteer();
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    AcceptVolunteer(id) {
+      fetch(
+        "http://localhost/fil-rouge-find-pet/NotificationController/AcceptedVolunteer",
+        {
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
           },

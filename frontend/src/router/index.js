@@ -92,6 +92,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from) => {
+  //check if user is logged in to connect to pusher
   if(localStorage.getItem('user_id')){
     store.dispatch('ConnectPusher');
   }

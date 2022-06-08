@@ -19,42 +19,42 @@
     "
   >
     <div class="py-3 px-4 text-sm text-gray-900 dark:text-gray-200">
-      <div>notification</div>
+      <div>notifications</div>
     </div>
-    <div v-if="Anwsers.length <= 0" class="ml-3">
+    <div v-if="Notifications.length <= 0" class="ml-3">
       <a>No notifacation</a>
     </div>
     <ul
-      v-for="(Anwser, index) in Anwsers"
+      v-for="(Notifications, index) in Notifications"
       :key="index"
       class="py-1 text-sm text-gray-700 dark:text-gray-200"
       aria-labelledby="dropdownSmallButton"
     >
       <li class="flex">
         <img
-          v-if="Anwser"
+          v-if="Notifications"
           src="https://thumbs.dreamstime.com/b/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.jpg"
           class="w-20 h-20 m-2 rounded-full"
           alt=""
         />
         <div class="ml-2">
-          <p class="font-bold">{{ Anwser.title }}</p>
+          <p class="font-bold">{{ Notifications.title }}</p>
           <p>
             <span
-              v-if="Anwser.status === 'Rejected'"
+              v-if="Notifications.status === 'Rejected'"
               class="text-red-500 cursor-pointer"
             >
               rejected
             </span>
             <span
-              v-if="Anwser.status === 'Accepted'"
+              v-if="Notifications.status === 'Accepted'"
               class="text-green-500 cursor-pointer"
             >
               Accepted
             </span>
           </p>
           <p>
-            {{ Anwser.message }}
+            {{ Notifications.message }}
           </p>
         </div>
       </li>
@@ -72,7 +72,7 @@ import { useStore } from "vuex";
 //   cluster: "eu",
 // });
 // let resultO = ref([]);
-// var Anwser = computed(() => {
+// var answers = computed(() => {
 //   return resultO.value;
 // });
 
@@ -85,8 +85,8 @@ import { useStore } from "vuex";
 //   resultO.value= result;
 // });
 const store = useStore();
-const Anwsers = computed(() => {
-  return store.state.answers;
+const Notifications = computed(() => {
+  return store.state.notifications;
 });
 </script>
 

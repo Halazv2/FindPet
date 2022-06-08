@@ -17,19 +17,23 @@ export default createStore({
     },
     id: localStorage.getItem("user_id"),
     Connected: false,
-    answers: ref([]),
+    notifications: ref([]),
+    newNotification: false,
   },
   getters: {
-    successAlert: (state) => state.SuccessAlert
+    successAlert: (state) => state.SuccessAlert,
   },
   mutations: {
     setSuccessAlert(state, payload) {
       state.SuccessAlert = payload;
-      console.log('im commit success alert' + state.SuccessAlert);
+      // console.log("im commit success alert" + state.SuccessAlert);
     },
-    setAnswers(state, payload) {
-      state.answers.push(payload);
-    }
+    setnotifications(state, payload) {
+      state.notifications.push(payload);
+    },
+    showDotNotification(state, payload) {
+      state.newNotification = payload;
+    },
   },
   actions: {
     getuser() {
@@ -45,9 +49,9 @@ export default createStore({
           console.log(err);
         });
     },
-    ConnectPusher({commit}) {
+    ConnectPusher({ commit }) {
       Pusher.logToConsole = true;
-      var pusher = new Pusher("a69b81e700aaa217eaf4", {
+      let pusher = new Pusher("a69b81e700aaa217eaf4", {
         cluster: "eu",
       });
       let resultO = ref([]);
@@ -59,13 +63,18 @@ export default createStore({
       let channel = pusher.subscribe("my-channel-" + id);
 
       channel.bind("my-event", function (data) {
-        var result1 = JSON.stringify(data);
-        var result = JSON.parse(result1);
+        let result1 = JSON.stringify(data);
+        let result = JSON.parse(result1);
         resultO.value = result;
-        commit("setAnswers", result);
+        commit("setnotifications", result);
+        console.log('Taha was here with : ' + data['titel']);
+
+        if (data !== null) {
+          console.log('Taha was here')
+          commit("showDotNotification", true);
+        }
       });
     },
-
   },
   modules: {},
 });
