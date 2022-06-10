@@ -32,43 +32,42 @@ class NotificationController extends Controller
                 'status' => 'Rejected',
                 'message' => 'your application for volunteering in the event been rejected if you have any questions please contact us',
             ];
-            // $Data {
-            //     "titel": "Application Review",
-            //     "status" => "Rejected",
-            //     "message" => "your application for volunteering in the event been rejected"
-            // };
-            $this->pusher->trigger('my-channel-' . $id, 'my-event',  $Data);
+            try{
+                $this->pusher->trigger('my-channel', 'my-event', $Data);
+                $accepted = $this->model('NotificationModel');
+                $accepted->acceptedVolunteer(0, $id);
+            }catch(Exception $e){            
+                echo $e->getMessage();
+            }
         }
     }
-    public function deleteVolunteer()
+    public function deleteVolunteer($id)
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
-            $data = json_decode(file_get_contents("php://input"));
-            $id = $data->id;
-            $admin = $this->model('AdminModel');
-            $admin->deleteVolunteer($id);
-            return $this->json(['message' => 'Post Deleted Successfully']);
-        }
+        $admin = $this->model('AdminModel');
+        $admin->deleteVolunteer($id);
+        return $this->json(['message' => 'Post Deleted Successfully']);
     }
     public function AcceptedVolunteer()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = json_decode(file_get_contents("php://input"));
             $id = $data->id;
+            // $event = $data->event;
 
             $Data = [
                 'titel' => 'Application Review',
+                // 'evant' => $event,
                 'status' => 'Accepted',
                 'message' => 'Your application for volunteering in the event been Accepted, see you soon!! if you have any questions please contact us',
             ];
             try {
                 $this->pusher->trigger('my-channel-' . $id, 'my-event',  $Data);
-                $this->deleteVolunteer($id);
+                // self::deleteVolunteer($id);
+                $accepted = $this->model('NotificationModel');
+                $accepted->acceptedVolunteer(1, $id);
             } catch (Exception $e) {
                 echo $e->getMessage();
             }
-            // if notification been sent to the user then call the delete function 
-
         }
     }
 }

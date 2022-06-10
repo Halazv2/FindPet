@@ -74,8 +74,10 @@ export default {
     // if (this.user_id) {
     //   this.$store.state.Connected = true;
     // }
+    
   },
 };
+
 </script>
 
 

@@ -96,6 +96,7 @@ router.beforeEach((to, from) => {
   if(localStorage.getItem('user_id')){
     store.dispatch('ConnectPusher');
   }
+  
   if (
     to.name === "ProfileView" ||
     to.name === "FeedView" ||
