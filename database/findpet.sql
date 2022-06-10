@@ -68,6 +68,7 @@ CREATE TABLE `contact-us` (
   `Message` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+
 -- --------------------------------------------------------
 
 --
