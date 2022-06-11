@@ -8,7 +8,8 @@ class UserModel
         $conn = new Database();
         $this->db = $conn->DB;
     }
-    public function register($FirstName, $LastName, $Email, $Password,$ProfilePic)
+
+    public function register($FirstName, $LastName, $Email, $Password, $ProfilePic)
     {
         $request = "INSERT  INTO users (FirstName, LastName, Email, Password, ProfilePic) VALUES (:FirstName, :LastName, :Email, :Password, :ProfilePic)";
         $check = "SELECT * FROM users WHERE Email = :Email";
@@ -41,11 +42,13 @@ class UserModel
         return $user;
     }
 
-    public function login($Email, $Password)
+    public function login($Email, $Password, $status)
     {
-        $request = "SELECT * FROM users WHERE Email = :Email";
+        $request = "SELECT * FROM users WHERE Email = :Email ;
+        UPDATE users SET status = :status WHERE Email = :Email";
         $stmt = $this->db->prepare($request);
         $stmt->bindParam(':Email', $Email);
+        $stmt->bindParam(':status', $status);
         $stmt->execute();
         //check if user is registered
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -62,6 +65,17 @@ class UserModel
         }
     }
 
+
+    public function logout($Email, $status)
+    {
+        $request = "UPDATE users SET status = :status WHERE Email = :Email";
+        $stmt = $this->db->prepare($request);
+        $stmt->bindParam(':Email', $Email);
+        $stmt->bindParam(':status', $status);
+        $stmt->execute();
+        return 0;
+    }
+    
     public function updateUser($id, $FirstName, $LastName, $Email, $Password, $PhoneNumber, $City, $ProfilePic)
     {
         $request = "UPDATE users SET FirstName = :FirstName, LastName = :LastName, Email = :Email, Password = :Password, PhoneNumber = :PhoneNumber, City = :City, ProfilePic = :ProfilePic WHERE id = :id";
@@ -79,6 +93,7 @@ class UserModel
             ]
         );
     }
+
     public function volunteer($id, $event_id, $Description)
     {
         if ($this->CheckVolunteer($id, $event_id) == true) {

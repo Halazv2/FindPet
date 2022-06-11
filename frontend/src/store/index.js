@@ -67,10 +67,7 @@ export default createStore({
         let result = JSON.parse(result1);
         resultO.value = result;
         commit("setnotifications", result);
-        console.log('Taha was here with : ' + data['titel']);
-
         if (data !== null) {
-          console.log('Taha was here')
           commit("showDotNotification", true);
         }
       });

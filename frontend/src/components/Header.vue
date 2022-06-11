@@ -134,7 +134,6 @@
         <div v-if="notification">
           <Notification />
         </div>
-
         <!-- end of notification -->
 
         <button @click="menuToggle">
@@ -231,9 +230,10 @@
 <script>
 import { Icon } from "@iconify/vue";
 import Notification from "@/components/Notification.vue";
-import {computed} from "vue";
+import { computed } from "vue";
+import axios from "axios";
 export default {
-
+  inject: ["setRole"],
   data() {
     return {
       menu: false,
@@ -246,8 +246,8 @@ export default {
     Notification,
   },
 
-  computed : {
-    newNotification(){
+  computed: {
+    newNotification() {
       return this.$store.state.newNotification;
     },
   },
@@ -255,15 +255,26 @@ export default {
   methods: {
     notificationToggle() {
       this.notification = !this.notification;
-      if(this.notification==false){
+      if (this.notification == false) {
         this.$store.commit("showDotNotification", false);
       }
     },
     signOut() {
-      console.log("sign out");
-      localStorage.removeItem("user_id");
-      localStorage.removeItem("Role");
-      window.location.href = "/Role";
+      // console.log("sign out");
+      fetch("http://localhost/fil-rouge-find-pet/UserController/logout", {
+        method: "POST",
+        body: JSON.stringify({
+          Email: localStorage.getItem("Email"),
+        }), 
+      }).then((res) => {
+        if (res) {
+          this.$router.push("/Role");
+          localStorage.removeItem("user_id");
+          localStorage.removeItem("Role");
+          localStorage.removeItem("Email");
+          this.setRole("");
+        }
+      });
     },
     menuToggle: function () {
       this.menu = !this.menu;

@@ -46,16 +46,18 @@
                 $Email = $data->Email;
                 $Password = $data->Password;
                 $user = $this->model('UserModel');
-                $user->login($Email, $Password);
+                $user->login($Email, $Password,1);
             }
         }
 
         public function logout()
         {
-            //unset session variables
-            $user = $this->model('UserModel');
-            $user->logout();
-            echo json_encode(['message' => 'User logged out']);
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $data = json_decode(file_get_contents("php://input"));
+                $Email = $data->Email;
+                $user = $this->model('UserModel');
+                $user->logout($Email, 0);
+            }
         }
         public function updateUser()
         {
