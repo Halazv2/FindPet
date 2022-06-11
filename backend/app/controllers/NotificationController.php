@@ -32,11 +32,11 @@ class NotificationController extends Controller
                 'status' => 'Rejected',
                 'message' => 'your application for volunteering in the event been rejected if you have any questions please contact us',
             ];
-            try{
-                $this->pusher->trigger('my-channel', 'my-event', $Data);
+            try {
+                $this->pusher->trigger('my-channel-' . $id, 'my-event',  $Data);
                 $accepted = $this->model('NotificationModel');
-                $accepted->acceptedVolunteer(0, $id);
-            }catch(Exception $e){            
+                $accepted->acceptedOrRejectVolunteer(0, $id, $Data['message']);
+            } catch (Exception $e) {
                 echo $e->getMessage();
             }
         }
@@ -64,7 +64,7 @@ class NotificationController extends Controller
                 $this->pusher->trigger('my-channel-' . $id, 'my-event',  $Data);
                 // self::deleteVolunteer($id);
                 $accepted = $this->model('NotificationModel');
-                $accepted->acceptedVolunteer(1, $id);
+                $accepted->acceptedOrRejectVolunteer(1, $id, $Data['message']);
             } catch (Exception $e) {
                 echo $e->getMessage();
             }
