@@ -70,4 +70,14 @@ class NotificationController extends Controller
             }
         }
     }
+    public function getNotification()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $data = json_decode(file_get_contents("php://input"));
+            $user_id = $data->user_id;
+            $notification = $this->model('NotificationModel');
+            $result = $notification->getNotification($user_id);
+            return $this->json($result);
+        }
+    }
 }

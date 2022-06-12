@@ -39,12 +39,6 @@ class NotificationModel
                 $stmt->bindParam(':message', $message);
                 $stmt->execute();
             }
-            // $sql = "INSERT INTO notifications (user_id, status,message) VALUES (:user_id, :status, :message)";
-            // $stmt = $this->db->prepare($sql);
-            // $stmt->bindParam(':user_id', $user_id);
-            // $stmt->bindParam(':status', $accpted);
-            // $stmt->bindParam(':message', $message);
-            // $stmt->execute();
         }
     }
     public function checkUserOnline($user_id)
@@ -69,6 +63,24 @@ class NotificationModel
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($result) {
             return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function getNotification($user_id)
+    {
+        if ($this->checkUserOnline($user_id) == true) {
+            $sql = "SELECT * FROM notifications WHERE user_id = :user_id ";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindParam(':user_id', $user_id);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($result) {
+                return $result;
+            } else {
+                return false;
+            }
         } else {
             return false;
         }

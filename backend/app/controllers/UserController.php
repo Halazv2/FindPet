@@ -46,7 +46,7 @@
                 $Email = $data->Email;
                 $Password = $data->Password;
                 $user = $this->model('UserModel');
-                $user->login($Email, $Password,1);
+                $user->login($Email, $Password, 1);
             }
         }
 
@@ -66,7 +66,14 @@
                 $FirstName = $_POST['FirstName'];
                 $LastName = $_POST['LastName'];
                 $Email = $_POST['Email'];
-                $Password = password_hash($_POST['Password'], PASSWORD_DEFAULT);
+                //if user didn't change his password
+                // if ($_POST['Password'] === "") {
+                //     $Password = $_POST['Password'];
+                // }
+                // //if user changed his password
+                // else {
+                //     $Password = password_hash($_POST['Password'], PASSWORD_DEFAULT);
+                // }
                 $PhoneNumber = $_POST['PhoneNumber'];
                 $City = $_POST['City'];
                 $ProfilePic = $_FILES['ProfilePic']['name'] ?? null;
@@ -83,14 +90,14 @@
                         move_uploaded_file($_FILES['ProfilePic']['tmp_name'], 'C:\xampp\htdocs\fil-rouge-find-pet\backend\public\uploads\profileImages\\' . $target_path);
                         // Insert record
                         $user = $this->model('UserModel');
-                        $user->updateUser($id, $FirstName, $LastName, $Email, $Password, $PhoneNumber, $City, $target_path);
+                        $user->updateUser($id, $FirstName, $LastName, $Email, $PhoneNumber, $City, $target_path);
                         return $this->json(['message' => 'User updated successfully']);
                     } else {
                         return false;
                     }
                 } else {
                     $user = $this->model('UserModel');
-                    $user->updateUser($id, $FirstName, $LastName, $Email, $Password, $PhoneNumber, $City, "avatar.jpg");
+                    $user->updateUser($id, $FirstName, $LastName, $Email, $PhoneNumber, $City, "avatar.jpg");
                     return true;
                 }
             }

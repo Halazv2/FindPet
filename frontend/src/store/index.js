@@ -72,6 +72,23 @@ export default createStore({
         }
       });
     },
+    getNotifications({ commit }) {
+      axios
+        .get(
+          "http://localhost/fil-rouge-find-pet/NotificationController/getNotification",
+          {
+            body: {
+              user_id: localStorage.getItem("user_id"),
+            },
+          }
+        )
+        .then((response) => {
+          commit("setnotifications", response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   },
   modules: {},
 });

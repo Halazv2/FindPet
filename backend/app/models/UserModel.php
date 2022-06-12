@@ -76,16 +76,15 @@ class UserModel
         return 0;
     }
     
-    public function updateUser($id, $FirstName, $LastName, $Email, $Password, $PhoneNumber, $City, $ProfilePic)
+    public function updateUser($id, $FirstName, $LastName, $Email, $PhoneNumber, $City, $ProfilePic)
     {
-        $request = "UPDATE users SET FirstName = :FirstName, LastName = :LastName, Email = :Email, Password = :Password, PhoneNumber = :PhoneNumber, City = :City, ProfilePic = :ProfilePic WHERE id = :id";
+        $request = "UPDATE users SET FirstName = :FirstName, LastName = :LastName, Email = :Email, PhoneNumber = :PhoneNumber, City = :City, ProfilePic = :ProfilePic WHERE id = :id";
         $stmt = $this->db->prepare($request);
         $stmt->execute(
             [
                 'FirstName' => $FirstName,
                 'LastName' => $LastName,
                 'Email' => $Email,
-                'Password' => $Password,
                 'PhoneNumber' => $PhoneNumber,
                 'City' => $City,
                 'ProfilePic' => $ProfilePic,

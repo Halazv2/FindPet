@@ -25,36 +25,36 @@
       <a>No notifacation</a>
     </div>
     <ul
-      v-for="(Notifications, index) in Notifications"
+      v-for="(Notification, index) in Notifications"
       :key="index"
       class="py-1 text-sm text-gray-700 dark:text-gray-200"
       aria-labelledby="dropdownSmallButton"
     >
       <li class="flex">
         <img
-          v-if="Notifications"
+          v-if="Notification"
           src="https://thumbs.dreamstime.com/b/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.jpg"
           class="w-20 h-20 m-2 rounded-full"
           alt=""
         />
         <div class="ml-2">
-          <p class="font-bold">{{ Notifications.title }}</p>
+          <p class="font-bold">{{ Notification.title }}</p>
           <p>
             <span
-              v-if="Notifications.status === 'Rejected'"
+              v-if="Notification.status === 'Rejected'"
               class="text-red-500 cursor-pointer"
             >
               rejected
             </span>
             <span
-              v-if="Notifications.status === 'Accepted'"
+              v-if="Notification.status === 'Accepted'"
               class="text-green-500 cursor-pointer"
             >
               Accepted
             </span>
           </p>
           <p>
-            {{ Notifications.message }}
+            {{ Notification.message }}
           </p>
         </div>
       </li>
@@ -64,8 +64,10 @@
 
 <script setup>
 // import Pusher from "pusher-js";
-import { computed } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { useStore } from "vuex";
+import axios from "axios";
+
 
 // Pusher.logToConsole = true;
 // var pusher = new Pusher("a69b81e700aaa217eaf4", {
@@ -88,6 +90,10 @@ const store = useStore();
 const Notifications = computed(() => {
   return store.state.notifications;
 });
+
+onMounted:() => {
+  store.dispatch("getNotifications");
+}
 </script>
 
 <style>
