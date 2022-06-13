@@ -33,6 +33,7 @@ class NotificationController extends Controller
                 'message' => 'your application for volunteering in the event been rejected if you have any questions please contact us',
             ];
             try {
+
                 $this->pusher->trigger('my-channel-' . $id, 'my-event',  $Data);
                 $accepted = $this->model('NotificationModel');
                 $accepted->acceptedOrRejectVolunteer(0, $id, $Data['message']);
@@ -73,11 +74,12 @@ class NotificationController extends Controller
     public function getNotification()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            $data = json_decode(file_get_contents("php://input"));
-            $user_id = $data->user_id;
+            $user_id = $_GET['user_id'];
             $notification = $this->model('NotificationModel');
             $result = $notification->getNotification($user_id);
-            return $this->json($result);
+            if ($result) {
+                return $this->json($result);
+            }
         }
     }
 }

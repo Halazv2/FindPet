@@ -44,6 +44,7 @@
         </h2>
       </div>
       <div class="mr-5 flex">
+        <!-- theme and search bar -->
         <div
           class="
             input-box
@@ -119,6 +120,7 @@
             ></path>
           </svg>
         </button>
+        <!-- theme and search bar -->
 
         <!-- notification -->
         <div class="flex relative cursor-pointer" @click="notificationToggle">
@@ -265,7 +267,7 @@ export default {
         method: "POST",
         body: JSON.stringify({
           Email: localStorage.getItem("Email"),
-        }), 
+        }),
       }).then((res) => {
         if (res) {
           this.$router.push("/Role");

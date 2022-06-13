@@ -37,7 +37,7 @@
       <h1 class="text-5xl font-bold text-center mb-2  dark:text-white">
         Get Involved
       </h1>
-      <p class="text-center text-lg ">
+      <p class="text-center text-lg dark:text-white ">
         There are so afun ways to get involved and support our lifesaving
         mission. We offer events and training classes that are for, about and
         sometimes even with your favorite animal friend. We’re pleased to say

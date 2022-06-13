@@ -1,6 +1,7 @@
 import { computed, ref } from "vue";
 import Pusher from "pusher-js";
 import { createStore } from "vuex";
+import axios from "axios";
 
 export default createStore({
   state: {
@@ -17,11 +18,13 @@ export default createStore({
     },
     id: localStorage.getItem("user_id"),
     Connected: false,
-    notifications: ref([]),
+    notifications:  [],
+    notificationDb: [],
     newNotification: false,
   },
   getters: {
     successAlert: (state) => state.SuccessAlert,
+    notificationDb (state) { return state.notifications }
   },
   mutations: {
     setSuccessAlert(state, payload) {
@@ -30,6 +33,9 @@ export default createStore({
     },
     setnotifications(state, payload) {
       state.notifications.push(payload);
+    },
+    setnotificationDb(state, payload) {
+      state.notificationDb.push(payload);
     },
     showDotNotification(state, payload) {
       state.newNotification = payload;
@@ -72,18 +78,15 @@ export default createStore({
         }
       });
     },
-    getNotifications({ commit }) {
+    getNotifications({ commit, state }) {
       axios
         .get(
-          "http://localhost/fil-rouge-find-pet/NotificationController/getNotification",
-          {
-            body: {
-              user_id: localStorage.getItem("user_id"),
-            },
-          }
+          "http://localhost/fil-rouge-find-pet/NotificationController/getNotification?user_id=" +
+            state.id
         )
         .then((response) => {
-          commit("setnotifications", response.data);
+          // console.log(response.data);
+          commit("setnotificationDb", response.data);
         })
         .catch((error) => {
           console.log(error);

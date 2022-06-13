@@ -21,44 +21,101 @@
     <div class="py-3 px-4 text-sm text-gray-900 dark:text-gray-200">
       <div>notifications</div>
     </div>
-    <div v-if="Notifications.length <= 0" class="ml-3">
-      <a>No notifacation</a>
+    <div v-if="Notifications.length <= 0 &&  !notificationDb[0]">
+      <img src="../assets/images/no_notifications.png" alt="" />
+      <a class="dark:text-gray-400 flex justify-center pb-5"
+        >No notifacation</a
+      >
     </div>
-    <ul
-      v-for="(Notification, index) in Notifications"
-      :key="index"
-      class="py-1 text-sm text-gray-700 dark:text-gray-200"
-      aria-labelledby="dropdownSmallButton"
-    >
-      <li class="flex">
-        <img
-          v-if="Notification"
-          src="https://thumbs.dreamstime.com/b/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.jpg"
-          class="w-20 h-20 m-2 rounded-full"
-          alt=""
-        />
-        <div class="ml-2">
-          <p class="font-bold">{{ Notification.title }}</p>
-          <p>
-            <span
-              v-if="Notification.status === 'Rejected'"
-              class="text-red-500 cursor-pointer"
-            >
-              rejected
-            </span>
-            <span
-              v-if="Notification.status === 'Accepted'"
-              class="text-green-500 cursor-pointer"
-            >
-              Accepted
-            </span>
-          </p>
-          <p>
-            {{ Notification.message }}
-          </p>
-        </div>
-      </li>
-    </ul>
+    <div>
+      <!-- notifacation with web socket -->
+      <ul
+        v-for="(Notification, index) in Notifications"
+        :key="index"
+        class="py-1 text-sm text-gray-700 dark:text-gray-200"
+        aria-labelledby="dropdownSmallButton"
+      >
+        <li class="flex">
+          <img
+            v-if="Notification"
+            src="https://thumbs.dreamstime.com/b/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.jpg"
+            class="w-20 h-20 m-2 rounded-full"
+            alt=""
+          />
+          <div class="ml-2">
+            <p class="font-bold">{{ Notification.title }}</p>
+            <p>
+              <span
+                v-if="
+                  Notification.status === 'Rejected' ||
+                  Notification.status === '0'
+                "
+                class="text-red-500 cursor-pointer"
+              >
+                rejected
+              </span>
+              <span
+                v-if="
+                  Notification.status === 'Accepted' ||
+                  Notification.status === '1'
+                "
+                class="text-green-500 cursor-pointer"
+              >
+                Accepted
+              </span>
+            </p>
+            <p>
+              {{ Notification.message }}
+            </p>
+          </div>
+        </li>
+      </ul>
+      <!-- end of notifacation with web socket -->
+
+      <!-- notifacation from data base -->
+      <ul
+        v-for="(Notification, index) in notificationDb"
+        :key="index"
+        class="py-1 text-sm text-gray-700 dark:text-gray-200"
+        aria-labelledby="dropdownSmallButton"
+      >
+        <li class="flex">
+          <img
+            v-if="Notification"
+            src="https://thumbs.dreamstime.com/b/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.jpg"
+            class="w-20 h-20 m-2 rounded-full"
+            alt=""
+          />
+          <div class="ml-2">
+            <p class="font-bold">{{ Notification.title }}</p>
+            <p>
+              <span
+                v-if="
+                  Notification.status === 'Rejected' ||
+                  Notification.status === '0'
+                "
+                class="text-red-500 cursor-pointer"
+              >
+                rejected
+              </span>
+              <span
+                v-if="
+                  Notification.status === 'Accepted' ||
+                  Notification.status === '1'
+                "
+                class="text-green-500 cursor-pointer"
+              >
+                Accepted
+              </span>
+            </p>
+            <p>
+              {{ Notification.message }}
+            </p>
+          </div>
+        </li>
+      </ul>
+      <!-- end of notifacation from data base -->
+    </div>
   </div>
 </template>
 
@@ -67,7 +124,6 @@
 import { computed, onMounted, ref } from "vue";
 import { useStore } from "vuex";
 import axios from "axios";
-
 
 // Pusher.logToConsole = true;
 // var pusher = new Pusher("a69b81e700aaa217eaf4", {
@@ -90,10 +146,15 @@ const store = useStore();
 const Notifications = computed(() => {
   return store.state.notifications;
 });
-
-onMounted:() => {
-  store.dispatch("getNotifications");
-}
+const notificationDb = computed(() => {
+  return store.state.notificationDb;
+});
+onMounted(() => {
+  if (!store.state.notificationDb.length) {
+    store.dispatch("getNotifications");
+  }
+});
+// store.dispatch("getNotifications");
 </script>
 
 <style>
