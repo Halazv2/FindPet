@@ -59,15 +59,26 @@ class FeedModel
     }
     public function updatePost($id, $Title, $PetType, $Description, $PostType, $Image)
     {
-        $request = "UPDATE posts SET Title = :Title, PetType = :PetType, Description = :Description, PostType = :PostType, Image = :Image WHERE id = :id";
-        $stmt = $this->db->prepare($request);
-        $stmt->bindParam(':Title', $Title);
-        $stmt->bindParam(':PetType', $PetType);
-        $stmt->bindParam(':Description', $Description);
-        $stmt->bindParam(':PostType', $PostType);
-        $stmt->bindParam(':Image', $Image);
-        $stmt->bindParam(':id', $id);
-        $stmt->execute();
+        if ($Image == null) {
+            $request = "UPDATE posts SET `Title` = :Title, `PetType` = :PetType, `Description` = :Description, `PostType` = :PostType WHERE `id` = :id";
+            $stmt = $this->db->prepare($request);
+            $stmt->bindParam(':Title', $Title);
+            $stmt->bindParam(':PetType', $PetType);
+            $stmt->bindParam(':Description', $Description);
+            $stmt->bindParam(':PostType', $PostType);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+        } else {
+            $request = "UPDATE posts SET Title = :Title, PetType = :PetType, Description = :Description, PostType = :PostType, Image = :Image WHERE id = :id";
+            $stmt = $this->db->prepare($request);
+            $stmt->bindParam(':Title', $Title);
+            $stmt->bindParam(':PetType', $PetType);
+            $stmt->bindParam(':Description', $Description);
+            $stmt->bindParam(':PostType', $PostType);
+            $stmt->bindParam(':Image', $Image);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+        }
     }
 
     // LIKES
@@ -125,7 +136,7 @@ class FeedModel
          LEFT join users on posts.UserID = users.id
          LEFT join comments on posts.id = comments.post_id 
          group by posts.id";
-         
+
         $stmt = $this->db->prepare($request);
         $stmt->execute();
         $feed = $stmt->fetchAll(PDO::FETCH_ASSOC);
