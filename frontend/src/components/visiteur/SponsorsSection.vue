@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <h1>Our Sponsors & Partners</h1>
+  <div class="flex flex-col items-center">
+    <h1 class="font-bold text-4xl flex flex-col lg:flex-row py-7 ">Our Sponsors & Partners</h1>
     <!-- card -->
-    <hooper class="scrolling flex justify-center m-16 ">
-      <div class="card ">
+    <div class="scrolling flex flex-wrap justify-center mb-16 ">
+      <div class="card">
         <div class="card card-compact w-48 bg-base-100 shadow-xl h-48">
           <figure>
             <img
@@ -23,17 +23,14 @@
           </figure>
         </div>
       </div>
-      <div class="card ">
+      <div class="card">
         <div class="card card-compact w-48 bg-base-100 shadow-xl h-48">
           <figure>
-            <img
-              src="../../assets/images/Sponsors/SFT.png"
-              alt="SFT"
-            />
+            <img src="../../assets/images/Sponsors/SFT.png" alt="SFT" />
           </figure>
         </div>
       </div>
-      <div class="card ">
+      <div class="card">
         <div class="card card-compact w-48 bg-base-100 shadow-xl h-48">
           <figure>
             <img
@@ -43,30 +40,24 @@
           </figure>
         </div>
       </div>
-    </hooper>
+    </div>
   </div>
 </template>
 
 <script>
-  import { Hooper, Slide } from 'hooper';
-  import 'hooper/dist/hooper.css';
-  export default {
-    name: 'App',
-    components: {
-      Hooper,
-      Slide
-    }
-  }
+export default {
+  name: "App",
+  components: {},
+};
 </script>
 
 <style lang="scss" scoped>
 .scrolling {
   gap: 10px;
-  .card{
-      display: flex;
-      justify-content: center;
-      align-items: center;
+  .card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
-
 </style>
