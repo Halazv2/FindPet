@@ -97,7 +97,7 @@
           </a>
         </div>
       </div>
-      <content class="flex grid-cols-6 absolute bottom-0 w-full" v-if="Role == 'User'">
+      <content  class="flex grid-cols-6 lg:absolute bottom-0 w-full" v-if="Role == 'User'">
         <div class="">
           <img
             src="../../../assets/images/catMatch.png"
@@ -182,6 +182,7 @@ export default {
     regorecte(link) {
       this.$router.push(link);
     },
+    
   },
   mounted() {},
 };

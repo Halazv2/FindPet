@@ -3,7 +3,7 @@
     <div class="mx-6 py-10 text-center md:text-left">
       <!-- <div class="grid grid-1 md:grid-cols-2 lg:grid-cols-4 gap-8"> -->
       <div class="flex lg:flex-row flex-col justify-evenly">
-        <div class="flex flex-col justify-center items-center  w-1/2">
+        <div class="flex flex-col justify-center items-center lg:mb-0 mb-4 lg:w-1/2">
           <p class="mb-4">
             <a href="#!" class="text-gray-600">Home</a>
           </p>
@@ -186,16 +186,15 @@
           </p>
           <div class="relative mt-4">
             <div class="container">
-              <div class="content">
-                <form class="subscription">
+              <div class="content lg:w-[360px] w-full">
+                <form class="subscription w-full  ">
                   <input
-                    class="add-email"
+                    class="add-email w-full"
                     type="email"
                     placeholder="support@findpet.com"
                   />
                   <button class="submit-email" ref="submitEmail" type="button">
                     <span class="before-submit">Subscribe</span>
-                    <span class="after-submit">Thank you for subscribing!</span>
                   </button>
                 </form>
               </div>
@@ -228,7 +227,7 @@
 }
 
 .content {
-  width: 360px;
+  
   height: 40px;
   border-radius: 60px;
   overflow: hidden;
