@@ -21,11 +21,9 @@
     <div class="py-3 px-4 text-sm text-gray-900 dark:text-gray-200">
       <div>notifications</div>
     </div>
-    <div v-if="Notifications.length <= 0 &&  !notificationDb[0]">
+    <div v-if="Notifications.length <= 0 && !notificationDb[0]">
       <img src="../assets/images/no_notifications.png" alt="" />
-      <a class="dark:text-gray-400 flex justify-center pb-5"
-        >No notifacation</a
-      >
+      <a class="dark:text-gray-400 flex justify-center pb-5">No notifacation</a>
     </div>
     <div>
       <!-- notifacation with web socket -->
@@ -43,12 +41,11 @@
             alt=""
           />
           <div class="ml-2">
-            <p class="font-bold">{{ Notification.title }}</p>
+            <p class="font-bold">{{ Notification.title }} </p>
             <p>
               <span
                 v-if="
-                  Notification.status === 'Rejected' ||
-                  Notification.status === '0'
+                  Notification.status === 'Rejected' || Notification.status == 0
                 "
                 class="text-red-500 cursor-pointer"
               >
@@ -56,8 +53,7 @@
               </span>
               <span
                 v-if="
-                  Notification.status === 'Accepted' ||
-                  Notification.status === '1'
+                  Notification.status === 'Accepted' || Notification.status == 1
                 "
                 class="text-green-500 cursor-pointer"
               >
@@ -74,8 +70,8 @@
 
       <!-- notifacation from data base -->
       <ul
-        v-for="(Notification, index) in notificationDb"
-        :key="index"
+        v-for="Notification in notificationDb"
+        :key="Notification.id"
         class="py-1 text-sm text-gray-700 dark:text-gray-200"
         aria-labelledby="dropdownSmallButton"
       >
@@ -87,12 +83,12 @@
             alt=""
           />
           <div class="ml-2">
-            <p class="font-bold">{{ Notification.title }}</p>
+            <p class="font-bold">{{ Notification.title }} {{Notification.event_id}}</p>
             <p>
               <span
                 v-if="
                   Notification.status === 'Rejected' ||
-                  Notification.status === '0'
+                  Notification.status == 0
                 "
                 class="text-red-500 cursor-pointer"
               >
@@ -101,7 +97,7 @@
               <span
                 v-if="
                   Notification.status === 'Accepted' ||
-                  Notification.status === '1'
+                  Notification.status == 1
                 "
                 class="text-green-500 cursor-pointer"
               >

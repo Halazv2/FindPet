@@ -16,47 +16,37 @@ class NotificationModel
         $stmt->bindParam(':user_id', $user_id);
         $stmt->execute();
     }
-    public function acceptedOrRejectVolunteer($accpted, $user_id, $message)
+
+    public function acceptedOrRejectVolunteer($accpted, $user_id, $message, $event_id)
     {
-        //if user is online then send notification 
-        if ($this->checkUserOnline($user_id) == true) {
-            //update volunteer status and message to accepted or rejected
-            $sql = "UPDATE volunteer SET status = :status message = :message WHERE user_id = :user_id";
+        //update volunteer status and message to accepted or rejected
+        $sql = "UPDATE volunteer SET status = :status WHERE user_id = :user_id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':status', $accpted);
+        $stmt->bindParam(':user_id', $user_id);
+        $stmt->execute();
+        if ($this->checkifUserExist($user_id, $event_id) == true) {
+            //update notification status and message to accepted or rejected
+            $sql = "UPDATE notifications SET status = :status, message = :message WHERE user_id = :user_id AND event_id = :event_id";
             $stmt = $this->db->prepare($sql);
             $stmt->bindParam(':status', $accpted);
             $stmt->bindParam(':user_id', $user_id);
             $stmt->bindParam(':message', $message);
-            if ($this->checkifUserExist($user_id) == true) {
-                $sql = "UPDATE notifications SET status = :status WHERE user_id = :user_id";
-                $stmt = $this->db->prepare($sql);
-                $stmt->bindParam(':status', $accpted);
-                $stmt->bindParam(':user_id', $user_id);
-                $stmt->execute();
-            } else {
-                $this->insertNotification($user_id, $message, $accpted);
-            }
+            $stmt->bindParam(':event_id', $event_id);
+            $stmt->execute();
         } else {
-
-            if ($this->checkifUserExist($user_id) == true) {
-                $sql = "UPDATE notifications SET status = :status WHERE user_id = :user_id";
-                $stmt = $this->db->prepare($sql);
-                $stmt->bindParam(':status', $accpted);
-                $stmt->bindParam(':user_id', $user_id);
-                $stmt->execute();
-            } else {
-                $this->insertNotification($user_id, $message, $accpted);
-            }
+            $this->insertNotification($user_id, $message, $accpted, $event_id);
         }
     }
 
-
-    public function insertNotification($user_id, $message, $accpted)
+    public function insertNotification($user_id, $message, $accpted, $event_id)
     {
-        $sql = "INSERT INTO notifications (user_id, status,message) VALUES (:user_id, :status, :message)";
+        $sql = "INSERT INTO notifications (user_id, message, status, event_id) VALUES (:user_id, :message, :status, :event_id)";
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':user_id', $user_id);
-        $stmt->bindParam(':status', $accpted);
         $stmt->bindParam(':message', $message);
+        $stmt->bindParam(':status', $accpted);
+        $stmt->bindParam(':event_id', $event_id);
         $stmt->execute();
     }
 
@@ -73,11 +63,12 @@ class NotificationModel
             return false;
         }
     }
-    public function checkifUserExist($user_id)
+    public function checkifUserExist($user_id, $event_id)
     {
-        $sql = "SELECT * FROM notifications WHERE user_id = :user_id";
+        $sql = "SELECT * FROM notifications WHERE user_id = :user_id AND event_id = :event_id";
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':user_id', $user_id);
+        $stmt->bindParam(':event_id', $event_id);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($result) {
@@ -89,12 +80,12 @@ class NotificationModel
 
     public function getNotification($user_id)
     {
-
-        $sql = "SELECT * FROM notifications WHERE user_id = :user_id ";
+        $sql = "SELECT * FROM notifications WHERE user_id = :user_id";  
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':user_id', $user_id);
         $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
+
     }
 }

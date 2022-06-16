@@ -26,6 +26,7 @@ class NotificationController extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = json_decode(file_get_contents("php://input"));
             $id = $data->id;
+            $event = $data->event_id;
 
             $Data = [
                 'titel' => 'Application Review',
@@ -36,7 +37,7 @@ class NotificationController extends Controller
 
                 $this->pusher->trigger('my-channel-' . $id, 'my-event',  $Data);
                 $accepted = $this->model('NotificationModel');
-                $accepted->acceptedOrRejectVolunteer(0, $id, $Data['message']);
+                $accepted->acceptedOrRejectVolunteer(0, $id, $Data['message'], $event);
             } catch (Exception $e) {
                 echo $e->getMessage();
             }
@@ -53,19 +54,17 @@ class NotificationController extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = json_decode(file_get_contents("php://input"));
             $id = $data->id;
-            // $event = $data->event;
+            $event = $data->event_id;
 
             $Data = [
                 'titel' => 'Application Review',
-                // 'evant' => $event,
                 'status' => 'Accepted',
                 'message' => 'Your application for volunteering in the event been Accepted, see you soon!! if you have any questions please contact us',
             ];
             try {
                 $this->pusher->trigger('my-channel-' . $id, 'my-event',  $Data);
-                // self::deleteVolunteer($id);
                 $accepted = $this->model('NotificationModel');
-                $accepted->acceptedOrRejectVolunteer(1, $id, $Data['message']);
+                $accepted->acceptedOrRejectVolunteer(1, $id, $Data['message'], $event);
             } catch (Exception $e) {
                 echo $e->getMessage();
             }
@@ -73,13 +72,9 @@ class NotificationController extends Controller
     }
     public function getNotification()
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            $user_id = $_GET['user_id'];
-            $notification = $this->model('NotificationModel');
-            $result = $notification->getNotification($user_id);
-            if ($result) {
-                return $this->json($result);
-            }
-        }
+        $user_id = $_GET['user_id'];
+        $notification = $this->model('NotificationModel');
+        $result = $notification->getNotification($user_id);
+        return $this->json($result);
     }
 }

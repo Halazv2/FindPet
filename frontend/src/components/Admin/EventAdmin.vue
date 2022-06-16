@@ -81,13 +81,17 @@
                 <div>
                   <button
                     class="btn btn-ghost text-green-500 btn-xs"
-                    @click="AcceptVolunteer(Volunteer.user_id)"
+                    @click="
+                      AcceptVolunteer(Volunteer.user_id, Volunteer.event_id)
+                    "
                   >
                     Accept
                   </button>
                   <button
                     class="btn btn-ghost text-red-600 btn-xs"
-                    @click="RejectVolunteer(Volunteer.user_id)"
+                    @click="
+                      RejectVolunteer(Volunteer.user_id, Volunteer.event_id)
+                    "
                   >
                     Reject
                   </button>
@@ -145,7 +149,7 @@ export default {
     //       this.getAllVoulunteer();
     //     });
     // },
-    RejectVolunteer(id) {
+    RejectVolunteer(id, event_id) {
       fetch(
         "http://localhost/fil-rouge-find-pet/NotificationController/rejectVolunteer",
         {
@@ -155,6 +159,7 @@ export default {
           },
           body: JSON.stringify({
             id: id,
+            event_id: event_id,
           }),
         }
       )
@@ -166,7 +171,7 @@ export default {
           console.log(error);
         });
     },
-    AcceptVolunteer(id) {
+    AcceptVolunteer(id, event_id) {
       fetch(
         "http://localhost/fil-rouge-find-pet/NotificationController/AcceptedVolunteer",
         {
@@ -176,6 +181,7 @@ export default {
           },
           body: JSON.stringify({
             id: id,
+            event_id: event_id,
           }),
         }
       )

@@ -29,13 +29,12 @@ export default createStore({
   mutations: {
     setSuccessAlert(state, payload) {
       state.SuccessAlert = payload;
-      // console.log("im commit success alert" + state.SuccessAlert);
     },
     setnotifications(state, payload) {
       state.notifications.push(payload);
     },
     setnotificationDb(state, payload) {
-      state.notificationDb.push(payload);
+      state.notificationDb = payload;
     },
     showDotNotification(state, payload) {
       state.newNotification = payload;
@@ -82,10 +81,10 @@ export default createStore({
       axios
         .get(
           "http://localhost/fil-rouge-find-pet/NotificationController/getNotification?user_id=" +
-            state.id
+            state.id 
         )
         .then((response) => {
-          // console.log(response.data);
+          console.log(response.data);
           commit("setnotificationDb", response.data);
         })
         .catch((error) => {
