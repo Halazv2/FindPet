@@ -83,7 +83,7 @@
             alt=""
           />
           <div class="ml-2">
-            <p class="font-bold">{{ Notification.title }} {{Notification.event_id}}</p>
+            <p class="font-bold">{{ Notification.title }}</p>
             <p>
               <span
                 v-if="
@@ -140,7 +140,7 @@ import axios from "axios";
 // });
 const store = useStore();
 const Notifications = computed(() => {
-  return store.state.countC;
+  return store.state.notifications;
 });
 const notificationDb = computed(() => {
   return store.state.notificationDb;

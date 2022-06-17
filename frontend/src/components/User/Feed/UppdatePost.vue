@@ -1,6 +1,6 @@
 <template>
     <dialog class="mqsl absolute flex justify-center w-screen h-screen bg-black bg-opacity-20">
-      <div class="modal-box w-full z-[99999] relative">
+      <div class="modal-box w-full z-[99999] relative h-fit">
         <label
           id="close-modal"
           class="

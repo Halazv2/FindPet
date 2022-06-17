@@ -7,6 +7,8 @@
       dark:bg-gray-800
       fixed
       h-screen
+      lg:pr-0
+      pr-8
       text-gray-700
       dark:text-gray-200
     "
@@ -97,7 +99,7 @@
           </a>
         </div>
       </div>
-      <content  class="flex grid-cols-6 lg:absolute bottom-0 w-full" v-if="Role == 'User'">
+      <content  class="flex grid-cols-6 absolute bottom-0 w-full" v-if="Role == 'User'">
         <div class="">
           <img
             src="../../../assets/images/catMatch.png"
