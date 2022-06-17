@@ -42,4 +42,13 @@ class CommentModel
         $stmt->bindParam(':comment_id', $comment_id);
         $stmt->execute();
     }
+    public function countComment($post_id)
+    {
+        $request = "SELECT COUNT(id) as count FROM comments WHERE post_id = :post_id";
+        $stmt = $this->db->prepare($request);
+        $stmt->bindParam(':post_id', $post_id);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['count'];
+    }
 }

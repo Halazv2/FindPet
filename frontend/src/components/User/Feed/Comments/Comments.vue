@@ -177,6 +177,7 @@ export default {
           this.comments.comment = "";
           this.comments.push(response.data);
           this.getComments();
+          this.$emit("countComments");
         });
     },
     getComments() {

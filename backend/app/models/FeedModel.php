@@ -127,14 +127,12 @@ class FeedModel
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result['count'];
     }
-
     public function fetchFeedWithLikes()
     {
-        $request = "SELECT posts.*, count(likes.id) as likesCount, count(comments.id) as CommentCount, 
+        $request = "SELECT posts.*, count(likes.id) as likesCount, 
          users.FirstName , users.LastName , users.Email, users.City, users.PhoneNumber, users.ProfilePic from posts
          LEFT join likes on posts.id = likes.post_id
          LEFT join users on posts.UserID = users.id
-         LEFT join comments on posts.id = comments.post_id 
          group by posts.id";
 
         $stmt = $this->db->prepare($request);

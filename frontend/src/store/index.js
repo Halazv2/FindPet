@@ -41,6 +41,7 @@ export default createStore({
     },
   },
   actions: {
+
     getuser() {
       axios
         .get(

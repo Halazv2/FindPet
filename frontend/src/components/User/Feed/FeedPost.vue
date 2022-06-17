@@ -22,6 +22,7 @@
       :post="post"
       v-if="commentModel"
       @closeComments="openCommentModel"
+      @countComments="countComments"
     />
     <article
       ref="feed"
@@ -202,7 +203,7 @@
                 ></path>
               </g>
             </svg>
-            {{ post.CommentCount}}
+            {{ countC }}
           </div>
           <!-- end of comment -->
 
@@ -288,6 +289,7 @@ export default {
       updateModal: false,
       cardHover: false,
       commentModel: false,
+      countC: 0,
     };
   },
 
@@ -305,22 +307,17 @@ export default {
     editPost: function () {
       this.updateModal = !this.updateModal;
     },
-    // getpost() {
-    //   fetch(
-    //     "http://localhost/fil-rouge-find-pet/FeedController/getPost?id=" +
-    //       this.post.id,
-    //     {
-    //       method: "GET",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //     }
-    //   )
-    //     .then((res) => res.json())
-    //     .then((data) => {
-    //       // console.log(data)
-    //     });
-    // },
+    countComments() {
+      fetch(
+        "http://localhost/fil-rouge-find-pet/CommentController/countComment?post_id=" +
+          this.post.id,
+      )
+      .then((response) => response.json())
+      .then((data) => {
+        this.countC = data;
+        // console.log(data);
+      });
+    },
     //deletePost
     deletePost(id) {
       console.log(id);
@@ -351,9 +348,9 @@ export default {
         });
     },
   },
-  //close menu when click outside
   mounted() {
-    // this.getpost();
+    this.countComments();
+    //close menu when click outside
     document.addEventListener("click", (e) => {
       if (this.menu && !this.$el.contains(e.target)) {
         this.menuToggleBlur();

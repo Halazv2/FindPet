@@ -140,7 +140,7 @@ import axios from "axios";
 // });
 const store = useStore();
 const Notifications = computed(() => {
-  return store.state.notifications;
+  return store.state.countC;
 });
 const notificationDb = computed(() => {
   return store.state.notificationDb;
