@@ -134,4 +134,12 @@ class AdminModel
         $count = $stmt->fetch(PDO::FETCH_ASSOC);
         echo json_encode($count);
     }
+    public function countEvents()
+    {
+        $request = "SELECT COUNT(*) as count FROM events";
+        $stmt = $this->db->prepare($request);
+        $stmt->execute();
+        $count = $stmt->fetch(PDO::FETCH_ASSOC);
+        echo json_encode($count);
+    }
 }

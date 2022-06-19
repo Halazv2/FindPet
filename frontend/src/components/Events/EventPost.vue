@@ -111,7 +111,7 @@
                         hover:bg-primary-btn hover:text-white
                       "
                     >
-                      Delete {{ event.id }}
+                      Delete
                     </a>
                   </li>
 

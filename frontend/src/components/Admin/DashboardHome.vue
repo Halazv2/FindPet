@@ -105,8 +105,7 @@
                           @click="deleteUser(user.id)"
                           >Delete</a
                         >
-                        &nbsp;
-                        <a class="cursor-pointer text-blue-600">Contact</a>
+ 
                       </td>
                     </tr>
                   </tbody>
@@ -127,7 +126,7 @@
               text-red-600
             "
           >
-            Sales Report
+            see volunteers
           </button>
         </div>
       </div>
@@ -146,7 +145,7 @@
         style="width: 100%"
       >
         <h2 class="dark:text-gray-200 text-xl font-bold">New Users</h2>
-        <p class="text-gray-400">This is list if your new users.</p>
+        <p class="text-gray-400">This is list of your new users.</p>
         <div class="mt-4 grid grid-cols-1 gap-4">
           <div
             class="w-full box-border flex items-center gap-4"

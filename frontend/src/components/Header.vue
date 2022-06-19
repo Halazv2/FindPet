@@ -190,23 +190,19 @@
               shadow
             "
           >
-            <div class="py-3 px-4 text-sm text-gray-900 dark:text-gray-200">
+            <div class="py-3 px-4 text-sm text-gray-900 dark:text-gray-200"  v-if="Role === 'User'">
               <div>Logged As</div>
               <div class="font-medium truncate">Riven BechBech</div>
             </div>
-            <ul class="py-1 text-sm text-gray-700 dark:text-gray-200">
+            <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"  v-if="Role === 'User'">
               <li>
                 <router-link
                   to="/profile"
+                 
                   class="block py-2 px-4 hover:bg-primary hover:text-white"
                 >
                   Profile
                 </router-link>
-              </li>
-              <li>
-                <a class="block py-2 px-4 hover:bg-primary hover:text-white"
-                  >Settings</a
-                >
               </li>
             </ul>
             <div class="py-1" @click="signOut()">

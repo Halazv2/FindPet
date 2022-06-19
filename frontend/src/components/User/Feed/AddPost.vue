@@ -202,7 +202,7 @@
               />
             </label>
             <!-- class="hidden" -->
-            <div id="progress">
+            <!-- <div id="progress">
               <p>
                 Progress: {{ uploadValue.toFixed() + "%" }}
                 <progress
@@ -213,7 +213,7 @@
                 ></progress>
               </p>
             </div>
-            <div class="hidden" ref="done">Done!</div>
+            <div class="hidden" ref="done">Done!</div> -->
           </div>
           <button
             @click="AddPost()"

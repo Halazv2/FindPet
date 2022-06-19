@@ -167,4 +167,11 @@ class AdminController extends Controller
             $admin->countUsers();
         }
     }
+    public function countEvents()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $admin = $this->model('AdminModel');
+            $admin->countEvents();
+        }
+    }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="adminEvent">
       <EventAdmin />
   </div>
 </template>
@@ -14,6 +14,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.adminEvent {
+    height: 100vh;
+}
 </style>

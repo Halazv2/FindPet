@@ -29,9 +29,7 @@
       <div
         class="
           rounded-t
-          dark:bg-gray-800
           bg-white
-          dark:text-white
           mb-0
           px-6
           py-6
@@ -185,10 +183,7 @@ export default {
           this.message = data.message;
           if (data.message == "Volunteer added") {
             this.$emit("VolunteerModal");
-            // alert(this.message);
-            // this.$store.commit("setSuccessAlert", true);
-            // this.$store.commit("setSuccessAlert", true);
-            // this.$emit("openSuccessAlert(successAlert)");
+            // setTimeout(myGreeting, 5000);
             this.setSuccessAlert(true);
           } else {
             this.message = data.message;

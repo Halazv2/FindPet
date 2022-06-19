@@ -28,9 +28,7 @@
       <div
         class="
           rounded-t
-          dark:bg-gray-800
           bg-white
-          dark:text-white
           mb-0
           px-6
           py-6
@@ -50,7 +48,7 @@
             mb-6
             font-bold
             uppercase
-            dark:text-white
+            
           "
         >
           Event Details
@@ -65,7 +63,7 @@
                   text-blueGray-600 text-xs
                   font-bold
                   mb-2
-                  dark:text-white
+                  
                 "
               >
                 Titel
@@ -97,7 +95,7 @@
                   uppercase
                   text-blueGray-600 text-xs
                   font-bold
-                  dark:text-white
+                  
                   mb-2
                 "
               >
@@ -130,7 +128,7 @@
                   text-blueGray-600 text-xs
                   font-bold
                   mb-2
-                  dark:text-white
+                  
                 "
                 htmlfor="grid-password"
               >
@@ -162,7 +160,7 @@
                   uppercase
                   text-blueGray-600 text-xs
                   font-bold
-                  dark:text-white
+                  
                   mb-2
                 "
               >
@@ -197,7 +195,7 @@
             mb-6
             font-bold
             uppercase
-            dark:text-white
+            
           "
         >
           About the event
@@ -211,7 +209,7 @@
                   uppercase
                   text-blueGray-600 text-xs
                   font-bold
-                  dark:text-white
+                  
                   mb-2
                 "
               >

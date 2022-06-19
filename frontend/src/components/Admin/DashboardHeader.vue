@@ -137,9 +137,9 @@
         <!-- ------------------------------------------------------------------------------  -->
         <div class="block p-2 w-full">
           <p class="font-semibold text-gray-900 dark:text-gray-200 text-xl">
-            7 230
+            {{countE}}
           </p>
-          <h2 class="font-normal text-gray-400 text-md mt-1">Total Visit</h2>
+          <h2 class="font-normal text-gray-400 text-md mt-1">Total Event</h2>
         </div>
       </div>
     </div>
@@ -157,6 +157,7 @@ export default {
     return {
       countP: 0,
       countU: 0,
+      countE: 0,
     };
   },
   methods: {
@@ -178,10 +179,20 @@ export default {
           this.countU = data.count;
         });
     },
+    countEvents() {
+      fetch("http://localhost/fil-rouge-find-pet/AdminController/countEvents", {
+        method: "GET",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          this.countE = data.count;
+        });
+    },
   },
   mounted() {
     this.countPosts();
     this.countUsers();
+    this.countEvents();
   },
 };
 </script>
