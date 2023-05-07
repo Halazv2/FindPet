@@ -24,7 +24,7 @@
             class="w-1/5 mb-3"
             srcset=""
           />
-          <a class="text-gray-600 font-semibold py-2"> +212 7 00 94 07 62</a>
+          <a class="text-gray-600 font-semibold py-2"> +212 7 10 10 06 64</a>
           <a class="text-gray-600 font-semibold"> support@findpet.com</a>
           <div class="flex justify-center items-center">
             <div class="flex justify-center items-center gap-3 mt-3">
