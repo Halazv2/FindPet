@@ -115,7 +115,7 @@
                   whitespace-nowrap
                   uppercase
                 "
-                ><i class="fa-solid fa-phone"></i> +212 7 00 94 07 62</a
+                ><i class="fa-solid fa-phone"></i> +212 7 10 10 06 64</a
               >
               <router-link to="/Role">
                 <button
